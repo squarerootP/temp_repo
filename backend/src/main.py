@@ -11,7 +11,7 @@ from fastapi.responses import JSONResponse
 
 from backend.config.settings import settings
 from backend.src.presentation.routers.v1 import (authors, books, borrowings,
-                                                 users)
+                                                 users, rag)
 from backend.src.presentation.routers.v1.api import router as api_router
 
 RATE_LIMIT = settings.RATE_LIMIT  
@@ -126,6 +126,7 @@ app.include_router(users.router, prefix="/v1")
 app.include_router(books.router, prefix="/v1") 
 app.include_router(authors.router, prefix="/v1") 
 app.include_router(borrowings.router, prefix="/v1") 
+app.include_router(rag.router, prefix="/v1")
 
 @app.get("/")
 def read_root():

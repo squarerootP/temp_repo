@@ -2,6 +2,7 @@ from sqlalchemy import (TIMESTAMP, Boolean, Column, DateTime, Enum, ForeignKey,
                         Integer, String, Text, func)
 from sqlalchemy.orm import declarative_base, relationship
 
+
 Base = declarative_base()
 
 class BorrowingManager(Base):
@@ -76,3 +77,4 @@ class Author(Base):
     def __repr__(self):
         return f"<Author(id={self.author_id}, email='{self.email}', name='{self.first_name} {self.last_name}')>"
 
+ 
