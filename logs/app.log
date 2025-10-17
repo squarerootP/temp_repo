@@ -1,0 +1,912 @@
+2025-10-09 14:16:49,327 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:16:49,327 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.36ms
+2025-10-09 14:16:49,499 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:16:49,528 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 28.38ms
+2025-10-09 14:17:11,391 - my_fastapi_app - INFO - Incoming request: POST http://localhost:8000/api/token
+2025-10-09 14:17:11,518 - my_fastapi_app - INFO - Completed request: POST http://localhost:8000/api/tokenStatus: 200 Duration: 127.22ms
+2025-10-09 14:17:17,331 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/api/health
+2025-10-09 14:17:17,333 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/api/healthStatus: 200 Duration: 1.67ms
+2025-10-09 14:17:39,205 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/api/users/?skip=0&limit=100
+2025-10-09 14:17:39,219 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/api/users/?skip=0&limit=100Status: 200 Duration: 14.30ms
+2025-10-09 14:22:37,061 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:22:37,063 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.39ms
+2025-10-09 14:22:37,239 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:22:37,268 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 29.13ms
+2025-10-09 14:22:45,244 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:22:45,244 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.36ms
+2025-10-09 14:22:45,326 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:22:45,327 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.78ms
+2025-10-09 14:22:46,109 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:22:46,109 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.24ms
+2025-10-09 14:23:21,349 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:21,350 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.44ms
+2025-10-09 14:23:21,451 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:21,476 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 24.31ms
+2025-10-09 14:23:29,174 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:29,174 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.35ms
+2025-10-09 14:23:29,223 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:29,224 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.65ms
+2025-10-09 14:23:31,533 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:31,533 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.24ms
+2025-10-09 14:23:31,582 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:31,583 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.91ms
+2025-10-09 14:23:32,161 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:32,162 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:32,212 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:32,212 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.66ms
+2025-10-09 14:23:32,849 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:32,850 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:32,899 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:32,900 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.94ms
+2025-10-09 14:23:33,407 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:33,407 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:33,473 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:33,474 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.94ms
+2025-10-09 14:23:33,935 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:33,935 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:23:33,984 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:33,984 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.63ms
+2025-10-09 14:23:34,520 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:34,520 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:23:34,566 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:34,567 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.62ms
+2025-10-09 14:23:35,062 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:35,062 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:23:35,109 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:35,110 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.61ms
+2025-10-09 14:23:35,637 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:35,638 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.28ms
+2025-10-09 14:23:35,687 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:35,688 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.97ms
+2025-10-09 14:23:39,010 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:39,010 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.30ms
+2025-10-09 14:23:39,063 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:39,064 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.69ms
+2025-10-09 14:23:39,546 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:39,547 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.26ms
+2025-10-09 14:23:39,596 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:39,597 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.61ms
+2025-10-09 14:23:40,178 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:40,179 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.36ms
+2025-10-09 14:23:40,232 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:40,233 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.98ms
+2025-10-09 14:23:40,894 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:40,895 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:23:40,945 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:40,946 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.61ms
+2025-10-09 14:23:41,051 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:41,052 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.24ms
+2025-10-09 14:23:41,292 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:41,293 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.82ms
+2025-10-09 14:23:41,388 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:41,389 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:41,618 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:41,619 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.64ms
+2025-10-09 14:23:41,838 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:41,838 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:23:41,929 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:41,930 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.71ms
+2025-10-09 14:23:42,004 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:42,005 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.31ms
+2025-10-09 14:23:42,234 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:42,235 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.63ms
+2025-10-09 14:23:42,368 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:42,368 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:42,534 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:42,535 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.72ms
+2025-10-09 14:23:42,578 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:42,578 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.26ms
+2025-10-09 14:23:42,656 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:42,657 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.76ms
+2025-10-09 14:23:42,847 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:42,848 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:42,982 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:42,983 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.70ms
+2025-10-09 14:23:43,258 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:43,259 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:23:43,318 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:43,319 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.65ms
+2025-10-09 14:23:43,978 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:43,979 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.38ms
+2025-10-09 14:23:44,028 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:44,028 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.63ms
+2025-10-09 14:23:44,274 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:44,275 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.30ms
+2025-10-09 14:23:44,319 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:44,320 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.34ms
+2025-10-09 14:23:44,328 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:44,329 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.86ms
+2025-10-09 14:23:44,396 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:44,397 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.61ms
+2025-10-09 14:23:44,653 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:44,653 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:44,670 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:44,671 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:23:44,747 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:44,748 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.61ms
+2025-10-09 14:23:44,822 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:44,823 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:45,027 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:45,027 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:45,093 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:45,093 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.63ms
+2025-10-09 14:23:45,350 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:45,351 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:23:45,405 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:45,405 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.65ms
+2025-10-09 14:23:45,487 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:45,487 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:45,696 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:45,697 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:45,721 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:45,722 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.28ms
+2025-10-09 14:23:45,774 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:45,775 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.03ms
+2025-10-09 14:23:45,869 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:45,870 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.24ms
+2025-10-09 14:23:46,072 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:46,072 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:46,139 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:46,140 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.00ms
+2025-10-09 14:23:46,187 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:46,188 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.62ms
+2025-10-09 14:23:46,481 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:46,482 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:46,518 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:46,518 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:23:46,590 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:46,590 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.59ms
+2025-10-09 14:23:46,835 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:46,835 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.21ms
+2025-10-09 14:23:46,881 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:46,881 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.25ms
+2025-10-09 14:23:46,961 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:46,962 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.61ms
+2025-10-09 14:23:47,221 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:47,221 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:23:47,235 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:47,235 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.25ms
+2025-10-09 14:23:47,292 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:47,293 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.62ms
+2025-10-09 14:23:47,559 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:47,560 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.24ms
+2025-10-09 14:23:47,596 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:47,596 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.26ms
+2025-10-09 14:23:47,612 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:47,615 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 2.08ms
+2025-10-09 14:23:47,675 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:47,676 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.91ms
+2025-10-09 14:23:47,768 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:47,769 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.36ms
+2025-10-09 14:23:47,962 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:47,962 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:48,040 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:48,040 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.76ms
+2025-10-09 14:23:48,316 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:48,316 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.38ms
+2025-10-09 14:23:48,372 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:48,372 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:23:48,386 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:48,387 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.05ms
+2025-10-09 14:23:48,430 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:48,431 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.79ms
+2025-10-09 14:23:48,686 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:48,686 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:23:48,746 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:48,747 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.64ms
+2025-10-09 14:23:48,838 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:48,838 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:49,050 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:49,050 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.25ms
+2025-10-09 14:23:49,103 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:49,104 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.07ms
+2025-10-09 14:23:49,361 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:49,361 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:23:49,428 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:49,429 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.63ms
+2025-10-09 14:23:49,517 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:49,518 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.25ms
+2025-10-09 14:23:49,712 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:49,712 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:23:49,779 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:49,780 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.04ms
+2025-10-09 14:23:49,858 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:49,858 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.30ms
+2025-10-09 14:23:50,066 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:50,066 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.25ms
+2025-10-09 14:23:50,122 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:23:50,123 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.66ms
+2025-10-09 14:23:50,205 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:23:50,206 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.28ms
+2025-10-09 14:24:13,489 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:13,490 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.34ms
+2025-10-09 14:24:13,544 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:13,579 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 34.75ms
+2025-10-09 14:24:14,880 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:14,881 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.40ms
+2025-10-09 14:24:14,945 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:14,946 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.63ms
+2025-10-09 14:24:15,221 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:15,222 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.74ms
+2025-10-09 14:24:15,290 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:15,292 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.28ms
+2025-10-09 14:24:15,301 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:15,301 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.28ms
+2025-10-09 14:24:15,411 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:15,412 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.68ms
+2025-10-09 14:24:15,494 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:15,495 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.33ms
+2025-10-09 14:24:15,713 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:15,713 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.24ms
+2025-10-09 14:24:15,802 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:15,803 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.08ms
+2025-10-09 14:24:15,879 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:15,880 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.25ms
+2025-10-09 14:24:16,109 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:16,110 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.28ms
+2025-10-09 14:24:16,183 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:16,184 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.68ms
+2025-10-09 14:24:16,262 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:16,262 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:24:16,473 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:16,473 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.34ms
+2025-10-09 14:24:16,547 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:16,548 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.67ms
+2025-10-09 14:24:16,627 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:16,628 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.40ms
+2025-10-09 14:24:16,826 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:16,826 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.26ms
+2025-10-09 14:24:16,897 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:16,898 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.64ms
+2025-10-09 14:24:16,978 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:16,978 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.28ms
+2025-10-09 14:24:17,188 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:17,188 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.28ms
+2025-10-09 14:24:17,259 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:17,259 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.24ms
+2025-10-09 14:24:17,275 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:17,277 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.28ms
+2025-10-09 14:24:17,320 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:17,321 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.67ms
+2025-10-09 14:24:17,590 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:17,590 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:24:17,640 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:17,641 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.67ms
+2025-10-09 14:24:17,728 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:17,729 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.27ms
+2025-10-09 14:24:17,914 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:17,915 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:24:17,995 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:17,996 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.65ms
+2025-10-09 14:24:18,064 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:18,065 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:24:18,282 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:18,282 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:24:18,322 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:18,323 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.62ms
+2025-10-09 14:24:18,378 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:18,379 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.09ms
+2025-10-09 14:24:18,454 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:18,454 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.25ms
+2025-10-09 14:24:18,669 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:18,670 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:24:18,741 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:18,741 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.67ms
+2025-10-09 14:24:18,829 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:18,830 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.43ms
+2025-10-09 14:24:19,026 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:19,027 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:24:19,060 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:19,061 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.63ms
+2025-10-09 14:24:19,112 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:19,113 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.71ms
+2025-10-09 14:24:19,142 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:19,142 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.27ms
+2025-10-09 14:24:19,226 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:19,227 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.69ms
+2025-10-09 14:24:19,321 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:19,321 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:24:19,522 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:19,523 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.27ms
+2025-10-09 14:24:19,537 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:19,538 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.86ms
+2025-10-09 14:24:19,605 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:19,605 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.64ms
+2025-10-09 14:24:19,851 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:19,852 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.25ms
+2025-10-09 14:24:19,892 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:19,892 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.37ms
+2025-10-09 14:24:19,911 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:19,912 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.01ms
+2025-10-09 14:24:20,161 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:20,162 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.67ms
+2025-10-09 14:24:20,164 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:20,165 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.89ms
+2025-10-09 14:24:20,226 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:20,227 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.61ms
+2025-10-09 14:24:20,311 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:20,312 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.27ms
+2025-10-09 14:24:20,526 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:20,526 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.25ms
+2025-10-09 14:24:20,559 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:20,561 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.36ms
+2025-10-09 14:24:20,601 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:20,602 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.65ms
+2025-10-09 14:24:20,864 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:20,865 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.28ms
+2025-10-09 14:24:20,906 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:20,907 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.25ms
+2025-10-09 14:24:20,978 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:20,980 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.06ms
+2025-10-09 14:24:21,245 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:21,246 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.79ms
+2025-10-09 14:24:21,289 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:21,289 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.26ms
+2025-10-09 14:24:21,349 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:21,350 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.82ms
+2025-10-09 14:24:21,603 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:21,604 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.24ms
+2025-10-09 14:24:21,662 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:21,663 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.02ms
+2025-10-09 14:24:21,664 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:21,665 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.32ms
+2025-10-09 14:24:21,755 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:21,756 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.67ms
+2025-10-09 14:24:22,010 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:22,010 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.24ms
+2025-10-09 14:24:22,054 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:22,055 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:24:22,069 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:22,071 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.33ms
+2025-10-09 14:24:22,117 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:22,118 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.64ms
+2025-10-09 14:24:22,212 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:22,213 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.25ms
+2025-10-09 14:24:22,426 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:22,427 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.27ms
+2025-10-09 14:24:22,504 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:22,505 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.64ms
+2025-10-09 14:24:22,589 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:22,589 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.24ms
+2025-10-09 14:24:22,835 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:22,835 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.68ms
+2025-10-09 14:24:27,409 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:27,409 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.26ms
+2025-10-09 14:24:27,463 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:27,464 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.61ms
+2025-10-09 14:24:30,293 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:30,293 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.24ms
+2025-10-09 14:24:30,348 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:30,349 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.03ms
+2025-10-09 14:24:30,618 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:30,618 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.25ms
+2025-10-09 14:24:30,637 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:30,637 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.33ms
+2025-10-09 14:24:30,692 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:30,693 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.70ms
+2025-10-09 14:24:30,789 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:30,789 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:24:30,991 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:30,991 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:24:31,025 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:31,027 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.70ms
+2025-10-09 14:24:31,061 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:31,062 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.64ms
+2025-10-09 14:24:31,330 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:31,330 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:24:31,379 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:31,380 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.77ms
+2025-10-09 14:24:31,382 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:31,383 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.20ms
+2025-10-09 14:24:31,439 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:31,440 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.03ms
+2025-10-09 14:24:31,693 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:31,693 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:24:31,727 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:31,727 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.25ms
+2025-10-09 14:24:31,746 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:31,747 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.84ms
+2025-10-09 14:24:31,795 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:31,796 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.16ms
+2025-10-09 14:24:32,046 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:32,046 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.23ms
+2025-10-09 14:24:32,082 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:32,083 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.49ms
+2025-10-09 14:24:32,142 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:24:32,143 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.64ms
+2025-10-09 14:24:32,433 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:32,434 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.29ms
+2025-10-09 14:24:32,448 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:24:32,448 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.22ms
+2025-10-09 14:31:09,816 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:31:09,816 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.37ms
+2025-10-09 14:31:10,010 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:31:10,042 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 31.64ms
+2025-10-09 14:31:20,341 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/api/health
+2025-10-09 14:31:20,346 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/api/healthStatus: 200 Duration: 4.34ms
+2025-10-09 14:32:10,611 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/api/health
+2025-10-09 14:32:10,612 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/api/healthStatus: 200 Duration: 1.33ms
+2025-10-09 14:33:12,521 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/api/health
+2025-10-09 14:33:12,526 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/api/healthStatus: 200 Duration: 4.93ms
+2025-10-09 14:36:28,742 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/api/health
+2025-10-09 14:36:28,747 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/api/healthStatus: 200 Duration: 5.31ms
+2025-10-09 14:36:34,912 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/api/health
+2025-10-09 14:36:34,914 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/api/healthStatus: 200 Duration: 2.05ms
+2025-10-09 14:46:32,817 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/api/health
+2025-10-09 14:47:18,222 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/api/health
+2025-10-09 14:47:18,227 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/api/healthStatus: 200 Duration: 4.00ms
+2025-10-09 14:48:21,304 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/api/health
+2025-10-09 14:48:21,309 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/api/healthStatus: 200 Duration: 4.02ms
+2025-10-09 14:49:38,461 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/api/health
+2025-10-09 14:50:13,770 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/api/health
+2025-10-09 14:50:13,774 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/api/healthStatus: 200 Duration: 4.37ms
+2025-10-09 14:52:40,099 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/api/health
+2025-10-09 14:52:40,104 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/api/healthStatus: 200 Duration: 4.46ms
+2025-10-09 14:56:21,299 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/docs
+2025-10-09 14:56:21,300 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.34ms
+2025-10-09 14:56:21,477 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/openapi.json
+2025-10-09 14:56:21,501 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 24.44ms
+2025-10-09 15:17:59,979 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/api/health
+2025-10-09 15:17:59,984 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/api/healthStatus: 200 Duration: 4.34ms
+2025-10-09 15:18:08,171 - my_fastapi_app - INFO - Incoming request: GET http://localhost:8000/api/users/v1/me
+2025-10-09 15:18:08,171 - my_fastapi_app - ERROR - {"error": "Not authenticated", "status_code": 401, "path": "http://localhost:8000/api/users/v1/me", "method": "GET"}
+2025-10-09 15:18:08,171 - my_fastapi_app - INFO - Completed request: GET http://localhost:8000/api/users/v1/meStatus: 401 Duration: 0.52ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.34ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 31.71ms
+Incoming request: GET http://localhost:8000/api/users/v1/me
+{"error": "Not authenticated", "status_code": 401, "path": "http://localhost:8000/api/users/v1/me", "method": "GET"}
+Completed request: GET http://localhost:8000/api/users/v1/meStatus: 401 Duration: 0.88ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.37ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 32.61ms
+Incoming request: GET http://localhost:8000/api/health
+Completed request: GET http://localhost:8000/api/healthStatus: 200 Duration: 4.63ms
+Incoming request: POST http://localhost:8000/api/token
+Completed request: POST http://localhost:8000/api/tokenStatus: 200 Duration: 95.19ms
+Incoming request: GET http://localhost:8000/api/health
+Completed request: GET http://localhost:8000/api/healthStatus: 200 Duration: 1.55ms
+Incoming request: GET http://localhost:8000/api/health
+Completed request: GET http://localhost:8000/api/healthStatus: 200 Duration: 4.21ms
+Incoming request: GET http://localhost:8000/api/users/v1/me
+Completed request: GET http://localhost:8000/api/users/v1/meStatus: 200 Duration: 31.42ms
+Incoming request: GET http://localhost:8000/
+Completed request: GET http://localhost:8000/Status: 200 Duration: 0.62ms
+Incoming request: GET http://localhost:8000/api/users/v1?text_to_search=a&skip=0&limit=100
+Completed request: GET http://localhost:8000/api/users/v1?text_to_search=a&skip=0&limit=100Status: 200 Duration: 5.84ms
+Incoming request: GET http://localhost:8000/api/users/v1/3
+Completed request: GET http://localhost:8000/api/users/v1/3Status: 200 Duration: 3.15ms
+Incoming request: PUT http://localhost:8000/api/users/v1/3
+Completed request: PUT http://localhost:8000/api/users/v1/3Status: 400 Duration: 5.35ms
+Incoming request: PUT http://localhost:8000/api/users/v1/3
+Completed request: PUT http://localhost:8000/api/users/v1/3Status: 200 Duration: 18.68ms
+Incoming request: DELETE http://localhost:8000/api/users/v1/3
+Completed request: DELETE http://localhost:8000/api/users/v1/3Status: 200 Duration: 39.81ms
+Incoming request: GET http://localhost:8000/api/books/v1/?skip=0&limit=100
+Completed request: GET http://localhost:8000/api/books/v1/?skip=0&limit=100Status: 200 Duration: 3.91ms
+Incoming request: POST http://localhost:8000/api/books/v1/
+{"error": "Validation error", "detials": [{"type": "less_than_equal", "loc": ["body", "published_year"], "msg": "Input should be less than or equal to 2025", "input": 2026, "ctx": {"le": 2025}}], "body": "{\n  \"isbn\": \"1234567890123\",\n  \"title\": \"sample title\",\n  \"summary\": \"the amazing summary of the title\",\n  \"genre\": \"absolute\",\n  \"published_year\": 2026,\n  \"author_id\": 4\n}", "path": "http://localhost:8000/api/books/v1/", "method": "POST"}
+Completed request: POST http://localhost:8000/api/books/v1/Status: 422 Duration: 4.16ms
+Incoming request: POST http://localhost:8000/api/books/v1/
+Completed request: POST http://localhost:8000/api/books/v1/Status: 201 Duration: 14.72ms
+Incoming request: GET http://localhost:8000/api/books/v1/search?text_to_search=c&skip=0&limit=100
+Completed request: GET http://localhost:8000/api/books/v1/search?text_to_search=c&skip=0&limit=100Status: 200 Duration: 5.02ms
+Incoming request: GET http://localhost:8000/api/books/v1/1234567890123
+Completed request: GET http://localhost:8000/api/books/v1/1234567890123Status: 200 Duration: 3.57ms
+Incoming request: PUT http://localhost:8000/api/books/v1/1234567890123
+Completed request: PUT http://localhost:8000/api/books/v1/1234567890123Status: 200 Duration: 14.45ms
+Incoming request: DELETE http://localhost:8000/api/books/v1/1234567890123
+Completed request: DELETE http://localhost:8000/api/books/v1/1234567890123Status: 200 Duration: 14.91ms
+Incoming request: GET http://localhost:8000/api/authors/v1/?skip=0&limit=100
+Completed request: GET http://localhost:8000/api/authors/v1/?skip=0&limit=100Status: 200 Duration: 5.36ms
+Incoming request: GET http://localhost:8000/api/borrowings/v1/?skip=0&limit=100
+Completed request: GET http://localhost:8000/api/borrowings/v1/?skip=0&limit=100Status: 200 Duration: 4.41ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.38ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 29.60ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.44ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 271.01ms
+Incoming request: GET http://localhost:8000/api/v1/health
+Completed request: GET http://localhost:8000/api/v1/healthStatus: 200 Duration: 61.66ms
+Incoming request: POST http://localhost:8000/api/token
+Completed request: POST http://localhost:8000/api/tokenStatus: 404 Duration: 0.60ms
+Incoming request: POST http://localhost:8000/api/token
+Completed request: POST http://localhost:8000/api/tokenStatus: 404 Duration: 0.69ms
+Incoming request: POST http://localhost:8000/api/token
+Completed request: POST http://localhost:8000/api/tokenStatus: 404 Duration: 0.66ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.74ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 2.78ms
+Incoming request: POST http://localhost:8000/api/token
+Completed request: POST http://localhost:8000/api/tokenStatus: 404 Duration: 0.63ms
+Incoming request: POST http://localhost:8000/api/token
+Completed request: POST http://localhost:8000/api/tokenStatus: 404 Duration: 0.41ms
+Incoming request: POST http://localhost:8000/api/token
+Completed request: POST http://localhost:8000/api/tokenStatus: 404 Duration: 0.45ms
+Incoming request: POST http://localhost:8000/api/token
+Completed request: POST http://localhost:8000/api/tokenStatus: 404 Duration: 0.40ms
+Incoming request: POST http://localhost:8000/api/token
+Completed request: POST http://localhost:8000/api/tokenStatus: 404 Duration: 0.55ms
+Incoming request: POST http://localhost:8000/api/token
+Completed request: POST http://localhost:8000/api/tokenStatus: 404 Duration: 0.81ms
+Incoming request: POST http://localhost:8000/api/token
+Completed request: POST http://localhost:8000/api/tokenStatus: 404 Duration: 0.36ms
+Incoming request: POST http://localhost:8000/api/token
+Completed request: POST http://localhost:8000/api/tokenStatus: 404 Duration: 0.40ms
+Incoming request: POST http://localhost:8000/api/token
+Completed request: POST http://localhost:8000/api/tokenStatus: 404 Duration: 0.43ms
+Incoming request: POST http://localhost:8000/api/token
+Completed request: POST http://localhost:8000/api/tokenStatus: 404 Duration: 0.36ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.61ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 42.43ms
+Incoming request: POST http://localhost:8000/api/v1/token
+Completed request: POST http://localhost:8000/api/v1/tokenStatus: 200 Duration: 130.90ms
+Incoming request: GET http://localhost:8000/redoc
+Completed request: GET http://localhost:8000/redocStatus: 200 Duration: 0.28ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.06ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.58ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 10.83ms
+Incoming request: POST http://localhost:8000/api/v1/users/
+Completed request: POST http://localhost:8000/api/v1/users/Status: 401 Duration: 2.13ms
+Incoming request: POST http://localhost:8000/api/v1/token
+Completed request: POST http://localhost:8000/api/v1/tokenStatus: 200 Duration: 87.29ms
+Incoming request: POST http://localhost:8000/api/v1/users/
+Completed request: POST http://localhost:8000/api/v1/users/Status: 201 Duration: 118.40ms
+Incoming request: POST http://localhost:8000/api/v1/token
+Completed request: POST http://localhost:8000/api/v1/tokenStatus: 200 Duration: 101.29ms
+Incoming request: GET http://localhost:8000/api/v1/users/me
+Completed request: GET http://localhost:8000/api/v1/users/meStatus: 200 Duration: 3.30ms
+Incoming request: GET http://localhost:8000/api/v1/health
+Completed request: GET http://localhost:8000/api/v1/healthStatus: 200 Duration: 2.93ms
+Incoming request: GET http://localhost:8000/api/v1/users?text_to_search=a&skip=0&limit=100
+Completed request: GET http://localhost:8000/api/v1/users?text_to_search=a&skip=0&limit=100Status: 200 Duration: 7.72ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.69ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 32.74ms
+Incoming request: POST http://localhost:8000/api/v1/token
+Completed request: POST http://localhost:8000/api/v1/tokenStatus: 404 Duration: 0.51ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.54ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 37.27ms
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+{"error": "When initializing mapper Mapper[User(Users)], expression 'BorrowingManager' failed to locate a name ('BorrowingManager'). If this is a class name, consider adding this relationship() to the <class 'backend.src.domain.entities.user_ent.User'> class after both dependent classes have been defined.", "type": "InvalidRequestError", "path": "http://localhost:8000/backend/src/presentation/routers/v1/token", "method": "POST"}
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+{"error": "When initializing mapper Mapper[User(Users)], expression 'BorrowingManager' failed to locate a name ('BorrowingManager'). If this is a class name, consider adding this relationship() to the <class 'backend.src.domain.entities.user_ent.User'> class after both dependent classes have been defined.", "type": "InvalidRequestError", "path": "http://localhost:8000/backend/src/presentation/routers/v1/token", "method": "POST"}
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+{"error": "When initializing mapper Mapper[User(Users)], expression 'BorrowingManager' failed to locate a name ('BorrowingManager'). If this is a class name, consider adding this relationship() to the <class 'backend.src.domain.entities.user_ent.User'> class after both dependent classes have been defined.", "type": "InvalidRequestError", "path": "http://localhost:8000/backend/src/presentation/routers/v1/token", "method": "POST"}
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+{"error": "When initializing mapper Mapper[User(Users)], expression 'BorrowingManager' failed to locate a name ('BorrowingManager'). If this is a class name, consider adding this relationship() to the <class 'backend.src.domain.entities.models.User'> class after both dependent classes have been defined.", "type": "InvalidRequestError", "path": "http://localhost:8000/backend/src/presentation/routers/v1/token", "method": "POST"}
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+{"error": "When initializing mapper Mapper[User(Users)], expression 'BorrowingManager' failed to locate a name ('BorrowingManager'). If this is a class name, consider adding this relationship() to the <class 'backend.src.domain.entities.models.User'> class after both dependent classes have been defined.", "type": "InvalidRequestError", "path": "http://localhost:8000/backend/src/presentation/routers/v1/token", "method": "POST"}
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+{"error": "When initializing mapper Mapper[User(Users)], expression 'BorrowingManager' failed to locate a name ('BorrowingManager'). If this is a class name, consider adding this relationship() to the <class 'backend.src.domain.entities.models.User'> class after both dependent classes have been defined.", "type": "InvalidRequestError", "path": "http://localhost:8000/backend/src/presentation/routers/v1/token", "method": "POST"}
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+{"error": "When initializing mapper Mapper[User(Users)], expression 'BorrowingManager' failed to locate a name ('BorrowingManager'). If this is a class name, consider adding this relationship() to the <class 'backend.src.domain.entities.models.User'> class after both dependent classes have been defined.", "type": "InvalidRequestError", "path": "http://localhost:8000/backend/src/presentation/routers/v1/token", "method": "POST"}
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+{"error": "One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[User(Users)]'. Original exception was: When initializing mapper Mapper[User(Users)], expression 'BorrowingManager' failed to locate a name ('BorrowingManager'). If this is a class name, consider adding this relationship() to the <class 'backend.src.domain.entities.models.User'> class after both dependent classes have been defined.", "type": "InvalidRequestError", "path": "http://localhost:8000/backend/src/presentation/routers/v1/token", "method": "POST"}
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+{"error": "When initializing mapper Mapper[User(Users)], expression 'BorrowingManager' failed to locate a name ('BorrowingManager'). If this is a class name, consider adding this relationship() to the <class 'backend.src.domain.entities.models.User'> class after both dependent classes have been defined.", "type": "InvalidRequestError", "path": "http://localhost:8000/backend/src/presentation/routers/v1/token", "method": "POST"}
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+{"error": "When initializing mapper Mapper[User(Users)], expression 'BorrowingManager' failed to locate a name ('BorrowingManager'). If this is a class name, consider adding this relationship() to the <class 'backend.src.domain.entities.models.User'> class after both dependent classes have been defined.", "type": "InvalidRequestError", "path": "http://localhost:8000/backend/src/presentation/routers/v1/token", "method": "POST"}
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+{"error": "When initializing mapper Mapper[BorrowingManager(Borrowing)], expression 'Book' failed to locate a name ('Book'). If this is a class name, consider adding this relationship() to the <class 'backend.src.domain.entities.models.BorrowingManager'> class after both dependent classes have been defined.", "type": "InvalidRequestError", "path": "http://localhost:8000/backend/src/presentation/routers/v1/token", "method": "POST"}
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+Completed request: POST http://localhost:8000/backend/src/presentation/routers/v1/tokenStatus: 200 Duration: 253.07ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.37ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 39.67ms
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+Completed request: POST http://localhost:8000/backend/src/presentation/routers/v1/tokenStatus: 404 Duration: 0.34ms
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+Completed request: POST http://localhost:8000/backend/src/presentation/routers/v1/tokenStatus: 404 Duration: 0.44ms
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+Completed request: POST http://localhost:8000/backend/src/presentation/routers/v1/tokenStatus: 404 Duration: 0.43ms
+Incoming request: POST http://localhost:8000/backend/src/presentation/routers/v1/token
+Completed request: POST http://localhost:8000/backend/src/presentation/routers/v1/tokenStatus: 404 Duration: 0.45ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.52ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 38.63ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 102.03ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 27.38ms
+Incoming request: GET http://localhost:8000/v1/users/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/users/?skip=0&limit=100Status: 403 Duration: 3.18ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 401 Duration: 3.40ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 401 Duration: 92.50ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.29ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 0.86ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 70.43ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.18ms
+Incoming request: GET http://localhost:8000/v1/health
+Completed request: GET http://localhost:8000/v1/healthStatus: 200 Duration: 2.10ms
+Incoming request: GET http://localhost:8000/v1/users/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/users/?skip=0&limit=100Status: 200 Duration: 9.14ms
+Incoming request: POST http://localhost:8000/v1/users/
+Completed request: POST http://localhost:8000/v1/users/Status: 201 Duration: 133.13ms
+Incoming request: GET http://localhost:8000/v1/users?text_to_search=admin&skip=0&limit=100
+{"error": "module 'backend.src.application.use_cases.user_ops' has no attribute 'search_user'", "type": "AttributeError", "path": "http://localhost:8000/v1/users?text_to_search=admin&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/users?text_to_search=admin&skip=0&limit=100
+{"error": "module 'backend.src.application.use_cases.user_ops' has no attribute 'search_user'", "type": "AttributeError", "path": "http://localhost:8000/v1/users?text_to_search=admin&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/users?text_to_search=admin&skip=0&limit=100
+{"error": "module 'backend.src.application.use_cases.user_ops' has no attribute 'search_user'", "type": "AttributeError", "path": "http://localhost:8000/v1/users?text_to_search=admin&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/users?text_to_search=admin&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/users?text_to_search=admin&skip=0&limit=100Status: 200 Duration: 30.11ms
+Incoming request: GET http://localhost:8000/v1/users/12
+Completed request: GET http://localhost:8000/v1/users/12Status: 404 Duration: 4.04ms
+Incoming request: GET http://localhost:8000/v1/users/11
+Completed request: GET http://localhost:8000/v1/users/11Status: 200 Duration: 3.07ms
+Incoming request: PUT http://localhost:8000/v1/users/14
+{"error": "Validation error", "detials": [{"type": "string_too_short", "loc": ["body", "password"], "msg": "String should have at least 8 characters", "input": "user14", "ctx": {"min_length": 8}}], "body": "{\n  \"first_name\": \"user14\",\n  \"second_name\": \"user14\",\n  \"email\": \"user14@example.com\",\n  \"phone\": \"user14\",\n  \"address\": \"string\",\n  \"is_active\": true,\n  \"role\": \"member\",\n  \"password\": \"user14\"\n}", "path": "http://localhost:8000/v1/users/14", "method": "PUT"}
+Completed request: PUT http://localhost:8000/v1/users/14Status: 422 Duration: 5.44ms
+Incoming request: PUT http://localhost:8000/v1/users/14
+Completed request: PUT http://localhost:8000/v1/users/14Status: 200 Duration: 22.34ms
+Incoming request: DELETE http://localhost:8000/v1/users/14
+Completed request: DELETE http://localhost:8000/v1/users/14Status: 200 Duration: 36.88ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=100Status: 200 Duration: 4.45ms
+Incoming request: POST http://localhost:8000/v1/books/
+{"error": "'BookCreate' object has no attribute 'Book'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/books/
+Completed request: POST http://localhost:8000/v1/books/Status: 201 Duration: 43.67ms
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=1234567890123&skip=0&limit=100
+{"error": "Neither 'InstrumentedAttribute' object nor 'Comparator' object associated with Book.author has an attribute 'first_name'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/search?text_to_search=1234567890123&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=1234567890123&skip=0&limit=100
+{"error": "type object 'Book' has no attribute 'Author'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/search?text_to_search=1234567890123&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=1234567890123&skip=0&limit=100
+{"error": "Neither 'InstrumentedAttribute' object nor 'Comparator' object associated with Book.author has an attribute 'first_name'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/search?text_to_search=1234567890123&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=1234567890123&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/search?text_to_search=1234567890123&skip=0&limit=100Status: 200 Duration: 35.67ms
+Incoming request: GET http://localhost:8000/v1/books/1234567890123
+Completed request: GET http://localhost:8000/v1/books/1234567890123Status: 200 Duration: 5.45ms
+Incoming request: PUT http://localhost:8000/v1/books/1234567890123
+Completed request: PUT http://localhost:8000/v1/books/1234567890123Status: 200 Duration: 37.96ms
+Incoming request: DELETE http://localhost:8000/v1/books/1234567890123
+Completed request: DELETE http://localhost:8000/v1/books/1234567890123Status: 200 Duration: 62.74ms
+Incoming request: GET http://localhost:8000/v1/authors/?skip=0&limit=100
+{"error": "module 'backend.src.application.use_cases.user_ops' has no attribute 'get_authors'", "type": "AttributeError", "path": "http://localhost:8000/v1/authors/?skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/authors/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/authors/?skip=0&limit=100Status: 200 Duration: 41.22ms
+Incoming request: POST http://localhost:8000/v1/authors/
+{"error": "'AuthorCreate' object has no attribute 'Author'", "type": "AttributeError", "path": "http://localhost:8000/v1/authors/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/authors/
+Completed request: POST http://localhost:8000/v1/authors/Status: 201 Duration: 48.06ms
+Incoming request: GET http://localhost:8000/v1/authors/search?text_to_search=dfsfd&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/authors/search?text_to_search=dfsfd&skip=0&limit=100Status: 404 Duration: 4.23ms
+Incoming request: GET http://localhost:8000/v1/authors/11
+Completed request: GET http://localhost:8000/v1/authors/11Status: 200 Duration: 4.34ms
+Incoming request: PUT http://localhost:8000/v1/authors/11
+Completed request: PUT http://localhost:8000/v1/authors/11Status: 200 Duration: 7.38ms
+Incoming request: DELETE http://localhost:8000/v1/authors/11
+Completed request: DELETE http://localhost:8000/v1/authors/11Status: 200 Duration: 287.35ms
+Incoming request: POST http://localhost:8000/v1/borrowings/
+Completed request: POST http://localhost:8000/v1/borrowings/Status: 400 Duration: 6.82ms
+Incoming request: POST http://localhost:8000/v1/borrowings/
+Completed request: POST http://localhost:8000/v1/borrowings/Status: 201 Duration: 143.28ms
+Incoming request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100Status: 200 Duration: 7.10ms
+Incoming request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100&status=returned
+Completed request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100&status=returnedStatus: 200 Duration: 9.20ms
+Incoming request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100&status=overdue
+Completed request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100&status=overdueStatus: 200 Duration: 3.53ms
+Incoming request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100&status=borrowed
+Completed request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100&status=borrowedStatus: 200 Duration: 3.74ms
+Incoming request: GET http://localhost:8000/v1/borrowings/1
+Completed request: GET http://localhost:8000/v1/borrowings/1Status: 404 Duration: 4.52ms
+Incoming request: GET http://localhost:8000/v1/borrowings/9
+Completed request: GET http://localhost:8000/v1/borrowings/9Status: 200 Duration: 5.98ms
+Incoming request: PUT http://localhost:8000/v1/borrowings/9
+Completed request: PUT http://localhost:8000/v1/borrowings/9Status: 200 Duration: 18.77ms
+Incoming request: DELETE http://localhost:8000/v1/borrowings/9
+Completed request: DELETE http://localhost:8000/v1/borrowings/9Status: 200 Duration: 516.87ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.40ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 42.15ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 130.18ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.41ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 31.15ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 119.99ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=100Status: 200 Duration: 5.01ms
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100
+{"error": "search_books() got an unexpected keyword argument 'text_to_search'", "type": "TypeError", "path": "http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100
+{"error": "search_books() got an unexpected keyword argument 'skip'", "type": "TypeError", "path": "http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100
+{"error": "search_books() got an unexpected keyword argument 'skip'", "type": "TypeError", "path": "http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100
+{"error": "'Session' object has no attribute 'search'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100
+{"error": "'Session' object has no attribute 'search'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100
+{"error": "'Session' object has no attribute 'search'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100
+{"error": "'Session' object has no attribute 'search'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100
+{"error": "'Session' object has no attribute 'search'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100
+{"error": "'Session' object has no attribute 'search'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=100Status: 200 Duration: 19.25ms
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100
+{"error": "search_books() missing 1 required positional argument: 'book_repo'", "type": "TypeError", "path": "http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100Status: 404 Duration: 23.68ms
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=g&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/search?text_to_search=g&skip=0&limit=100Status: 404 Duration: 4.08ms
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=1&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/search?text_to_search=1&skip=0&limit=100Status: 404 Duration: 3.31ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=100Status: 200 Duration: 3.75ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+{"error": "'Session' object has no attribute 'list'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/?skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=100Status: 200 Duration: 21.22ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=100Status: 200 Duration: 23.06ms
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=1&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/search?text_to_search=1&skip=0&limit=100Status: 404 Duration: 28.94ms
+Incoming request: GET http://localhost:8000/v1/health
+Completed request: GET http://localhost:8000/v1/healthStatus: 200 Duration: 4.28ms
+Incoming request: GET http://localhost:8000/v1/users/me
+{"error": "'Session' object has no attribute 'get_by_email'", "type": "AttributeError", "path": "http://localhost:8000/v1/users/me", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 34.87ms
+Incoming request: GET http://localhost:8000/v1/users/?skip=0&limit=100
+{"error": "'Session' object has no attribute 'list'", "type": "AttributeError", "path": "http://localhost:8000/v1/users/?skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/users/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/users/?skip=0&limit=100Status: 200 Duration: 42.43ms
+Incoming request: GET http://localhost:8000/v1/users/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/users/?skip=0&limit=100Status: 200 Duration: 6.63ms
+Incoming request: POST http://localhost:8000/v1/users/
+Completed request: POST http://localhost:8000/v1/users/Status: 400 Duration: 4.93ms
+Incoming request: POST http://localhost:8000/v1/users/
+Completed request: POST http://localhost:8000/v1/users/Status: 400 Duration: 5.43ms
+Incoming request: POST http://localhost:8000/v1/users/
+Completed request: POST http://localhost:8000/v1/users/Status: 201 Duration: 160.56ms
+Incoming request: GET http://localhost:8000/v1/users?text_to_search=a&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/users?text_to_search=a&skip=0&limit=100Status: 200 Duration: 7.70ms
+Incoming request: GET http://localhost:8000/v1/users/1
+Completed request: GET http://localhost:8000/v1/users/1Status: 200 Duration: 4.00ms
+Incoming request: PUT http://localhost:8000/v1/users/15
+Completed request: PUT http://localhost:8000/v1/users/15Status: 400 Duration: 4.06ms
+Incoming request: PUT http://localhost:8000/v1/users/15
+Completed request: PUT http://localhost:8000/v1/users/15Status: 400 Duration: 5.07ms
+Incoming request: PUT http://localhost:8000/v1/users/15
+Completed request: PUT http://localhost:8000/v1/users/15Status: 200 Duration: 135.60ms
+Incoming request: DELETE http://localhost:8000/v1/users/20
+Completed request: DELETE http://localhost:8000/v1/users/20Status: 401 Duration: 3.02ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.34ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 48.23ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 401 Duration: 3.88ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 90.75ms
+Incoming request: DELETE http://localhost:8000/v1/users/20
+Completed request: DELETE http://localhost:8000/v1/users/20Status: 200 Duration: 19.85ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=100Status: 200 Duration: 3.73ms
+Incoming request: POST http://localhost:8000/v1/books/
+{"error": "create_book() got an unexpected keyword argument 'db'", "type": "TypeError", "path": "http://localhost:8000/v1/books/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/books/
+{"error": "create_book() got an unexpected keyword argument 'book'", "type": "TypeError", "path": "http://localhost:8000/v1/books/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/books/
+{"error": "backend.src.domain.entities.models.Book() argument after ** must be a mapping, not BookCreate", "type": "TypeError", "path": "http://localhost:8000/v1/books/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/books/
+{"error": "'dict' object has no attribute 'isbn'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/books/
+{"error": "backend.src.domain.entities.models.Book() argument after ** must be a mapping, not BookCreate", "type": "TypeError", "path": "http://localhost:8000/v1/books/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/books/
+Completed request: POST http://localhost:8000/v1/books/Status: 201 Duration: 44.32ms
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=stringstri&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/search?text_to_search=stringstri&skip=0&limit=100Status: 200 Duration: 34.99ms
+Incoming request: GET http://localhost:8000/v1/books/stringstri
+Completed request: GET http://localhost:8000/v1/books/stringstriStatus: 200 Duration: 4.90ms
+Incoming request: PUT http://localhost:8000/v1/books/stringstri
+{"error": "'BookUpdate' object has no attribute 'items'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/stringstri", "method": "PUT"}
+Incoming request: PUT http://localhost:8000/v1/books/stringstri
+{"error": "1 validation errors:\n  {'type': 'string_too_short', 'loc': ('response', 'isbn'), 'msg': 'String should have at least 10 characters', 'input': 'string', 'ctx': {'min_length': 10}}\n", "type": "ResponseValidationError", "path": "http://localhost:8000/v1/books/stringstri", "method": "PUT"}
+Incoming request: PUT http://localhost:8000/v1/books/stringstri
+Completed request: PUT http://localhost:8000/v1/books/stringstriStatus: 404 Duration: 49.80ms
+Incoming request: PUT http://localhost:8000/v1/books/stringstri
+Completed request: PUT http://localhost:8000/v1/books/stringstriStatus: 404 Duration: 36.36ms
+Incoming request: PUT http://localhost:8000/v1/books/string
+{"error": "'BookUpdate' object has no attribute 'items'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/string", "method": "PUT"}
+Incoming request: PUT http://localhost:8000/v1/books/string
+{"error": "1 validation errors:\n  {'type': 'string_too_short', 'loc': ('response', 'isbn'), 'msg': 'String should have at least 10 characters', 'input': 'string', 'ctx': {'min_length': 10}}\n", "type": "ResponseValidationError", "path": "http://localhost:8000/v1/books/string", "method": "PUT"}
+Incoming request: PUT http://localhost:8000/v1/books/string
+{"error": "Validation error", "detials": [{"type": "string_too_short", "loc": ["body", "isbn"], "msg": "String should have at least 10 characters", "input": "string", "ctx": {"min_length": 10}}], "body": "{\n  \"isbn\": \"string\",\n  \"title\": \"string\",\n  \"summary\": \"string\",\n  \"genre\": \"string\",\n  \"published_year\": 1000,\n  \"author_id\": 0,\n  \"currently_borrowed_by\": 0\n}", "path": "http://localhost:8000/v1/books/string", "method": "PUT"}
+Completed request: PUT http://localhost:8000/v1/books/stringStatus: 422 Duration: 31.77ms
+Incoming request: PUT http://localhost:8000/v1/books/string
+{"error": "Validation error", "detials": [{"type": "string_too_long", "loc": ["body", "isbn"], "msg": "String should have at most 13 characters", "input": "string12344365546", "ctx": {"max_length": 13}}], "body": "{\n  \"isbn\": \"string12344365546\",\n  \"title\": \"string\",\n  \"summary\": \"string\",\n  \"genre\": \"string\",\n  \"published_year\": 1000,\n  \"author_id\": 0,\n  \"currently_borrowed_by\": 0\n}", "path": "http://localhost:8000/v1/books/string", "method": "PUT"}
+Completed request: PUT http://localhost:8000/v1/books/stringStatus: 422 Duration: 9.67ms
+Incoming request: PUT http://localhost:8000/v1/books/string
+Completed request: PUT http://localhost:8000/v1/books/stringStatus: 200 Duration: 18.01ms
+Incoming request: DELETE http://localhost:8000/v1/books/string1234436
+{"error": "'BookRepositoryImpl' object has no attribute 'get_by_id'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/string1234436", "method": "DELETE"}
+Incoming request: DELETE http://localhost:8000/v1/books/string1234436
+Completed request: DELETE http://localhost:8000/v1/books/string1234436Status: 404 Duration: 60.15ms
+Incoming request: POST http://localhost:8000/v1/books/
+Completed request: POST http://localhost:8000/v1/books/Status: 201 Duration: 41.18ms
+Incoming request: DELETE http://localhost:8000/v1/books/string
+Completed request: DELETE http://localhost:8000/v1/books/stringStatus: 404 Duration: 4.45ms
+Incoming request: DELETE http://localhost:8000/v1/books/string
+Completed request: DELETE http://localhost:8000/v1/books/stringStatus: 404 Duration: 48.50ms
+Incoming request: DELETE http://localhost:8000/v1/books/string
+Completed request: DELETE http://localhost:8000/v1/books/stringStatus: 404 Duration: 4.41ms
+Incoming request: DELETE http://localhost:8000/v1/books/9782223334445
+Completed request: DELETE http://localhost:8000/v1/books/9782223334445Status: 404 Duration: 41.98ms
+Incoming request: DELETE http://localhost:8000/v1/books/stringstri
+Completed request: DELETE http://localhost:8000/v1/books/stringstriStatus: 404 Duration: 12.06ms
+Incoming request: DELETE http://localhost:8000/v1/books/stringstri
+Completed request: DELETE http://localhost:8000/v1/books/stringstriStatus: 404 Duration: 79.00ms
+Incoming request: DELETE http://localhost:8000/v1/books/123456789012
+Completed request: DELETE http://localhost:8000/v1/books/123456789012Status: 200 Duration: 59.56ms
+Incoming request: GET http://localhost:8000/v1/authors/?skip=0&limit=100
+{"error": "'Session' object has no attribute 'list'", "type": "AttributeError", "path": "http://localhost:8000/v1/authors/?skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/authors/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/authors/?skip=0&limit=100Status: 200 Duration: 41.23ms
+Incoming request: POST http://localhost:8000/v1/authors/
+{"error": "create_author() got an unexpected keyword argument 'db'", "type": "TypeError", "path": "http://localhost:8000/v1/authors/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/authors/
+Completed request: POST http://localhost:8000/v1/authors/Status: 201 Duration: 53.06ms
+Incoming request: GET http://localhost:8000/v1/authors/search?text_to_search=11&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/authors/search?text_to_search=11&skip=0&limit=100Status: 404 Duration: 4.23ms
+Incoming request: GET http://localhost:8000/v1/authors/search?text_to_search=alice&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/authors/search?text_to_search=alice&skip=0&limit=100Status: 404 Duration: 2.80ms
+Incoming request: GET http://localhost:8000/v1/authors/search?text_to_search=a&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/authors/search?text_to_search=a&skip=0&limit=100Status: 200 Duration: 6.52ms
+Incoming request: GET http://localhost:8000/v1/authors/11
+Completed request: GET http://localhost:8000/v1/authors/11Status: 200 Duration: 3.56ms
+Incoming request: PUT http://localhost:8000/v1/authors/11
+Completed request: PUT http://localhost:8000/v1/authors/11Status: 200 Duration: 8.94ms
+Incoming request: DELETE http://localhost:8000/v1/authors/11
+Completed request: DELETE http://localhost:8000/v1/authors/11Status: 200 Duration: 15.76ms
+Incoming request: POST http://localhost:8000/v1/borrowings/
+{"error": "'Session' object has no attribute 'get_by_isbn'", "type": "AttributeError", "path": "http://localhost:8000/v1/borrowings/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/borrowings/
+{"error": "'BorrowingRepositoryImpl' object has no attribute 'get_by_isbn'", "type": "AttributeError", "path": "http://localhost:8000/v1/borrowings/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/borrowings/
+{"error": "'BorrowingRepositoryImpl' object has no attribute 'query'", "type": "AttributeError", "path": "http://localhost:8000/v1/borrowings/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/borrowings/
+Completed request: POST http://localhost:8000/v1/borrowings/Status: 404 Duration: 31.65ms
+Incoming request: POST http://localhost:8000/v1/borrowings/
+Completed request: POST http://localhost:8000/v1/borrowings/Status: 400 Duration: 4.98ms
+Incoming request: POST http://localhost:8000/v1/borrowings/
+Completed request: POST http://localhost:8000/v1/borrowings/Status: 201 Duration: 19.88ms
+Incoming request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100Status: 200 Duration: 6.87ms
+Incoming request: GET http://localhost:8000/v1/borrowings/8
+Completed request: GET http://localhost:8000/v1/borrowings/8Status: 200 Duration: 9.35ms
+Incoming request: PUT http://localhost:8000/v1/borrowings/8
+Completed request: PUT http://localhost:8000/v1/borrowings/8Status: 200 Duration: 15.92ms
+Incoming request: DELETE http://localhost:8000/v1/borrowings/8
+Completed request: DELETE http://localhost:8000/v1/borrowings/8Status: 200 Duration: 21.11ms
