@@ -9,3 +9,4 @@ class ChatInteraction:
         """Execute chat interaction use case"""
         async for event in self.rag_service.stream_chat(user_input, thread_id):
             yield event
+    
