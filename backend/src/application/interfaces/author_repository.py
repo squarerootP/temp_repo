@@ -1,25 +1,34 @@
+from abc import ABC, abstractmethod
 from typing import List, Optional
-from backend.src.domain.entities.models import Author
-from backend.src.presentation.schemas import author_schema
 
-class AuthorRepository:
-    def create(self, author: author_schema.AuthorCreate) -> Author:
-        raise NotImplementedError
+from backend.src.domain.entities.author import Author
 
+
+class AuthorRepository(ABC):
+    @abstractmethod
+    def create(self, author: Author) -> Author:
+        pass
+
+    @abstractmethod
     def get_by_id(self, author_id: int) -> Optional[Author]:
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def get_by_email(self, email: str) -> Optional[Author]:
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def list(self, skip: int = 0, limit: int = 100) -> List[Author]:
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def search(self, text_to_search: str, skip: int = 0, limit: int = 100) -> List[Author]:
-        raise NotImplementedError
+        pass
 
-    def update(self, author_id: int, author: author_schema.AuthorUpdate) -> Optional[Author]:
-        raise NotImplementedError
+    @abstractmethod
+    def update(self, author_id: int, author: Author) -> Optional[Author]:
+        pass
 
+    @abstractmethod
     def delete(self, author_id: int) -> bool:
-        raise NotImplementedError
+        pass

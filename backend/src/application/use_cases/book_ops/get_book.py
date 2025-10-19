@@ -2,8 +2,9 @@ from typing import List, Optional
 
 from sqlalchemy.orm import Session
 
-from backend.src.domain.entities.models import Book
 from backend.src.application.interfaces.book_repository import BookRepository
+from backend.src.domain.entities.models import Book
+
 
 def get_book_by_isbn(book_repo: BookRepository, isbn: str) -> Optional[Book]:
     """Business logic for getting a book by ISBN."""

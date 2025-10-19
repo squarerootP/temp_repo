@@ -6,10 +6,12 @@ from sqlalchemy.orm import Session
 from backend.src.application.use_cases import user_ops
 from backend.src.domain.entities.models import User
 from backend.src.infrastructure.persistence.database import get_db
+from backend.src.infrastructure.persistence.user_repository_impl import \
+    UserRepositoryImpl
 from backend.src.infrastructure.web.auth_provider import (
     get_current_active_user, has_role)
 from backend.src.presentation.schemas import user_schema
-from backend.src.infrastructure.persistence.user_repository_impl import UserRepositoryImpl
+
 router = APIRouter(
     prefix="/users", 
     tags=["Users"]  

@@ -1,13 +1,15 @@
 from typing import Optional
 
-from sqlalchemy import or_
-from sqlalchemy.orm import Session
+from backend.src.domain.exceptions.author_exceptions import AuthorNotFound
 
-from backend.src.application.use_cases import author_ops
-from backend.src.domain.entities.models import Author
-from backend.src.presentation.schemas import author_schema
-from backend.src.infrastructure.persistence.author_repository_impl import AuthorRepository
+from backend.src.domain.entities.author import Author
+from backend.src.application.interfaces.author_repository import AuthorRepository
 
 
-def update_author(author_repo: AuthorRepository, author_id: int, author: author_schema.AuthorUpdate) -> Optional[Author]:
+
+def update_author(author_repo: AuthorRepository, author_id: int, data: dict) -> Optional[Author]:
+    author = author_repo.get_by_id(author_id=author_id)
+    if not author:
+        raise AuthorNotFound(f"Author with id {author_id} not found.")
+    author = Author(**author)
     return author_repo.update(author_id, author)

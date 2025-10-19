@@ -1,11 +1,13 @@
+import json
+from typing import AsyncIterator
+
 from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
-from typing import AsyncIterator
-import json
 
 from backend.src.application.use_cases.chat_ops.chat import ChatInteraction
 from backend.src.infrastructure.rag.graph_service import LangGraphRAGService
-from backend.src.presentation.schemas.rag_schema import ChatRequest, ChatResponse
+from backend.src.presentation.schemas.rag_schema import (ChatRequest,
+                                                         ChatResponse)
 
 router = APIRouter(prefix="/rag", tags=["RAG (dev)"])
 

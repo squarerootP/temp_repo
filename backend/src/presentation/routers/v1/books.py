@@ -5,10 +5,12 @@ from sqlalchemy.orm import Session
 
 from backend.src.application.use_cases import book_ops
 from backend.src.domain.entities.models import User
+from backend.src.infrastructure.persistence.book_repository_impl import \
+    BookRepositoryImpl
 from backend.src.infrastructure.persistence.database import get_db
 from backend.src.infrastructure.web.auth_provider import has_role
 from backend.src.presentation.schemas import book_schema
-from backend.src.infrastructure.persistence.book_repository_impl import BookRepositoryImpl
+
 router = APIRouter(
     prefix="/books", 
     tags=["Books"]

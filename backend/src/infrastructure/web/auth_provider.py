@@ -11,8 +11,10 @@ from backend.src.application.use_cases import user_ops
 from backend.src.domain.entities.models import User
 from backend.src.domain.services.utils import verify_password
 from backend.src.infrastructure.persistence.database import get_db
+from backend.src.infrastructure.persistence.user_repository_impl import \
+    UserRepositoryImpl
 from backend.src.presentation.schemas import token_schema
-from backend.src.infrastructure.persistence.user_repository_impl import UserRepositoryImpl
+
 SECRET_KEY = settings.SECRET_KEY
 ACCESS_TOKEN_EXPIRE_MINUTES = settings.ACCESS_TOKEN_EXPIRE_MINUTES
 ALGORITHM = "HS256"

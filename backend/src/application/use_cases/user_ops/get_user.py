@@ -1,7 +1,8 @@
 from typing import List, Optional
 
-from backend.src.domain.entities.models import User
 from backend.src.application.interfaces.user_repository import UserRepository
+from backend.src.domain.entities.models import User
+
 
 def get_user_by_id(user_repo: UserRepository, user_id: int) -> Optional[User]:
     return user_repo.get_by_id(user_id)

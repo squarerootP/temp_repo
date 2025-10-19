@@ -1,0 +1,72 @@
+# backend\\src\\infrastructure\\configurations\\config.py
+import os
+
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ENV_FILE_PATH = os.path.join(BASE_DIR, ".env")
+
+class Settings(BaseSettings):
+    SECRET_KEY: str
+    DATABASE_URL: str
+    ACCESS_TOKEN_EXPIRE_MINUTES: int
+    RATE_LIMIT: int
+    RATE_LIMIT_WINDOW_SIZE: int
+    APP_VERSION: str
+
+
+    model_config = SettingsConfigDict(
+        env_file=ENV_FILE_PATH,
+        env_file_encoding='utf-8'
+    )
+class APISettings(BaseSettings):
+    CEREBRAS_API_KEY: str
+    GOOGLE_GENAI_API_KEY: str
+    TAVILY_API_KEY: str
+    GOOGLE_EMBEDDING_MODEL: str
+    LLM_MODEL: str
+    
+    model_config = SettingsConfigDict(
+            env_file=ENV_FILE_PATH,
+            env_file_encoding='utf-8'
+        )
+# settings = Settings()
+api_settings = APISettings() #type: ignore
+
+def main():
+    print("hello")
+    
+if __name__ == "__main__":
+    main()
+    
+class Validator():
+    
+    CEREBRAS_API_KEY = ""
+    GOOGLE_API_KEY = ""
+    MAX_FILE_SIZE = 5
+    ALLOWED_EXTENSIONS = ""
+    @classmethod
+    def validate(cls):
+        """Validate configuration on startup"""
+        missing_keys = []
+        
+        if not cls.CEREBRAS_API_KEY:
+            missing_keys.append("CEREBRAS_API_KEY")
+        if not cls.GOOGLE_API_KEY:
+            missing_keys.append("GOOGLE_API_KEY")
+            
+        if missing_keys:
+            raise ValueError(f"Missing required environment variables: {', '.join(missing_keys)}")
+
+    @classmethod
+    def validate_file_size(cls, size: int) -> bool:
+        """Validate file size"""
+        return 0 < size <= cls.MAX_FILE_SIZE
+
+    @classmethod
+    def validate_file_extension(cls, filename: str) -> bool:
+        """Validate file extension"""
+        if not filename:
+            return False
+        ext = os.path.splitext(filename.lower())[1]
+        return ext in cls.ALLOWED_EXTENSIONS

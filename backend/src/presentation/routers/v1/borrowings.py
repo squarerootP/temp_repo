@@ -6,12 +6,15 @@ from sqlalchemy.orm import Session
 
 from backend.src.application.use_cases import book_ops, borrowing_ops
 from backend.src.domain.entities.models import User
+from backend.src.infrastructure.persistence.book_repository_impl import \
+    BookRepositoryImpl
+from backend.src.infrastructure.persistence.borrowing_repository_impl import \
+    BorrowingRepositoryImpl
 from backend.src.infrastructure.persistence.database import get_db
 from backend.src.infrastructure.web.auth_provider import (
     get_current_active_user, has_role)
 from backend.src.presentation.schemas import borrowing_schema
-from backend.src.infrastructure.persistence.borrowing_repository_impl import BorrowingRepositoryImpl
-from backend.src.infrastructure.persistence.book_repository_impl import BookRepositoryImpl
+
 router = APIRouter(
     prefix="/borrowings",
     tags=["Borrowings"]

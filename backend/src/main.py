@@ -11,7 +11,7 @@ from fastapi.responses import JSONResponse
 
 from backend.config.settings import settings
 from backend.src.presentation.routers.v1 import (authors, books, borrowings,
-                                                 users, rag)
+                                                 rag, users)
 from backend.src.presentation.routers.v1.api import router as api_router
 
 RATE_LIMIT = settings.RATE_LIMIT  

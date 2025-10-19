@@ -5,10 +5,11 @@ from sqlalchemy.orm import Session
 
 from backend.src.application.use_cases import author_ops, user_ops
 from backend.src.domain.entities.models import User
+from backend.src.infrastructure.persistence.author_repository_impl import \
+    AuthorRepositoryImpl
 from backend.src.infrastructure.persistence.database import get_db
 from backend.src.infrastructure.web.auth_provider import has_role
 from backend.src.presentation.schemas import author_schema
-from backend.src.infrastructure.persistence.author_repository_impl import AuthorRepositoryImpl
 
 router = APIRouter(
     prefix="/authors",

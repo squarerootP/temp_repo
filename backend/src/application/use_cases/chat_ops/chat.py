@@ -1,5 +1,8 @@
 from typing import AsyncIterator
-from backend.src.application.interfaces.chat_interface import RAGServiceInterface
+
+from backend.src.application.interfaces.chat_repository import \
+    RAGServiceInterface
+
 
 class ChatInteraction:
     def __init__(self, rag_service: RAGServiceInterface):

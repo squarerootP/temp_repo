@@ -1,8 +1,14 @@
-from sqlalchemy.orm import Session
+from typing import Optional
 
-from backend.src.domain.entities.models import Author
-from backend.src.presentation.schemas import author_schema
-from backend.src.infrastructure.persistence.author_repository_impl import AuthorRepository
+from backend.src.application.interfaces.author_repository import \
+    AuthorRepository
+from backend.src.domain.entities.author import Author
 
-def create_author(author_repo: AuthorRepository, author: author_schema.AuthorCreate) -> Author:
-    return author_repo.create(author)
+
+def create_author(author_repo: AuthorRepository, author: dict) -> Optional[Author]:
+    email = author["email"]
+    if author_repo.get_by_email(email):
+        raise ValueError("Author email already registered")
+
+    author_entity = Author(**author)
+    return author_repo.create(author_entity)

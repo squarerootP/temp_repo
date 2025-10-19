@@ -2,8 +2,10 @@ from typing import List, Optional
 
 from sqlalchemy.orm import Session
 
+from backend.src.application.interfaces.borrowing_repository import \
+    BorrowingRepository
 from backend.src.domain.entities.models import BorrowingManager
-from backend.src.application.interfaces.borrowing_repository import BorrowingRepository
+
 
 def get_borrowing(borrowing_repo: BorrowingRepository, borrow_id: int) -> Optional[BorrowingManager]:
     return borrowing_repo.get_by_id(borrow_id)
