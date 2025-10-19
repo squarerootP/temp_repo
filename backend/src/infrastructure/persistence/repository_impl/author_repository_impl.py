@@ -5,26 +5,24 @@ from sqlalchemy.orm import Session
 
 from backend.src.application.interfaces.author_repository import \
     AuthorRepository
-from backend.src.domain.entities.models import Author
-from backend.src.presentation.schemas import author_schema
+from backend.src.domain.entities.author import Author
 
 
 class AuthorRepositoryImpl(AuthorRepository):
     def __init__(self, db: Session):
         self.db = db
 
-    def create(self, author: author_schema.AuthorCreate) -> Author:
-        db_author = Author(**author.model_dump())
-        self.db.add(db_author)
+    def create(self, author: Author) -> Author:
+        self.db.add(author)
         self.db.commit()
-        self.db.refresh(db_author)
-        return db_author
+        self.db.refresh(author)
+        return author
 
     def get_by_id(self, author_id: int) -> Optional[Author]:
-        return self.db.query(Author).filter(Author.author_id == author_id).first()
+        return self.db.query(Author).filter(Author.author_id == author_id).first() #type: ignore
 
     def get_by_email(self, email: str) -> Optional[Author]:
-        return self.db.query(Author).filter(Author.email == email).first()
+        return self.db.query(Author).filter(Author.email == email).first() #type: ignore
 
     def list(self, skip: int = 0, limit: int = 100) -> List[Author]:
         return self.db.query(Author).offset(skip).limit(limit).all()
@@ -33,19 +31,19 @@ class AuthorRepositoryImpl(AuthorRepository):
         search_pattern = f"%{text_to_search}%"
         query = self.db.query(Author).filter(
             or_(
-                Author.first_name.ilike(search_pattern),
-                Author.last_name.ilike(search_pattern),
-                Author.email.ilike(search_pattern),
-            )
+                Author.first_name.ilike(search_pattern), #type: ignore
+                Author.last_name.ilike(search_pattern), #type: ignore
+                Author.email.ilike(search_pattern), #type: ignore
+            ) 
         )
         return query.offset(skip).limit(limit).all()
 
-    def update(self, author_id: int, author: author_schema.AuthorUpdate) -> Optional[Author]:
+    def update(self, author_id: int, author: dict) -> Optional[Author]:
         db_author = self.get_by_id(author_id)
         if not db_author:
             return None
 
-        author_data = author.model_dump(exclude_unset=True)
+        author_data = author
         for key, value in author_data.items():
             setattr(db_author, key, value)
         

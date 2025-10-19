@@ -1,9 +1,8 @@
-from sqlalchemy.orm import Session
-
 from backend.src.application.interfaces.borrowing_repository import \
     BorrowingRepository
-from backend.src.application.use_cases import borrowing_ops
 
 
 def delete_borrowing(borrowing_repo: BorrowingRepository, borrow_id: int) -> bool:
+    if borrowing_repo.get_by_id(borrow_id) is None:
+        raise ValueError("Borrowing record not found")
     return borrowing_repo.delete(borrow_id)

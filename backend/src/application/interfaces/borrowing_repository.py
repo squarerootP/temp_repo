@@ -2,12 +2,11 @@ from abc import ABC, abstractmethod
 from typing import List, Optional
 
 from backend.src.domain.entities.borrowing import BorrowingManager
-from backend.src.presentation.schemas import borrowing_schema
 
 
 class BorrowingRepository(ABC):
     @abstractmethod
-    def create(self, borrowing: borrowing_schema.BorrowingCreate) -> BorrowingManager:
+    def create(self, borrowing: BorrowingManager) -> BorrowingManager:
         pass
 
     @abstractmethod
@@ -25,9 +24,12 @@ class BorrowingRepository(ABC):
         pass
 
     @abstractmethod
-    def update(self, borrow_id: int, borrowing: borrowing_schema.BorrowingUpdate) -> Optional[BorrowingManager]:
+    def update(self, borrow_id: int, borrowing: dict) -> Optional[BorrowingManager]:
         pass
 
     @abstractmethod
     def delete(self, borrow_id: int) -> bool:
+        pass
+    @abstractmethod
+    def is_currently_borrowed(self, book_id: str) -> bool:
         pass

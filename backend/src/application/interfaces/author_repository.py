@@ -26,7 +26,7 @@ class AuthorRepository(ABC):
         pass
 
     @abstractmethod
-    def update(self, author_id: int, author: Author) -> Optional[Author]:
+    def update(self, author_id: int, author: dict) -> Optional[Author]:
         pass
 
     @abstractmethod

@@ -2,12 +2,11 @@ from abc import ABC, abstractmethod
 from typing import List, Optional
 
 from backend.src.domain.entities.user import User
-from backend.src.presentation.schemas import user_schema
 
 
 class UserRepository(ABC):
     @abstractmethod
-    def create(self, user: user_schema.UserCreate) -> User:
+    def create(self, user: dict) -> User:
         pass
 
     @abstractmethod
@@ -31,7 +30,7 @@ class UserRepository(ABC):
         pass
 
     @abstractmethod
-    def update(self, user_id: int, user: user_schema.UserUpdate) -> Optional[User]:
+    def update(self, user_id: int, user: dict) -> Optional[User]:
         pass
 
     @abstractmethod

@@ -34,7 +34,7 @@ class BookUpdate(BaseModel):
     currently_borrowed_by: Optional[int] = None
 
 class BookResponse(BookBase):
-    book_id: int
+    book_isbn: str
     currently_borrowed_by: Optional[int] = None
     
     class ConfigDict:

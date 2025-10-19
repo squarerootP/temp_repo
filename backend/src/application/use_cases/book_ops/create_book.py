@@ -1,5 +1,5 @@
 from backend.src.application.interfaces.book_repository import BookRepository
-from backend.src.domain.entities.models import Book
+from backend.src.domain.entities.book import Book
 
 
 def create_book(book_repo: BookRepository, book_data) -> Book:

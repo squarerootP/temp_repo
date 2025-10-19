@@ -1,10 +1,7 @@
-from typing import List, Optional
-
-from sqlalchemy import or_
-from sqlalchemy.orm import Session
+from typing import List
 
 from backend.src.application.interfaces.user_repository import UserRepository
-from backend.src.domain.entities.models import User
+from backend.src.domain.entities.user import User
 
 
 def search_user(user_repo: UserRepository, text_to_search: str, skip: int = 0, limit: int = 100) -> List[User]:

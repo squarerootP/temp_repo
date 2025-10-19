@@ -1,9 +1,12 @@
 from typing import List, Optional
-from backend.src.domain.exceptions.author_exceptions import AuthorNotFound
+
 from sqlalchemy.orm import Session
 
+from backend.src.application.interfaces.author_repository import \
+    AuthorRepository
 from backend.src.domain.entities.author import Author
-from backend.src.application.interfaces.author_repository import AuthorRepository
+from backend.src.domain.exceptions.author_exceptions import AuthorNotFound
+
 
 def get_author(author_repo: AuthorRepository, author_id: int) -> Optional[Author]:
     author = author_repo.get_by_id(author_id=author_id)

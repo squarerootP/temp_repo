@@ -4,26 +4,25 @@ from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
 from backend.src.application.interfaces.user_repository import UserRepository
-from backend.src.domain.entities.models import User
+from backend.src.domain.entities.user import User
 from backend.src.domain.services.utils import get_password_hash
-from backend.src.presentation.schemas import user_schema
 
 
 class UserRepositoryImpl(UserRepository):
     def __init__(self, db: Session):
         self.db = db
 
-    def create(self, user: user_schema.UserCreate) -> User:
-        hashed_password = get_password_hash(user.password)
+    def create(self, user: dict) -> User:
+        hashed_password = get_password_hash(user["password"])
         db_user = User(
-            first_name=user.first_name,
-            second_name=user.second_name,
-            email=user.email,
-            phone=user.phone,
-            address=user.address,
+            first_name=user["first_name"],
+            second_name=user["second_name"],
+            email=user["email"],
+            phone=user["phone"],
+            address=user["address"],
             hashed_password=hashed_password,
             is_active=True,
-            role=user.role
+            role=user["role"]
         )
         self.db.add(db_user)
         self.db.commit()
@@ -31,13 +30,13 @@ class UserRepositoryImpl(UserRepository):
         return db_user
 
     def get_by_id(self, user_id: int) -> Optional[User]:
-        return self.db.query(User).filter(User.user_id == user_id).first()
+        return self.db.query(User).filter(User.user_id == user_id).first() #type: ignore
 
     def get_by_email(self, email: str) -> Optional[User]:
-        return self.db.query(User).filter(User.email == email).first()
+        return self.db.query(User).filter(User.email == email).first() #type: ignore
 
     def get_by_phone(self, phone: str) -> Optional[User]:
-        return self.db.query(User).filter(User.phone == phone).first()
+        return self.db.query(User).filter(User.phone == phone).first() #type: ignore
 
     def list(self, skip: int = 0, limit: int = 100) -> List[User]:
         return self.db.query(User).offset(skip).limit(limit).all()
@@ -46,19 +45,19 @@ class UserRepositoryImpl(UserRepository):
         search_pattern = f"%{text_to_search}%"
         query = self.db.query(User).filter(
             or_(
-                User.first_name.ilike(search_pattern),
-                User.second_name.ilike(search_pattern),
-                User.email.ilike(search_pattern),
+                User.first_name.ilike(search_pattern), #type: ignore
+                User.second_name.ilike(search_pattern), #type: ignore
+                User.email.ilike(search_pattern), #type: ignore
             )
         )
         return query.offset(skip).limit(limit).all()
 
-    def update(self, user_id: int, user: user_schema.UserUpdate) -> Optional[User]:
+    def update(self, user_id: int, user: dict) -> Optional[User]:
         db_user = self.get_by_id(user_id)
         if not db_user:
             return None
 
-        user_data = user.model_dump(exclude_unset=True)
+        user_data = user
         if "password" in user_data:
             user_data["hashed_password"] = get_password_hash(user_data["password"])
             del user_data["password"]

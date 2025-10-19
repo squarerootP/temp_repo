@@ -8,7 +8,7 @@ class BookRepository(ABC):
     """Abstract interface for Book persistence operations."""
     
     @abstractmethod
-    def get_by_isbn(self, book_id: int) -> Optional[Book]:
+    def get_by_isbn(self, book_isbn: str) -> Optional[Book]:
         """Retrieve a Book by its primary key."""
         pass
     
@@ -23,15 +23,15 @@ class BookRepository(ABC):
         pass
 
     @abstractmethod
-    def save(self, book: Book) -> None:
+    def save(self, book: Book) -> bool:
         """Add or update a Book record."""
         pass
 
     @abstractmethod
-    def delete(self, book_id: int) -> None:
+    def delete(self, book_isbn: str) -> bool:
         """Delete a Book by its ID."""
         pass
     
     @abstractmethod
-    def update(self, book_id: int, book_data: dict) -> Optional[Book]:
+    def update(self, book_isbn: str, book_data: dict) -> Optional[Book]:
         pass

@@ -44,7 +44,7 @@ class User(Base):
 class Book(Base):
     __tablename__ = "Books"
 
-    book_id = Column(Integer, primary_key=True, autoincrement=True, index=True)
+    book_isbn = Column(Integer, primary_key=True, autoincrement=True, index=True)
     isbn = Column(String(13), unique=True, index=True)
     title = Column(String(200), nullable=False)
     summary = Column(Text)

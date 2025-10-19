@@ -4,7 +4,8 @@ from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
 from backend.src.application.interfaces.book_repository import BookRepository
-from backend.src.domain.entities.models import Author, Book
+from backend.src.domain.entities.author import Author
+from backend.src.domain.entities.book import Book
 
 
 class BookRepositoryImpl(BookRepository):
@@ -13,20 +14,20 @@ class BookRepositoryImpl(BookRepository):
     def __init__(self, db_session: Session):
         self.db = db_session
 
-    def get_by_isbn(self, isbn: str) -> Optional[Book]:
-        return self.db.query(Book).filter(Book.isbn == isbn).first()
+    def get_by_isbn(self, book_isbn: str) -> Optional[Book]:
+        return self.db.query(Book).filter(Book.isbn == book_isbn).first() #type: ignore
 
     def list(self, skip: int = 0, limit: int = 100) -> List[Book]:
         return self.db.query(Book).offset(skip).limit(limit).all()
 
-    def save(self, book: Book) -> None:
+    def save(self, book: Book) -> bool:
         self.db.add(book)
         self.db.commit()
         self.db.refresh(book)
         return True
 
-    def delete(self, book_id: int) -> None:
-        book = self.get_by_isbn(book_id)
+    def delete(self, book_isbn: str) -> bool:
+        book = self.get_by_isbn(book_isbn)
         if book:
             self.db.delete(book)
             self.db.commit()
@@ -37,18 +38,18 @@ class BookRepositoryImpl(BookRepository):
 
         query = self.db.query(Book).outerjoin(Author).filter(
         or_(
-            Book.title.ilike(text_to_search),
-            Book.isbn.ilike(text_to_search),
-            Book.genre.ilike(text_to_search),
-            Book.summary.ilike(text_to_search),
-            Author.first_name.ilike(text_to_search),
-            Author.last_name.ilike(text_to_search),
+            Book.title.ilike(text_to_search), #type: ignore
+            Book.isbn.ilike(text_to_search), #type: ignore
+            Book.genre.ilike(text_to_search), #type: ignore
+            Book.summary.ilike(text_to_search), #type: ignore
+            Author.first_name.ilike(text_to_search), #type: ignore
+            Author.last_name.ilike(text_to_search), #type: ignore
             )
         )
         return query.offset(skip).limit(limit).all() if query.count() > 0 else None
     
-    def update(self, book_id: int, book_data: dict) -> Optional[Book]:
-        db_book = self.get_by_isbn(book_id)
+    def update(self, book_isbn: str, book_data: dict) -> Optional[Book]:
+        db_book = self.get_by_isbn(book_isbn)
         if not db_book:
             return None
         for key, value in book_data.items():

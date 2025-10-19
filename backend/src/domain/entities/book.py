@@ -4,7 +4,7 @@ from typing import List, Optional
 
 @dataclass
 class Book:
-    book_id: Optional[int] = None
+    book_isbn: Optional[int] = None
     isbn: Optional[str] = None
     title: str = ""
     summary: Optional[str] = None

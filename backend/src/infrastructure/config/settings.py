@@ -33,12 +33,8 @@ class APISettings(BaseSettings):
 # settings = Settings()
 api_settings = APISettings() #type: ignore
 
-def main():
-    print("hello")
-    
-if __name__ == "__main__":
-    main()
-    
+settings = Settings() #type: ignore
+
 class Validator():
     
     CEREBRAS_API_KEY = ""
