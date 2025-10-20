@@ -1,6 +1,4 @@
 from passlib.context import CryptContext
-from sqlalchemy import and_
-from sqlalchemy.orm import Session
 
 pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 def verify_password(plain_password, hashed_password):

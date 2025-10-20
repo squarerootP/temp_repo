@@ -1,16 +1,16 @@
 from typing import List, Optional
 
-from sqlalchemy.orm import Session
-
 from backend.src.application.interfaces.borrowing_repository import \
     BorrowingRepository
 from backend.src.domain.entities.borrowing import BorrowingManager
+from backend.src.domain.exceptions.borrowing_exceptions import \
+    BorrowingNotFoundException
 
 
 def get_borrowing(borrowing_repo: BorrowingRepository, borrow_id: int) -> Optional[BorrowingManager]:
     borrowing = borrowing_repo.get_by_id(borrow_id)
     if not borrowing:
-        raise ValueError("Borrowing record not found")
+        raise BorrowingNotFoundException.by_id(borrow_id)
     
     return borrowing
 

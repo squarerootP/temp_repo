@@ -4,8 +4,10 @@ from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
 from backend.src.application.interfaces.book_repository import BookRepository
-from backend.src.domain.entities.author import Author
 from backend.src.domain.entities.book import Book
+from backend.src.infrastructure.adapter.mappers.book_mapper import BookMapper
+from backend.src.infrastructure.persistence.models import (AuthorModel,
+                                                           BookModel)
 
 
 class BookRepositoryImpl(BookRepository):
@@ -15,45 +17,58 @@ class BookRepositoryImpl(BookRepository):
         self.db = db_session
 
     def get_by_isbn(self, book_isbn: str) -> Optional[Book]:
-        return self.db.query(Book).filter(Book.isbn == book_isbn).first() #type: ignore
+        db_book = self.db.query(BookModel).filter(BookModel.book_isbn == book_isbn).first()
+        return BookMapper.to_entity(db_book) if db_book else None
 
     def list(self, skip: int = 0, limit: int = 100) -> List[Book]:
-        return self.db.query(Book).offset(skip).limit(limit).all()
+        db_books = self.db.query(BookModel).offset(skip).limit(limit).all()
+        return [BookMapper.to_entity(book) for book in db_books]
 
     def save(self, book: Book) -> bool:
-        self.db.add(book)
+        db_book = BookMapper.to_model(book)
+        self.db.add(db_book)
         self.db.commit()
-        self.db.refresh(book)
+        self.db.refresh(db_book)
         return True
 
     def delete(self, book_isbn: str) -> bool:
-        book = self.get_by_isbn(book_isbn)
-        if book:
-            self.db.delete(book)
+        db_book = self.db.query(BookModel).filter(BookModel.book_isbn == book_isbn).first()
+        
+        if db_book:
+            self.db.delete(db_book)
             self.db.commit()
             return True
         return False
 
-    def search(self, text_to_search: str, skip: int = 0, limit: int =100) -> Optional[List[Book]]:
-
-        query = self.db.query(Book).outerjoin(Author).filter(
-        or_(
-            Book.title.ilike(text_to_search), #type: ignore
-            Book.isbn.ilike(text_to_search), #type: ignore
-            Book.genre.ilike(text_to_search), #type: ignore
-            Book.summary.ilike(text_to_search), #type: ignore
-            Author.first_name.ilike(text_to_search), #type: ignore
-            Author.last_name.ilike(text_to_search), #type: ignore
+    def search(self, text_to_search: str, skip: int = 0, limit: int = 100) -> Optional[List[Book]]:
+        search_pattern = f"%{text_to_search}%"
+        query = self.db.query(BookModel).outerjoin(AuthorModel).filter(
+            or_(
+                BookModel.title.ilike(search_pattern),
+                BookModel.book_isbn.ilike(search_pattern),
+                BookModel.genre.ilike(search_pattern),
+                BookModel.summary.ilike(search_pattern),
+                AuthorModel.first_name.ilike(search_pattern),
+                AuthorModel.last_name.ilike(search_pattern),
             )
         )
-        return query.offset(skip).limit(limit).all() if query.count() > 0 else None
-    
+        db_books = query.offset(skip).limit(limit).all()
+        
+        if not db_books:
+            return None
+            
+        return [BookMapper.to_entity(book) for book in db_books]
+
     def update(self, book_isbn: str, book_data: dict) -> Optional[Book]:
-        db_book = self.get_by_isbn(book_isbn)
+        db_book = self.db.query(BookModel).filter(BookModel.book_isbn == book_isbn).first()
+        
         if not db_book:
             return None
+            
         for key, value in book_data.items():
             setattr(db_book, key, value)
+            
         self.db.commit()
         self.db.refresh(db_book)
-        return db_book
+        
+        return BookMapper.to_entity(db_book)

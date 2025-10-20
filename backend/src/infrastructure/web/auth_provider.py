@@ -6,12 +6,12 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from sqlalchemy.orm import Session
 
-from backend.config.settings import settings
 from backend.src.application.use_cases import user_ops
-from backend.src.domain.entities.models import User
+from backend.src.domain.entities.user import User
 from backend.src.domain.services.utils import verify_password
+from backend.src.infrastructure.config.settings import settings
 from backend.src.infrastructure.persistence.database import get_db
-from backend.src.infrastructure.persistence.user_repository_impl import \
+from backend.src.infrastructure.persistence.repository_impl.user_repository_impl import \
     UserRepositoryImpl
 from backend.src.presentation.schemas import token_schema
 
@@ -22,13 +22,20 @@ ALGORITHM = "HS256"
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/v1/token")
 
 def authenticate_user(db: Session, email: str, password: str):
-    user_repo = UserRepositoryImpl(db)
-    user = user_ops.get_user_by_email(user_repo=user_repo, email=email)
-    if not user:
-        return False
-    if not verify_password(password, user.hashed_password):
-        return False
-    return user
+    try:
+        user_repo = UserRepositoryImpl(db)
+        user = user_ops.get_user_by_email(user_repo=user_repo, email=email)
+        if not user:
+            return False
+        if not verify_password(password, user.hashed_password):
+            return False
+        return user
+    except ValueError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Bearer"},)
+
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()
@@ -49,13 +56,13 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = De
     user_repo = UserRepositoryImpl(db)
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email: str = payload.get("sub")
+        email: str = payload.get("sub") #type: ignore
         if email is None:
             raise credentials_exception
         token_data = token_schema.TokenData(email=email)
     except JWTError:
         raise credentials_exception
-    user = user_ops.get_user_by_email(user_repo=user_repo, email=token_data.email)
+    user = user_ops.get_user_by_email(user_repo=user_repo, email=token_data.email) #type: ignore
     if user is None:
         raise credentials_exception
     return user

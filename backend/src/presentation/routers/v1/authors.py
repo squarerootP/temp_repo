@@ -3,8 +3,10 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from backend.src.application.use_cases import author_ops, user_ops
+from backend.src.application.use_cases import author_ops
 from backend.src.domain.entities.user import User
+from backend.src.domain.exceptions.author_exceptions import (
+    AuthorEmailAlreadyRegistered, AuthorNotFound)
 from backend.src.infrastructure.persistence.database import get_db
 from backend.src.infrastructure.persistence.repository_impl.author_repository_impl import \
     AuthorRepositoryImpl
@@ -41,8 +43,6 @@ def search_for_authors(
     """
     author_repo = AuthorRepositoryImpl(db)
     authors = author_ops.search_authors(author_repo, text_to_search=text_to_search, skip=skip, limit=limit)
-    if not authors:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No authors found matching the criteria")
     return authors
 
 @router.get("/{author_id}", response_model=author_schema.AuthorResponse)
@@ -54,9 +54,10 @@ def read_author(
     Retrieve an author using their ID.
     """
     author_repo = AuthorRepositoryImpl(db)
-    db_author = author_ops.get_author(author_repo, author_id=author_id)
-    if db_author is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Author not found")
+    try:
+        db_author = author_ops.get_author(author_repo, author_id=author_id)
+    except AuthorNotFound:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Author with id {author_id} not found")
     return db_author
 
 @router.post("/", response_model=author_schema.AuthorResponse, status_code=status.HTTP_201_CREATED)
@@ -69,10 +70,11 @@ def add_author(
     Add an author to the database. Only accessible by admins.
     """
     author_repo = AuthorRepositoryImpl(db)
-    # db_author = author_ops.get_author_by_email(author_repo, email=author.email)
-    # if db_author:
-    #     raise HTTPException(status_code=400, detail="Author with this email already exists")
-    return author_ops.create_author(author_repo, author=author.model_dump(exclude_unset=True))
+    try:
+        author_ops.create_author(author_repo, author=author.model_dump(exclude_unset=True))
+    except AuthorEmailAlreadyRegistered:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Author with this email already exists")
+    return True
 
 @router.put("/{author_id}", response_model=author_schema.AuthorResponse)
 def update_author_details(
@@ -85,9 +87,10 @@ def update_author_details(
     Update an author using their ID. Only accessible by admins.
     """
     author_repo = AuthorRepositoryImpl(db)
-    updated_author = author_ops.update_author(author_repo, author_id, author.model_dump(exclude_unset=True))
-    if not updated_author:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Author not found")
+    try:
+        updated_author = author_ops.update_author(author_repo, author_id, author.model_dump(exclude_unset=True))
+    except AuthorNotFound:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Author with id {author_id} not found")
     return updated_author
 
 @router.delete("/{author_id}", status_code=status.HTTP_200_OK)
@@ -100,7 +103,8 @@ def remove_author(
     Delete an author using their ID. Only accessible by admins.
     """
     author_repo = AuthorRepositoryImpl(db)
-    success = author_ops.delete_author(author_repo, author_id)
-    if not success:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Author not found")
+    try:
+        author_ops.delete_author(author_repo, author_id)
+    except AuthorNotFound:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Author with id {author_id} not found")
     return {"message": "Author deleted successfully"}

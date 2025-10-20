@@ -8,5 +8,5 @@ def update_user(user_repo: UserRepository, user_id: int, data: dict) -> Optional
     user = user_repo.get_by_id(user_id=user_id)
     if not user:
         raise ValueError("User not found")
-    user = User(**data)
+    user = data
     return user_repo.update(user_id, user)

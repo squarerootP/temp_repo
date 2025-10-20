@@ -3,15 +3,14 @@ import logging
 import time
 from logging.handlers import RotatingFileHandler
 
-from fastapi import FastAPI, HTTPException, Request
-from fastapi.exception_handlers import RequestValidationError
-from fastapi.exceptions import HTTPException, RequestValidationError
+from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from backend.config.settings import settings
+from backend.src.infrastructure.config.settings import settings
 from backend.src.presentation.routers.v1 import (authors, books, borrowings,
-                                                 rag, users)
+                                                 users)
 from backend.src.presentation.routers.v1.api import router as api_router
 
 RATE_LIMIT = settings.RATE_LIMIT  
@@ -62,7 +61,7 @@ async def log_requests(request: Request, call_next):
     return response
 @app.middleware("http")
 async def rate_limit(request: Request, call_next):
-    client_ip = request.client.host
+    client_ip = request.client.host #type: ignore
     now = time.time()
 
     timestamps = request_counts.get(client_ip, [])
@@ -126,7 +125,7 @@ app.include_router(users.router, prefix="/v1")
 app.include_router(books.router, prefix="/v1") 
 app.include_router(authors.router, prefix="/v1") 
 app.include_router(borrowings.router, prefix="/v1") 
-app.include_router(rag.router, prefix="/v1")
+# app.include_router(rag.router, prefix="/v1")
 
 @app.get("/")
 def read_root():

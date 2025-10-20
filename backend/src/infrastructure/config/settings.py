@@ -14,22 +14,26 @@ class Settings(BaseSettings):
     RATE_LIMIT_WINDOW_SIZE: int
     APP_VERSION: str
 
-
     model_config = SettingsConfigDict(
         env_file=ENV_FILE_PATH,
-        env_file_encoding='utf-8'
+        env_file_encoding='utf-8',
+        extra='ignore'   # 👈 allow unrelated keys
     )
+
+
 class APISettings(BaseSettings):
     CEREBRAS_API_KEY: str
     GOOGLE_GENAI_API_KEY: str
     TAVILY_API_KEY: str
     GOOGLE_EMBEDDING_MODEL: str
     LLM_MODEL: str
-    
+
     model_config = SettingsConfigDict(
-            env_file=ENV_FILE_PATH,
-            env_file_encoding='utf-8'
-        )
+        env_file=ENV_FILE_PATH,
+        env_file_encoding='utf-8',
+        extra='ignore'   # 👈 same here
+    )
+
 # settings = Settings()
 api_settings = APISettings() #type: ignore
 

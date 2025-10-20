@@ -40,7 +40,7 @@ class UserUpdate(BaseModel):
 
 class UserResponse(UserBase):
     user_id: int
-    is_active: bool
+    is_active: bool = True
     created_at: datetime
     
     class ConfigDict:
@@ -49,5 +49,3 @@ class UserResponse(UserBase):
 class UserDetailResponse(UserResponse):
     borrowings: List[BorrowingResponse] = []
     
-    class ConfigDict:
-        from_attributes = True

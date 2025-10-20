@@ -5,7 +5,7 @@ from backend.src.domain.entities.book import Book
 from backend.src.domain.exceptions.book_exceptions import BookNotFound
 
 
-def get_book_by_isbn(book_repo: BookRepository, isbn: str) -> Optional[Book]:
+def get_book_by_isbn(book_repo: BookRepository, isbn: str) -> Book:
     """Business logic for getting a book by ISBN."""
     book = book_repo.get_by_isbn(book_isbn=isbn)
     if not book:

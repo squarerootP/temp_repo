@@ -3,7 +3,7 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.prompts import ChatPromptTemplate
 from langchain_cerebras import ChatCerebras
 
-from backend.src.infrastructure.configurations.config import api_settings
+from backend.src.infrastructure.config.settings import api_settings
 
 
 class LLMService:

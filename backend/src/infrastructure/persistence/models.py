@@ -1,79 +1,117 @@
-from sqlalchemy import (TIMESTAMP, Boolean, Column, DateTime, Enum, ForeignKey,
+from __future__ import annotations
+
+from datetime import datetime
+from typing import List, Literal, Optional
+
+from sqlalchemy import (TIMESTAMP, Boolean, DateTime, Enum, ForeignKey,
                         Integer, String, Text, func)
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
-Base = declarative_base()
 
-class BorrowingManager(Base):
-    __tablename__ = "Borrowing"
+# --- Base ---
+class Base(DeclarativeBase):
+    pass
 
-    borrow_id = Column(Integer, primary_key=True, autoincrement=True)
-    user_id = Column(Integer, ForeignKey("Users.user_id"), nullable=False)
-    book_isbn = Column(String, ForeignKey("Books.isbn"), nullable=False)
-    borrow_date = Column(DateTime, default=func.now())
-    due_date = Column(DateTime)
-    status = Column(Enum("borrowed", "returned", "overdue"), name="status", 
-                    default="borrowed", index=True)
 
-    user = relationship("User", back_populates="borrowings")
-    book = relationship("Book", back_populates="borrowings")
-    def __repr__(self):
-        return f"<BorrowingManager(id={self.borrow_id}, user_id={self.user_id}, \
-            book_isbn='{self.book_isbn}', status='{self.status}')>"
-    
-class User(Base):
+# --- User ---
+class UserModel(Base):
     __tablename__ = "Users"
 
-    user_id = Column(Integer, primary_key=True, autoincrement=True)
-    first_name = Column(String(50), nullable=False)
-    second_name = Column(String(50), nullable=False)
-    email = Column(String(100), unique=True, nullable=False)
-    phone = Column(String(20), unique=True)
-    address = Column(Text)
-    hashed_password = Column(String, nullable=False)
-    is_active = Column(Boolean, default=True)
-    role = Column(Enum('member', 'admin', name='user_roles'), nullable=False)
-    created_at = Column(TIMESTAMP, server_default=func.current_timestamp())
+    user_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    first_name: Mapped[str] = mapped_column(String(50), nullable=False)
+    second_name: Mapped[str] = mapped_column(String(50), nullable=False)
+    email: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
+    phone: Mapped[Optional[str]] = mapped_column(String(20), unique=True)
+    address: Mapped[Optional[str]] = mapped_column(Text)
+    hashed_password: Mapped[str] = mapped_column(String, nullable=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    role: Mapped[Literal["member", "admin"]] = mapped_column(
+        Enum("member", "admin", name="user_roles"), nullable=False, default="member"
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        TIMESTAMP, server_default=func.current_timestamp()
+    )
 
-    borrowings = relationship('BorrowingManager', back_populates="user", cascade="all, delete-orphan")
-    currently_borrowed_books = relationship("Book", back_populates="borrower",
-                                            foreign_keys="Book.currently_borrowed_by")
-    def __repr__(self):
-        return f"<User(id={self.user_id}, \
-            email='{self.email}', role='{self.role}', is_active={self.is_active})>"
-class Book(Base):
-    __tablename__ = "Books"
+    # relationships
+    borrowings: Mapped[List["BorrowingManagerModel"]] = relationship(
+        back_populates="user", cascade="all, delete-orphan"
+    )
+    currently_borrowed_books: Mapped[List["BookModel"]] = relationship(
+        back_populates="borrower", foreign_keys="BookModel.currently_borrowed_by"
+    )
 
-    book_isbn = Column(Integer, primary_key=True, autoincrement=True, index=True)
-    isbn = Column(String(13), unique=True, index=True)
-    title = Column(String(200), nullable=False)
-    summary = Column(Text)
-    genre = Column(String(50), index=True)
-    published_year = Column(Integer)
-    author_id = Column(Integer, ForeignKey("Authors.author_id"), nullable=False)
-    currently_borrowed_by = Column(Integer, ForeignKey("Users.user_id"), nullable=True)
+    def __repr__(self) -> str:
+        return f"<User(id={self.user_id}, email='{self.email}', role='{self.role}', is_active={self.is_active})>"
 
 
-
-    author = relationship("Author", back_populates="books")
-    borrower = relationship("User", back_populates="currently_borrowed_books", 
-                            foreign_keys=[currently_borrowed_by])
-    borrowings = relationship("BorrowingManager", back_populates="book", cascade="all, delete-orphan")
-    def __repr__(self):
-        return f"<Book(isbn={self.isbn}, title='{self.title}', author_id={self.author_id})>"   
-
-
-class Author(Base):
+# --- Author ---
+class AuthorModel(Base):
     __tablename__ = "Authors"
 
-    author_id = Column(Integer, primary_key=True, autoincrement=True)
-    first_name = Column(String(50), nullable=False)
-    last_name = Column(String(50), nullable=False)
-    email = Column(String(100), unique=True, nullable=False)
-    biography = Column(Text)
+    author_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    first_name: Mapped[str] = mapped_column(String(50), nullable=False)
+    last_name: Mapped[str] = mapped_column(String(50), nullable=False)
+    email: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
+    biography: Mapped[Optional[str]] = mapped_column(Text)
 
-    books = relationship("Book", back_populates="author", cascade="all, delete-orphan")
-    def __repr__(self):
+    books: Mapped[List["BookModel"]] = relationship(
+        back_populates="author", cascade="all, delete-orphan"
+    )
+
+    def __repr__(self) -> str:
         return f"<Author(id={self.author_id}, email='{self.email}', name='{self.first_name} {self.last_name}')>"
 
- 
+
+# --- Book ---
+class BookModel(Base):
+    __tablename__ = "Books"
+
+    book_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True, index=True)
+    book_isbn: Mapped[str] = mapped_column(String(13), unique=True, index=True)
+    title: Mapped[str] = mapped_column(String(200), nullable=False)
+    summary: Mapped[Optional[str]] = mapped_column(Text)
+    genre: Mapped[Optional[str]] = mapped_column(String(50), index=True)
+    published_year: Mapped[Optional[int]] = mapped_column(Integer)
+    author_id: Mapped[int] = mapped_column(ForeignKey("Authors.author_id"), nullable=False)
+    currently_borrowed_by: Mapped[Optional[int]] = mapped_column(
+        ForeignKey("Users.user_id"), nullable=True
+    )
+
+    # relationships
+    author: Mapped["AuthorModel"] = relationship(back_populates="books")
+    borrower: Mapped[Optional["UserModel"]] = relationship(
+        back_populates="currently_borrowed_books",
+        foreign_keys=[currently_borrowed_by],
+    )
+    borrowings: Mapped[List["BorrowingManagerModel"]] = relationship(
+        back_populates="book", cascade="all, delete-orphan"
+    )
+
+    def __repr__(self) -> str:
+        return f"<Book(book_isbn={self.book_isbn}, title='{self.title}', author_id={self.author_id})>"
+
+
+# --- Borrowing Manager ---
+class BorrowingManagerModel(Base):
+    __tablename__ = "Borrowing"
+
+    borrow_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("Users.user_id"), nullable=False)
+    book_isbn: Mapped[str] = mapped_column(ForeignKey("Books.book_isbn"), nullable=False)
+    borrow_date: Mapped[datetime] = mapped_column(DateTime, default=func.now())
+    due_date: Mapped[Optional[datetime]] = mapped_column(DateTime)
+    status: Mapped[Literal["borrowed", "returned", "overdue"]] = mapped_column(
+        Enum("borrowed", "returned", "overdue", name="status"),
+        default="borrowed",
+        index=True,
+    )
+
+    # relationships
+    user: Mapped["UserModel"] = relationship(back_populates="borrowings")
+    book: Mapped["BookModel"] = relationship(back_populates="borrowings")
+
+    def __repr__(self) -> str:
+        return (
+            f"<BorrowingManager(id={self.borrow_id}, user_id={self.user_id}, "
+            f"book_isbn='{self.book_isbn}', status='{self.status}')>"
+        )

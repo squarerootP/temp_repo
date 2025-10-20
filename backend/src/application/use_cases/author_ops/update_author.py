@@ -10,5 +10,5 @@ def update_author(author_repo: AuthorRepository, author_id: int, data: dict) -> 
     author = author_repo.get_by_id(author_id=author_id)
     if not author:
         raise AuthorNotFound(f"Author with id {author_id} not found.")
-    author = Author(**data)
+    author = data
     return author_repo.update(author_id, author)

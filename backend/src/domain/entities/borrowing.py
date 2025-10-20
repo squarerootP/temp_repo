@@ -6,9 +6,10 @@ Status = Literal["borrowed", "returned", "overdue"]
 
 @dataclass
 class BorrowingManager:
+
+    user_id: int | None = None
+    book_isbn: str = ""
     borrow_id: Optional[int] = None
-    user_id: int #type: ignore 
-    book_isbn: str #type: ignore
     borrow_date: Optional[datetime] = None
     due_date: Optional[datetime] = None
     status: Status = "borrowed"

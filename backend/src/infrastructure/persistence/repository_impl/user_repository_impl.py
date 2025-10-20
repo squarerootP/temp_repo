@@ -6,6 +6,8 @@ from sqlalchemy.orm import Session
 from backend.src.application.interfaces.user_repository import UserRepository
 from backend.src.domain.entities.user import User
 from backend.src.domain.services.utils import get_password_hash
+from backend.src.infrastructure.adapter.mappers.user_mapper import UserMapper
+from backend.src.infrastructure.persistence.models import UserModel
 
 
 class UserRepositoryImpl(UserRepository):
@@ -14,50 +16,53 @@ class UserRepositoryImpl(UserRepository):
 
     def create(self, user: dict) -> User:
         hashed_password = get_password_hash(user["password"])
-        db_user = User(
-            first_name=user["first_name"],
-            second_name=user["second_name"],
-            email=user["email"],
-            phone=user["phone"],
-            address=user["address"],
-            hashed_password=hashed_password,
-            is_active=True,
-            role=user["role"]
-        )
+        user_data = {**user, "hashed_password": hashed_password}
+        user_data.pop("password", None)
+        
+        user_entity = User(**user_data)
+        db_user = UserMapper.to_model(user_entity)
+        
         self.db.add(db_user)
         self.db.commit()
         self.db.refresh(db_user)
-        return db_user
+        
+        return UserMapper.to_entity(db_user)
 
     def get_by_id(self, user_id: int) -> Optional[User]:
-        return self.db.query(User).filter(User.user_id == user_id).first() #type: ignore
+        db_user = self.db.query(UserModel).filter(UserModel.user_id == user_id).first()
+        return UserMapper.to_entity(db_user) if db_user else None
 
     def get_by_email(self, email: str) -> Optional[User]:
-        return self.db.query(User).filter(User.email == email).first() #type: ignore
+        db_user = self.db.query(UserModel).filter(UserModel.email == email).first()
+        return UserMapper.to_entity(db_user) if db_user else None
 
     def get_by_phone(self, phone: str) -> Optional[User]:
-        return self.db.query(User).filter(User.phone == phone).first() #type: ignore
+        db_user = self.db.query(UserModel).filter(UserModel.phone == phone).first()
+        return UserMapper.to_entity(db_user) if db_user else None
 
-    def list(self, skip: int = 0, limit: int = 100) -> List[User]:
-        return self.db.query(User).offset(skip).limit(limit).all()
+    def list(self, skip: Optional[int|None] = 0, limit: Optional[int|None] = 100) -> List[User]:
+        db_users = self.db.query(UserModel).offset(skip).limit(limit).all()
+        return [UserMapper.to_entity(user) for user in db_users]
 
-    def search(self, text_to_search: str, skip: int = 0, limit: int = 100) -> List[User]:
+    def search(self, text_to_search: str, skip: Optional[int|None] = 0, limit: Optional[int|None] = 100) -> List[User]:
         search_pattern = f"%{text_to_search}%"
-        query = self.db.query(User).filter(
+        query = self.db.query(UserModel).filter(
             or_(
-                User.first_name.ilike(search_pattern), #type: ignore
-                User.second_name.ilike(search_pattern), #type: ignore
-                User.email.ilike(search_pattern), #type: ignore
+                UserModel.first_name.ilike(search_pattern),
+                UserModel.second_name.ilike(search_pattern),
+                UserModel.email.ilike(search_pattern),
             )
         )
-        return query.offset(skip).limit(limit).all()
+        db_users = query.offset(skip).limit(limit).all()
+        return [UserMapper.to_entity(user) for user in db_users]
 
     def update(self, user_id: int, user: dict) -> Optional[User]:
-        db_user = self.get_by_id(user_id)
+        db_user = self.db.query(UserModel).filter(UserModel.user_id == user_id).first()
+        
         if not db_user:
             return None
 
-        user_data = user
+        user_data = user.copy()
         if "password" in user_data:
             user_data["hashed_password"] = get_password_hash(user_data["password"])
             del user_data["password"]
@@ -67,12 +72,15 @@ class UserRepositoryImpl(UserRepository):
 
         self.db.commit()
         self.db.refresh(db_user)
-        return db_user
+        
+        return UserMapper.to_entity(db_user)
 
     def delete(self, user_id: int) -> bool:
-        db_user = self.get_by_id(user_id)
+        db_user = self.db.query(UserModel).filter(UserModel.user_id == user_id).first()
+        
         if not db_user:
             return False
+            
         self.db.delete(db_user)
         self.db.commit()
         return True

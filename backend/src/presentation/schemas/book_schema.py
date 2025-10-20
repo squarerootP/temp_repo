@@ -13,7 +13,7 @@ class BorrowStatus(str, Enum):
     OVERDUE = "overdue"
 
 class BookBase(BaseModel):
-    isbn: Annotated[str,
+    book_isbn: Annotated[str,
                     StringConstraints(min_length=10, max_length=13)]
     title: str = Field(..., min_length=1, max_length=200)
     summary: Optional[str] = None
@@ -25,7 +25,7 @@ class BookCreate(BookBase):
     pass
 
 class BookUpdate(BaseModel):
-    isbn: Optional[str] = Field(None, min_length=10, max_length=13)
+    book_isbn: Optional[str] = Field(None, min_length=10, max_length=13)
     title: Optional[str] = Field(None, min_length=1, max_length=200)
     summary: Optional[str] = None
     genre: Optional[str] = Field(None, max_length=50)
@@ -43,5 +43,3 @@ class BookResponse(BookBase):
 class BookDetailResponse(BookResponse):
     author: AuthorResponse
     
-    class ConfigDict:
-        from_attributes = True

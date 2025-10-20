@@ -4,9 +4,10 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from backend.src.application.use_cases import user_ops
-from backend.src.domain.entities.models import User
+from backend.src.domain.entities.user import User
+from backend.src.domain.exceptions.user_exceptions import UserNotFound
 from backend.src.infrastructure.persistence.database import get_db
-from backend.src.infrastructure.persistence.user_repository_impl import \
+from backend.src.infrastructure.persistence.repository_impl.user_repository_impl import \
     UserRepositoryImpl
 from backend.src.infrastructure.web.auth_provider import (
     get_current_active_user, has_role)
@@ -47,7 +48,8 @@ def search_users(text_to_search: str,
     Retrieve all users with matching information, default to 0-100
     """
     user_repo = UserRepositoryImpl(db)
-    users = user_ops.search_user(user_repo = user_repo,  text_to_search=text_to_search, skip=skip, limit=limit)
+    users = user_ops.search_user(user_repo = user_repo,  text_to_search=text_to_search, skip=skip, 
+                                 limit=limit) 
     return users
 @router.get("/{user_id}", response_model=user_schema.UserResponse) # R
 def read_user_by_id(
@@ -58,8 +60,9 @@ def read_user_by_id(
     Retrieve a user using Id.
     """
     user_repo = UserRepositoryImpl(db)
-    db_user = user_ops.get_user_by_id(user_repo = user_repo,  user_id=user_id)
-    if db_user is None:
+    try:
+        db_user = user_ops.get_user_by_id(user_repo = user_repo,  user_id=user_id)
+    except UserNotFound:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail="User not found")
     return db_user
@@ -70,21 +73,26 @@ def read_user_by_id(
 def create_user(
     user: user_schema.UserCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user)
+    current_user: User = Depends(has_role("admin"))
 ):
     user_repo = UserRepositoryImpl(db)
-    if current_user.role != "admin" and user.role == "admin":
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
-                            detail="You are not authorized to create admin users")
-    db_user = user_ops.get_user_by_email(user_repo = user_repo,  email=user.email)
-    if db_user:
+
+    try:
+        user_db = user_ops.get_user_by_email(user_repo = user_repo,  email=user.email)
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, 
                             detail="Email already registered")
-    db_user = user_ops.get_user_by_phone(user_repo = user_repo,  phone=user.phone)
-    if db_user:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, 
-                            detail="Phone already registered")
-    return user_ops.create_user(user_repo = user_repo,  user=user)
+    except UserNotFound:
+        pass
+    
+    try:
+        if user.phone:
+            db_user = user_ops.get_user_by_phone(user_repo = user_repo,  phone=user.phone) 
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, 
+                                detail="Phone number already registered")
+    except UserNotFound:
+        pass
+        
+    return user_ops.create_user(user_repo = user_repo,  data=user.model_dump(exclude_unset=True))
 @router.put("/{user_id}", response_model=user_schema.UserResponse)
 def update_user(
     user_id: int,
@@ -93,8 +101,9 @@ def update_user(
 ):
     user_repo = UserRepositoryImpl(db)
     # Check if user exists
-    existing_user = user_ops.get_user_by_id(user_repo = user_repo,  user_id=user_id)
-    if not existing_user:
+    try:
+        existing_user = user_ops.get_user_by_id(user_repo = user_repo,  user_id=user_id)
+    except UserNotFound:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"User with ID {user_id} not found"
@@ -119,7 +128,7 @@ def update_user(
             )
     
     # Update the user
-    updated_user = user_ops.update_user(user_repo = user_repo,  user_id=user_id, user=user_update)
+    updated_user = user_ops.update_user(user_repo = user_repo,  user_id=user_id, data=user_update.model_dump(exclude_unset=True))
     if not updated_user:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -139,7 +148,9 @@ def delete_user(user_id: int,
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Admin users cannot delete their own account."
         )
-    if not user_ops.delete_user(user_repo = user_repo,  user_id=user_id):
+    try:
+        user_ops.delete_user(user_repo = user_repo,  user_id=user_id)
+    except UserNotFound:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     return {"message":f"user with user_id {user_id} was successully deleted"}
 

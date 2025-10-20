@@ -1,6 +1,6 @@
 import hashlib
 import time
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import Any, Dict, Optional
 
 from config_optimized import Config
@@ -37,7 +37,7 @@ class QueryCache:
                 del self.cache[key]
                 print(f"   ⏰ Cache EXPIRED (age: {age:.1f}s)")
         
-        print(f"   🔍 Cache MISS")
+        print("   🔍 Cache MISS")
         return None
     
     def set(self, question: str, k: int, response: Dict[str, Any]):

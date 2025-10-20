@@ -910,3 +910,215 @@ Incoming request: PUT http://localhost:8000/v1/borrowings/8
 Completed request: PUT http://localhost:8000/v1/borrowings/8Status: 200 Duration: 15.92ms
 Incoming request: DELETE http://localhost:8000/v1/borrowings/8
 Completed request: DELETE http://localhost:8000/v1/borrowings/8Status: 200 Duration: 21.11ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 1.01ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 139.77ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.00ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.00ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.00ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 151.00ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 1.21ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 126.37ms
+Incoming request: POST http://localhost:8000/v1/token
+{"error": "Column expression, FROM clause, or other columns clause element expected, got <class 'backend.src.domain.entities.user.User'>.", "type": "ArgumentError", "path": "http://localhost:8000/v1/token", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/token
+{"error": "Column expression, FROM clause, or other columns clause element expected, got <class 'backend.src.domain.entities.user.UserModel'>.", "type": "ArgumentError", "path": "http://localhost:8000/v1/token", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/token
+Incoming request: POST http://localhost:8000/v1/token
+Incoming request: POST http://localhost:8000/v1/token
+Incoming request: POST http://localhost:8000/v1/token
+{"error": "Column expression, FROM clause, or other columns clause element expected, got <class 'backend.src.domain.entities.user.UserModel'>.", "type": "ArgumentError", "path": "http://localhost:8000/v1/token", "method": "POST"}
+{"error": "Column expression, FROM clause, or other columns clause element expected, got <class 'backend.src.domain.entities.user.UserModel'>.", "type": "ArgumentError", "path": "http://localhost:8000/v1/token", "method": "POST"}
+{"error": "Column expression, FROM clause, or other columns clause element expected, got <class 'backend.src.domain.entities.user.UserModel'>.", "type": "ArgumentError", "path": "http://localhost:8000/v1/token", "method": "POST"}
+{"error": "Column expression, FROM clause, or other columns clause element expected, got <class 'backend.src.domain.entities.user.UserModel'>.", "type": "ArgumentError", "path": "http://localhost:8000/v1/token", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/token
+{"error": "When initializing mapper Mapper[BorrowingManagerModel(Borrowing)], expression 'User' failed to locate a name ('User'). If this is a class name, consider adding this relationship() to the <class 'backend.src.infrastructure.persistence.models.BorrowingManagerModel'> class after both dependent classes have been defined.", "type": "InvalidRequestError", "path": "http://localhost:8000/v1/token", "method": "POST"}
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.00ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 215.88ms
+Incoming request: POST http://localhost:8000/v1/token
+{"error": "When initializing mapper Mapper[BorrowingManagerModel(Borrowing)], expression 'User' failed to locate a name ('User'). If this is a class name, consider adding this relationship() to the <class 'backend.src.infrastructure.persistence.models.BorrowingManagerModel'> class after both dependent classes have been defined.", "type": "InvalidRequestError", "path": "http://localhost:8000/v1/token", "method": "POST"}
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.00ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 164.46ms
+Incoming request: POST http://localhost:8000/v1/token
+{"error": "User not found", "type": "ValueError", "path": "http://localhost:8000/v1/token", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 401 Duration: 22.21ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 401 Duration: 79.63ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 193.47ms
+Incoming request: GET http://localhost:8000/v1/health
+Completed request: GET http://localhost:8000/v1/healthStatus: 200 Duration: 1.95ms
+Incoming request: GET http://localhost:8000/
+Completed request: GET http://localhost:8000/Status: 200 Duration: 1.51ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 102.83ms
+Incoming request: GET http://localhost:8000/v1/users/?skip=0&limit=100
+{"error": "'BorrowingManagerModel' object has no attribute 'id'", "type": "AttributeError", "path": "http://localhost:8000/v1/users/?skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/users/?skip=0&limit=100
+{"error": "'BorrowingManagerModel' object has no attribute 'borrowing_id'", "type": "AttributeError", "path": "http://localhost:8000/v1/users/?skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/users/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/users/?skip=0&limit=100Status: 200 Duration: 91.29ms
+Incoming request: POST http://localhost:8000/v1/users/
+Completed request: POST http://localhost:8000/v1/users/Status: 400 Duration: 10.03ms
+Incoming request: POST http://localhost:8000/v1/users/
+{"error": "Validation error", "detials": [{"type": "json_invalid", "loc": ["body", 251], "msg": "JSON decode error", "input": {}, "ctx": {"error": "Expecting ',' delimiter"}}], "body": "{\n    \"first_name\": \"Mai\",\n    \"second_name\": \"Nguyen\",\n    \"email\": \"mai.nguyen@example.com\",\n    \"phone\": \"+84-912345678\",\n    \"address\": \"123 Le Loi, Ho Chi Minh City\",\n    \"is_active\": true,\n    \"role\": \"member\",\n    \"password\": \"securepass123\"\n  ", "path": "http://localhost:8000/v1/users/", "method": "POST"}
+Completed request: POST http://localhost:8000/v1/users/Status: 422 Duration: 1.00ms
+Incoming request: POST http://localhost:8000/v1/users/
+{"error": "User not found", "type": "ValueError", "path": "http://localhost:8000/v1/users/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/users/
+{"error": "User not found", "type": "ValueError", "path": "http://localhost:8000/v1/users/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/users/
+{"error": "User not found", "type": "ValueError", "path": "http://localhost:8000/v1/users/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/users/
+Completed request: POST http://localhost:8000/v1/users/Status: 400 Duration: 88.90ms
+Incoming request: POST http://localhost:8000/v1/users/
+{"error": "'id' is an invalid keyword argument for UserModel", "type": "TypeError", "path": "http://localhost:8000/v1/users/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/users/
+Completed request: POST http://localhost:8000/v1/users/Status: 201 Duration: 154.07ms
+Incoming request: GET http://localhost:8000/v1/users?text_to_search=hello&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/users?text_to_search=hello&skip=0&limit=100Status: 200 Duration: 6.11ms
+Incoming request: GET http://localhost:8000/v1/users?text_to_search=a&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/users?text_to_search=a&skip=0&limit=100Status: 200 Duration: 18.35ms
+Incoming request: GET http://localhost:8000/v1/users/20
+Completed request: GET http://localhost:8000/v1/users/20Status: 200 Duration: 4.58ms
+Incoming request: GET http://localhost:8000/v1/users/1
+Completed request: GET http://localhost:8000/v1/users/1Status: 200 Duration: 4.17ms
+Incoming request: GET http://localhost:8000/v1/users/0
+{"error": "User with id 0 not found.", "type": "UserNotFound", "path": "http://localhost:8000/v1/users/0", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/users/0
+Completed request: GET http://localhost:8000/v1/users/0Status: 404 Duration: 24.27ms
+Incoming request: PUT http://localhost:8000/v1/users/0
+{"error": "User with id 0 not found.", "type": "UserNotFound", "path": "http://localhost:8000/v1/users/0", "method": "PUT"}
+Incoming request: PUT http://localhost:8000/v1/users/0
+Completed request: PUT http://localhost:8000/v1/users/0Status: 404 Duration: 60.28ms
+Incoming request: DELETE http://localhost:8000/v1/users/0
+{"error": "User not found", "type": "ValueError", "path": "http://localhost:8000/v1/users/0", "method": "DELETE"}
+Incoming request: DELETE http://localhost:8000/v1/users/0
+Completed request: DELETE http://localhost:8000/v1/users/0Status: 404 Duration: 62.32ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+{"error": "(sqlite3.OperationalError) no such column: Books.book_isbn\n[SQL: SELECT \"Books\".book_isbn AS \"Books_book_isbn\", \"Books\".isbn AS \"Books_isbn\", \"Books\".title AS \"Books_title\", \"Books\".summary AS \"Books_summary\", \"Books\".genre AS \"Books_genre\", \"Books\".published_year AS \"Books_published_year\", \"Books\".author_id AS \"Books_author_id\", \"Books\".currently_borrowed_by AS \"Books_currently_borrowed_by\" \nFROM \"Books\"\n LIMIT ? OFFSET ?]\n[parameters: (100, 0)]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)", "type": "OperationalError", "path": "http://localhost:8000/v1/books/?skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+{"error": "Could not initialize target column for ForeignKey 'Books.isbn' on table 'Borrowing': table 'Books' has no column named 'isbn'", "type": "NoReferencedColumnError", "path": "http://localhost:8000/v1/books/?skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+{"error": "Could not initialize target column for ForeignKey 'Books.isbn' on table 'Borrowing': table 'Books' has no column named 'isbn'", "type": "NoReferencedColumnError", "path": "http://localhost:8000/v1/books/?skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+{"error": "Could not initialize target column for ForeignKey 'Books.isbn' on table 'Borrowing': table 'Books' has no column named 'isbn'", "type": "NoReferencedColumnError", "path": "http://localhost:8000/v1/books/?skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+{"error": "Could not initialize target column for ForeignKey 'Books.isbn' on table 'Borrowing': table 'Books' has no column named 'isbn'", "type": "NoReferencedColumnError", "path": "http://localhost:8000/v1/books/?skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+{"error": "(sqlite3.OperationalError) no such column: Books.book_isbn\n[SQL: SELECT \"Books\".book_id AS \"Books_book_id\", \"Books\".book_isbn AS \"Books_book_isbn\", \"Books\".title AS \"Books_title\", \"Books\".summary AS \"Books_summary\", \"Books\".genre AS \"Books_genre\", \"Books\".published_year AS \"Books_published_year\", \"Books\".author_id AS \"Books_author_id\", \"Books\".currently_borrowed_by AS \"Books_currently_borrowed_by\" \nFROM \"Books\"\n LIMIT ? OFFSET ?]\n[parameters: (100, 0)]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)", "type": "OperationalError", "path": "http://localhost:8000/v1/books/?skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+{"error": "'BorrowingManagerModel' object has no attribute 'id'", "type": "AttributeError", "path": "http://localhost:8000/v1/books/?skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=100Status: 200 Duration: 36.26ms
+Incoming request: POST http://localhost:8000/v1/books/
+{"error": "Validation error", "detials": [{"type": "missing", "loc": ["body", "book_isbn"], "msg": "Field required", "input": {"isbn": "9781234567890", "title": "Whispers of the Mekong", "summary": "A poetic journey through the landscapes and legends of Vietnam's iconic river.", "genre": "Literary Fiction", "published_year": 2021, "author_id": 3}}], "body": "  {\n    \"isbn\": \"9781234567890\",\n    \"title\": \"Whispers of the Mekong\",\n    \"summary\": \"A poetic journey through the landscapes and legends of Vietnam's iconic river.\",\n    \"genre\": \"Literary Fiction\",\n    \"published_year\": 2021,\n    \"author_id\": 3\n  }", "path": "http://localhost:8000/v1/books/", "method": "POST"}
+Completed request: POST http://localhost:8000/v1/books/Status: 422 Duration: 69.44ms
+Incoming request: POST http://localhost:8000/v1/books/
+{"error": "Validation error", "detials": [{"type": "missing", "loc": ["body", "book_isbn"], "msg": "Field required", "input": {"isbn": "9781234567890", "title": "Whispers of the Mekong", "summary": "A poetic journey through the landscapes and legends of Vietnam's iconic river.", "genre": "Literary Fiction", "published_year": 2021, "author_id": 3}}], "body": "{\n    \"isbn\": \"9781234567890\",\n    \"title\": \"Whispers of the Mekong\",\n    \"summary\": \"A poetic journey through the landscapes and legends of Vietnam's iconic river.\",\n    \"genre\": \"Literary Fiction\",\n    \"published_year\": 2021,\n    \"author_id\": 3\n}", "path": "http://localhost:8000/v1/books/", "method": "POST"}
+Completed request: POST http://localhost:8000/v1/books/Status: 422 Duration: 0.00ms
+Incoming request: POST http://localhost:8000/v1/books/
+{"error": "Validation error", "detials": [{"type": "missing", "loc": ["body", "book_isbn"], "msg": "Field required", "input": {"isbn": "9781234567890", "title": "Whispers of the Mekong", "summary": "A poetic journey through the landscapes and legends of Vietnam's iconic river.", "genre": "Literary Fiction", "published_year": 2021, "author_id": 3}}], "body": "{\n   \"isbn\": \"9781234567890\",\n   \"title\": \"Whispers of the Mekong\",\n   \"summary\": \"A poetic journey through the landscapes and legends of Vietnam's iconic river.\",\n   \"genre\": \"Literary Fiction\",\n   \"published_year\": 2021,\n   \"author_id\": 3\n}", "path": "http://localhost:8000/v1/books/", "method": "POST"}
+Completed request: POST http://localhost:8000/v1/books/Status: 422 Duration: 6.36ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.00ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 169.97ms
+Incoming request: POST http://localhost:8000/v1/books/
+Completed request: POST http://localhost:8000/v1/books/Status: 401 Duration: 0.59ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 68.88ms
+Incoming request: POST http://localhost:8000/v1/books/
+{"error": "Validation error", "detials": [{"type": "missing", "loc": ["body", "book_isbn"], "msg": "Field required", "input": {"isbn": "9781234567897", "title": "The Bamboo Paradox", "summary": "A philosophical exploration of resilience and flexibility through the lens of Eastern wisdom.", "genre": "Philosophy", "published_year": 2022, "author_id": 1}}], "body": "{\n  \"isbn\": \"9781234567897\",\n  \"title\": \"The Bamboo Paradox\",\n  \"summary\": \"A philosophical exploration of resilience and flexibility through the lens of Eastern wisdom.\",\n  \"genre\": \"Philosophy\",\n  \"published_year\": 2022,\n  \"author_id\": 1\n}\n", "path": "http://localhost:8000/v1/books/", "method": "POST"}
+Completed request: POST http://localhost:8000/v1/books/Status: 422 Duration: 5.89ms
+Incoming request: POST http://localhost:8000/v1/books/
+Completed request: POST http://localhost:8000/v1/books/Status: 201 Duration: 33.47ms
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=9787778889990&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/search?text_to_search=9787778889990&skip=0&limit=100Status: 200 Duration: 4.88ms
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/search?text_to_search=a&skip=0&limit=100Status: 200 Duration: 6.48ms
+Incoming request: GET http://localhost:8000/v1/books/9787778889990
+Completed request: GET http://localhost:8000/v1/books/9787778889990Status: 200 Duration: 4.74ms
+Incoming request: PUT http://localhost:8000/v1/books/9787778889990
+Completed request: PUT http://localhost:8000/v1/books/9787778889990Status: 200 Duration: 23.16ms
+Incoming request: DELETE http://localhost:8000/v1/books/9780451524935
+Completed request: DELETE http://localhost:8000/v1/books/9780451524935Status: 200 Duration: 11.89ms
+Incoming request: GET http://localhost:8000/v1/authors/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/authors/?skip=0&limit=100Status: 200 Duration: 14.67ms
+Incoming request: POST http://localhost:8000/v1/authors/
+{"error": "Author email already registered", "type": "ValueError", "path": "http://localhost:8000/v1/authors/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/authors/
+{"error": "Author email already registered: isabella.ngoc@example.com", "type": "AuthorEmailAlreadyRegistered", "path": "http://localhost:8000/v1/authors/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/authors/
+{"error": "name 'AuthorEAuthorEmailAlreadyRegistered' is not defined", "type": "NameError", "path": "http://localhost:8000/v1/authors/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/authors/
+Completed request: POST http://localhost:8000/v1/authors/Status: 400 Duration: 78.06ms
+Incoming request: GET http://localhost:8000/v1/authors/search?text_to_search=a&skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/authors/search?text_to_search=a&skip=0&limit=100Status: 200 Duration: 19.48ms
+Incoming request: GET http://localhost:8000/v1/authors/1
+{"error": "Author with id 1 not found.", "type": "AuthorNotFound", "path": "http://localhost:8000/v1/authors/1", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/authors/1
+Completed request: GET http://localhost:8000/v1/authors/1Status: 404 Duration: 20.22ms
+Incoming request: PUT http://localhost:8000/v1/authors/1
+Completed request: PUT http://localhost:8000/v1/authors/1Status: 404 Duration: 57.22ms
+Incoming request: PUT http://localhost:8000/v1/authors/2
+Completed request: PUT http://localhost:8000/v1/authors/2Status: 200 Duration: 16.84ms
+Incoming request: PUT http://localhost:8000/v1/authors/2
+Completed request: PUT http://localhost:8000/v1/authors/2Status: 200 Duration: 83.14ms
+Incoming request: DELETE http://localhost:8000/v1/authors/1
+Completed request: DELETE http://localhost:8000/v1/authors/1Status: 404 Duration: 8.02ms
+Incoming request: DELETE http://localhost:8000/v1/authors/2
+Completed request: DELETE http://localhost:8000/v1/authors/2Status: 200 Duration: 14.90ms
+Incoming request: POST http://localhost:8000/v1/borrowings/
+{"error": "Book with id 9780451524935 not found.", "type": "BookNotFound", "path": "http://localhost:8000/v1/borrowings/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/borrowings/
+Completed request: POST http://localhost:8000/v1/borrowings/Status: 404 Duration: 72.88ms
+Incoming request: POST http://localhost:8000/v1/borrowings/
+Completed request: POST http://localhost:8000/v1/borrowings/Status: 400 Duration: 16.05ms
+Incoming request: POST http://localhost:8000/v1/borrowings/
+{"error": "'id' is an invalid keyword argument for BorrowingManagerModel", "type": "TypeError", "path": "http://localhost:8000/v1/borrowings/", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/borrowings/
+Completed request: POST http://localhost:8000/v1/borrowings/Status: 201 Duration: 80.06ms
+Incoming request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100Status: 200 Duration: 4.81ms
+Incoming request: GET http://localhost:8000/v1/borrowings/1
+{"error": "Borrowing record not found", "type": "ValueError", "path": "http://localhost:8000/v1/borrowings/1", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/borrowings/1
+{"error": "Borrowing record not found", "type": "ValueError", "path": "http://localhost:8000/v1/borrowings/1", "method": "GET"}
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 1.00ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 154.23ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 141.50ms
+Incoming request: POST http://localhost:8000/v1/borrowings/
+Completed request: POST http://localhost:8000/v1/borrowings/Status: 201 Duration: 29.07ms
+Incoming request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100Status: 200 Duration: 5.87ms
+Incoming request: GET http://localhost:8000/v1/borrowings/9
+{"error": "1 validation errors:\n  {'type': 'missing', 'loc': ('response', 'book'), 'msg': 'Field required', 'input': BorrowingManager(user_id=18, book_isbn='9781112223334', borrow_id=9, borrow_date=datetime.datetime(2025, 10, 20, 14, 10, 21, 988000), due_date=datetime.datetime(2025, 11, 3, 14, 10, 21, 988000), status='borrowed')}\n", "type": "ResponseValidationError", "path": "http://localhost:8000/v1/borrowings/9", "method": "GET"}
+Incoming request: POST http://localhost:8000/v1/borrowings/
+Completed request: POST http://localhost:8000/v1/borrowings/Status: 400 Duration: 61.52ms
+Incoming request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/borrowings/?skip=0&limit=100Status: 200 Duration: 24.49ms
+Incoming request: GET http://localhost:8000/v1/borrowings/9
+Completed request: GET http://localhost:8000/v1/borrowings/9Status: 200 Duration: 8.51ms
+Incoming request: PUT http://localhost:8000/v1/borrowings/9
+Completed request: PUT http://localhost:8000/v1/borrowings/9Status: 200 Duration: 22.57ms
+Incoming request: PUT http://localhost:8000/v1/borrowings/9
+{"error": "Validation error", "detials": [{"type": "enum", "loc": ["body", "status"], "msg": "Input should be 'borrowed', 'returned' or 'overdue'", "input": "returned67", "ctx": {"expected": "'borrowed', 'returned' or 'overdue'"}}], "body": "{\n  \"due_date\": \"2025-10-20T14:16:54.765Z\",\n  \"status\": \"returned67\"\n}", "path": "http://localhost:8000/v1/borrowings/9", "method": "PUT"}
+Completed request: PUT http://localhost:8000/v1/borrowings/9Status: 422 Duration: 3.00ms
+Incoming request: DELETE http://localhost:8000/v1/borrowings/9
+Completed request: DELETE http://localhost:8000/v1/borrowings/9Status: 200 Duration: 17.45ms

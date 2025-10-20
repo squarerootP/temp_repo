@@ -1,9 +1,9 @@
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 from backend.src.application.interfaces.document_repository import \
     IVectorStoreRepository
-from backend.src.domain.entities.query import Query, QueryResult
+from backend.src.domain.entities.query import Query
 
 
 class QueryDocumentsUseCase:

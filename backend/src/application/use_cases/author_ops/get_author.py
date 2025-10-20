@@ -1,7 +1,5 @@
 from typing import List, Optional
 
-from sqlalchemy.orm import Session
-
 from backend.src.application.interfaces.author_repository import \
     AuthorRepository
 from backend.src.domain.entities.author import Author

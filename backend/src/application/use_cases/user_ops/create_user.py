@@ -10,5 +10,5 @@ def create_user(user_repo: UserRepository, data: dict) -> User:
     # Check if phone number is already registered
     if user_repo.get_by_phone(data["phone"]):
         raise ValueError("User phone number already registered")
-    user = User(**data)
+    user = data
     return user_repo.create(user=user)

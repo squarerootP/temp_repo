@@ -5,6 +5,8 @@ from sqlalchemy.orm import Session
 
 from backend.src.application.use_cases import book_ops
 from backend.src.domain.entities.user import User
+from backend.src.domain.exceptions.book_exceptions import (BookAlreadyExists,
+                                                           BookNotFound)
 from backend.src.infrastructure.persistence.database import get_db
 from backend.src.infrastructure.persistence.repository_impl.book_repository_impl import \
     BookRepositoryImpl
@@ -38,8 +40,6 @@ def search_books(
     """
     book_repo = BookRepositoryImpl(db)
     books = book_ops.search_books(book_repo, text_to_search=text_to_search, skip=skip, limit=limit)
-    if not books:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Book not found")
     return books
 
 @router.get("/{isbn}", response_model=book_schema.BookResponse)
@@ -51,8 +51,9 @@ def read_book_by_isbn(
     Retrieve a book using its ISBN.
     """
     book_repo = BookRepositoryImpl(db)
-    db_book = book_ops.get_book_by_isbn(book_repo=book_repo, isbn=isbn)
-    if db_book is None:
+    try:    
+        db_book = book_ops.get_book_by_isbn(book_repo=book_repo, isbn=isbn)
+    except BookNotFound:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Book not found")
     return db_book
 
@@ -66,10 +67,11 @@ def add_book(
     Add a book to the database.
     """
     book_repo = BookRepositoryImpl(db)
-    already_book = book_ops.get_book_by_isbn(book_repo=book_repo, isbn=book.isbn)
-    if already_book:
-        raise HTTPException(status_code=400, detail="Book with this ISBN already exists")
-    return book_ops.create_book(book_repo=book_repo, book_data=book)
+    try:
+        return book_ops.create_book(book_repo=book_repo, book_data=book)
+    except BookAlreadyExists:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Book with this ISBN already exists")
+
 
 @router.put("/{isbn}", response_model=book_schema.BookResponse)
 def update_book(
@@ -82,10 +84,12 @@ def update_book(
     Update a book using its ISBN.
     """
     book_repo = BookRepositoryImpl(db)
-    updated_book = book_ops.update_book(book_repo, isbn, book)
-    if not updated_book:
+    try:
+        updated_book = book_ops.update_book(book_repo, isbn, book.model_dump(exclude_unset=True))
+    except BookNotFound:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Book not found")
-    return updated_book  
+    return updated_book
+
 
 @router.delete("/{isbn}", status_code=status.HTTP_200_OK)
 def delete_book(
@@ -97,7 +101,8 @@ def delete_book(
     Delete a book using its ISBN.
     """
     book_repo = BookRepositoryImpl(db)
-    deleted_book = book_ops.delete_book(book_repo, isbn)
-    if not deleted_book:
+    try:
+        book_ops.delete_book(book_repo, isbn)
+    except BookNotFound:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Book not found")
     return {"message": "Book deleted successfully"}

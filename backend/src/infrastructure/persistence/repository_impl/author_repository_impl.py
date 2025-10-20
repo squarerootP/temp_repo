@@ -6,6 +6,9 @@ from sqlalchemy.orm import Session
 from backend.src.application.interfaces.author_repository import \
     AuthorRepository
 from backend.src.domain.entities.author import Author
+from backend.src.infrastructure.adapter.mappers.author_mapper import \
+    AuthorMapper
+from backend.src.infrastructure.persistence.models import AuthorModel
 
 
 class AuthorRepositoryImpl(AuthorRepository):
@@ -13,48 +16,57 @@ class AuthorRepositoryImpl(AuthorRepository):
         self.db = db
 
     def create(self, author: Author) -> Author:
-        self.db.add(author)
+        db_author = AuthorMapper.to_model(author)
+        self.db.add(db_author)
         self.db.commit()
-        self.db.refresh(author)
-        return author
+        self.db.refresh(db_author)
+        
+        return AuthorMapper.to_entity(db_author)
 
     def get_by_id(self, author_id: int) -> Optional[Author]:
-        return self.db.query(Author).filter(Author.author_id == author_id).first() #type: ignore
+        db_author = self.db.query(AuthorModel).filter(AuthorModel.author_id == author_id).first()
+        return AuthorMapper.to_entity(db_author) if db_author else None
 
     def get_by_email(self, email: str) -> Optional[Author]:
-        return self.db.query(Author).filter(Author.email == email).first() #type: ignore
+        db_author = self.db.query(AuthorModel).filter(AuthorModel.email == email).first()
+        return AuthorMapper.to_entity(db_author) if db_author else None
 
     def list(self, skip: int = 0, limit: int = 100) -> List[Author]:
-        return self.db.query(Author).offset(skip).limit(limit).all()
+        db_authors = self.db.query(AuthorModel).offset(skip).limit(limit).all()
+        return [AuthorMapper.to_entity(author) for author in db_authors]
 
     def search(self, text_to_search: str, skip: int = 0, limit: int = 100) -> List[Author]:
         search_pattern = f"%{text_to_search}%"
-        query = self.db.query(Author).filter(
+        query = self.db.query(AuthorModel).filter(
             or_(
-                Author.first_name.ilike(search_pattern), #type: ignore
-                Author.last_name.ilike(search_pattern), #type: ignore
-                Author.email.ilike(search_pattern), #type: ignore
+                AuthorModel.first_name.ilike(search_pattern),
+                AuthorModel.last_name.ilike(search_pattern),
+                AuthorModel.email.ilike(search_pattern),
             ) 
         )
-        return query.offset(skip).limit(limit).all()
+        db_authors = query.offset(skip).limit(limit).all()
+        return [AuthorMapper.to_entity(author) for author in db_authors]
 
     def update(self, author_id: int, author: dict) -> Optional[Author]:
-        db_author = self.get_by_id(author_id)
+        db_author = self.db.query(AuthorModel).filter(AuthorModel.author_id == author_id).first()
+        
         if not db_author:
             return None
 
-        author_data = author
-        for key, value in author_data.items():
+        for key, value in author.items():
             setattr(db_author, key, value)
         
         self.db.commit()
         self.db.refresh(db_author)
-        return db_author
+        
+        return AuthorMapper.to_entity(db_author)
 
     def delete(self, author_id: int) -> bool:
-        db_author = self.get_by_id(author_id)
+        db_author = self.db.query(AuthorModel).filter(AuthorModel.author_id == author_id).first()
+        
         if not db_author:
             return False
+            
         self.db.delete(db_author)
         self.db.commit()
         return True

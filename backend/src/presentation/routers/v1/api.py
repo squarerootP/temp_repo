@@ -6,13 +6,11 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
-from backend.config.settings import settings
+from backend.src.infrastructure.config.settings import settings
 from backend.src.infrastructure.persistence.database import get_db
 from backend.src.infrastructure.web.auth_provider import (
     ACCESS_TOKEN_EXPIRE_MINUTES, authenticate_user, create_access_token)
-from backend.src.presentation.schemas import (author_schema, book_schema,
-                                              borrowing_schema, token_schema,
-                                              user_schema)
+from backend.src.presentation.schemas import token_schema
 
 SYSTEM_BOOT_TIME = datetime.fromtimestamp(psutil.boot_time())
 APP_START_TIME = datetime.now()

@@ -34,7 +34,5 @@ class BorrowingResponse(BorrowingBase):
     
 class BorrowingDetailResponse(BorrowingResponse):
     # user: UserResponse
-    book: BookResponse
+    pass
     
-    class ConfigDict:
-        from_attributes = True

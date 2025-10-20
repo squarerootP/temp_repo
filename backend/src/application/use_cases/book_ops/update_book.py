@@ -1,7 +1,5 @@
 from typing import Optional
 
-from sqlalchemy.orm import Session
-
 from backend.src.application.interfaces.book_repository import BookRepository
 from backend.src.domain.entities.book import Book
 from backend.src.domain.exceptions.book_exceptions import BookNotFound

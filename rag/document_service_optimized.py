@@ -3,7 +3,7 @@ import hashlib
 import json
 import os
 from datetime import datetime
-from typing import Any, Dict, List, Optional, Set
+from typing import Any, Dict, Optional
 
 from config_optimized import Config
 from embeddings_service_optimized import create_embeddings
@@ -133,7 +133,7 @@ class DocumentService:
                 raise ValueError("No content extracted from PDF")
             
             # Split documents
-            print(f"   ✂️  Splitting into chunks...")
+            print("   ✂️  Splitting into chunks...")
             splits = self.text_splitter.split_documents(documents)
             
             if not splits:
