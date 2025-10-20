@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from backend.src.application.interfaces.borrowing_repository import \
     BorrowingRepository
 from backend.src.domain.entities.borrowing import BorrowingManager
-from backend.src.infrastructure.adapter.mappers.borrowing_mapper import \
+from backend.src.infrastructure.adapters.mappers.borrowing_mapper import \
     BorrowingManagerMapper
 from backend.src.infrastructure.persistence.models import (
     BookModel, BorrowingManagerModel)

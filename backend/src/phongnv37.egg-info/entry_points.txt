@@ -1,2 +1,0 @@
-[console_scripts]
-run-config = backend.src.infrastructure.configurations.config:main

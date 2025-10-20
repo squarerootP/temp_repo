@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from backend.src.application.interfaces.author_repository import \
     AuthorRepository
 from backend.src.domain.entities.author import Author
-from backend.src.infrastructure.adapter.mappers.author_mapper import \
+from backend.src.infrastructure.adapters.mappers.author_mapper import \
     AuthorMapper
 from backend.src.infrastructure.persistence.models import AuthorModel
 

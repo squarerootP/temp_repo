@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from backend.src.application.interfaces.user_repository import UserRepository
 from backend.src.domain.entities.user import User
 from backend.src.domain.services.utils import get_password_hash
-from backend.src.infrastructure.adapter.mappers.user_mapper import UserMapper
+from backend.src.infrastructure.adapters.mappers.user_mapper import UserMapper
 from backend.src.infrastructure.persistence.models import UserModel
 
 

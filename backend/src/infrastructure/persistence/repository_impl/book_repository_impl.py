@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 from backend.src.application.interfaces.book_repository import BookRepository
 from backend.src.domain.entities.book import Book
-from backend.src.infrastructure.adapter.mappers.book_mapper import BookMapper
+from backend.src.infrastructure.adapters.mappers.book_mapper import BookMapper
 from backend.src.infrastructure.persistence.models import (AuthorModel,
                                                            BookModel)
 
