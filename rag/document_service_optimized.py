@@ -5,8 +5,8 @@ import os
 from datetime import datetime
 from typing import Any, Dict, Optional
 
-from config_optimized import Config
-from embeddings_service_optimized import create_embeddings
+from rag.config_optimized import Config
+from rag.embeddings_service_optimized import create_embeddings
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter

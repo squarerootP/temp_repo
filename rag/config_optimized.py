@@ -2,7 +2,7 @@ import os
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(r"C:\Users\Admin\workspace\phongnv37\rag\.env")
 
 class Config:
     # Required API keys

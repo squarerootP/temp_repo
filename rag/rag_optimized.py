@@ -3,9 +3,9 @@ import time
 from datetime import datetime
 from typing import Any, Dict, Optional
 
-from config_optimized import Config
-from document_service_optimized import DocumentService
-from llm_service_optimized import LLMService
+from rag.config_optimized import Config
+from rag.document_service_optimized import DocumentService
+from rag.llm_service_optimized import LLMService
 
 
 class QueryCache:

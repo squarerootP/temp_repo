@@ -1,7 +1,7 @@
 from typing import Any, Dict, List
 
 from cerebras.cloud.sdk import Cerebras
-from config_optimized import Config
+from rag.config_optimized import Config
 from langchain_core.documents import Document
 
 SYSTEM_PROMPT = """You are an AI assistant that acts as a meticulous analyst for a **single document**. You will be given snippets from this document, labeled [Source X], and your task is to answer questions based **only** on the information contained within them.

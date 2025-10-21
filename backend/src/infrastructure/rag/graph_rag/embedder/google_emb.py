@@ -1,7 +1,11 @@
 import os
-from typing import cast
+from typing import cast, Dict, Any
+from pydantic import BaseModel, Field
+from langchain.tools import StructuredTool
+
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.tools import Tool, tool
 from langchain.tools.retriever import create_retriever_tool
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import TextLoader
@@ -11,7 +15,6 @@ from pydantic import SecretStr
 from backend.src.infrastructure.config.settings import api_settings
 
 # --- Configuration ---
-# It's good practice to define constants at the top
 CHROMA_PERSIST_DIR = "./chroma_db"
 TEXT_FILES = ["data/alice_in_wonderland.txt", "data/gutenberg.txt"]
 GOOGLE_API_KEY = api_settings.GOOGLE_GENAI_API_KEY
@@ -23,6 +26,11 @@ embedding_function = GoogleGenerativeAIEmbeddings(
     google_api_key=cast(SecretStr, GOOGLE_API_KEY),
     task_type="retrieval_document",
 )
+
+# Define explicit schema with valid field name
+class RetrieverInput(BaseModel):
+    query: str = Field(description="Search query string to find information in the documents.")
+
 
 def get_retriever_tool():
     """
@@ -43,7 +51,7 @@ def get_retriever_tool():
         # Load documents
         all_docs = []
         for file_path in TEXT_FILES:
-            loader = TextLoader(file_path, encoding="utf-8") # Use 'utf-8', the canonical name
+            loader = TextLoader(file_path, encoding="utf-8")
             all_docs.extend(loader.load())
 
         # Split documents
@@ -61,11 +69,16 @@ def get_retriever_tool():
 
     # 3. Create the retriever and the tool
     retriever = vectorstore.as_retriever(search_kwargs={"k": 2})
-    retriever_tool = create_retriever_tool(
-        retriever=retriever,
+    
+    # Create a tool using create_retriever_tool for consistent parameter handling
+    retriever_tool = StructuredTool.from_function(
+        func=lambda query: retriever.invoke(query),
         name="Document_Retriever",
-        description="Useful for answering questions about Alice in Wonderland and other classic texts.",
+        description="""Useful for answering questions about Alice in Wonderland and Project Gutenberg.
+        Use this tool first before considering web search.""",
+        args_schema=RetrieverInput,
     )
+
     return retriever_tool
 
 if __name__ == "__main__":
@@ -74,6 +87,3 @@ if __name__ == "__main__":
     tool = get_retriever_tool()
     print("Tool created successfully!")
     print(f"Tool Name: {tool.name}")
-    # Example query
-    # result = tool.invoke({"input": "Who is Alice?"})
-    # print(result)

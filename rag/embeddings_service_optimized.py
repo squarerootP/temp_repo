@@ -1,7 +1,7 @@
 import functools
 import time
 
-from config_optimized import Config
+from rag.config_optimized import Config
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from tenacity import retry, stop_after_attempt, wait_exponential
 

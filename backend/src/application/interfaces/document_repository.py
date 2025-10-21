@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 
-from backend.src.domain.entities.document import Document, DocumentChunk
+from backend.src.domain.entities.rag_entities import Document, DocumentChunk
 
 
 class IDocumentRepository(ABC):
@@ -18,12 +18,12 @@ class IDocumentRepository(ABC):
         pass
     
     @abstractmethod
-    def get_all_documents(self) -> List[Document]:
+    def get_all_documents(self) -> Dict[str, Any]:
         """Get all documents"""
         pass
     
     @abstractmethod
-    def delete_document(self, document_id: str) -> bool:
+    def delete_document(self, document_hash: str) -> bool:
         """Delete a document"""
         pass
     
@@ -31,6 +31,19 @@ class IDocumentRepository(ABC):
     def document_exists(self, content_hash: str) -> bool:
         """Check if document exists"""
         pass
+    @abstractmethod
+    def hash_document(self, document: Document) -> str:
+        """Generate a hash for the document content"""
+        pass
+    @abstractmethod
+    def process_document(self, file_path: str) -> Document:
+        """Process and extract content from the document at file_path"""
+        pass
+    @abstractmethod
+    def chunk_document(self, document: Document) -> List[DocumentChunk]:
+        """Chunk the document into smaller pieces"""
+        pass
+
 
 class IVectorStoreRepository(ABC):
     """Abstract repository for vector store operations"""

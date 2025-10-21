@@ -7,13 +7,14 @@ from datetime import datetime
 from typing import Any, Dict, List, Optional
 
 import uvicorn
-from config_optimized import Config
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from monitoring_service import monitor
 from pydantic import BaseModel, Field
-from rag_optimized import RAG
+
+from rag.config_optimized import Config
+from rag.monitoring_service import monitor
+from rag.rag_optimized import RAG
 
 # Validate config on startup
 try:
@@ -43,7 +44,7 @@ executor = ThreadPoolExecutor(max_workers=Config.MAX_CONCURRENT_REQUESTS)
 
 # Pydantic Models
 class UserProfile(BaseModel):
-    user_id: str
+    user_id: int
     preferences: Optional[Dict[str, Any]] = {}
     context: Optional[str] = None
 
@@ -63,7 +64,7 @@ class DocumentMetadata(BaseModel):
 class QueryResponse(BaseModel):
     answer: str
     sources: List[Dict[str, Any]]
-    user_id: Optional[str] = None
+    user_id: Optional[int] = None
     processing_time: float
     timestamp: datetime
     cached: bool = False

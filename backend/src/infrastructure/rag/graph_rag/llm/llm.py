@@ -19,7 +19,8 @@ def get_llm():
 
     llm = ChatCerebras(
         model=api_settings.LLM_MODEL,
-        api_key=cast(SecretStr, cerebras_api_key)
+        api_key=cast(SecretStr, cerebras_api_key),
+        temperature=0.1,
     )
     return llm
 
@@ -31,4 +32,4 @@ if __name__ == "__main__":
         print("✅ LLM instance created successfully!")
         print(f"Model name: {llm_instance.model_name}")
     except ValueError as e:
-        print(f"❌ Error: {e}")
+        print(f"❌ Error: {e}") 
