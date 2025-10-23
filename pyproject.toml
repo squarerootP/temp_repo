@@ -26,6 +26,7 @@ dependencies = [
     "argon2-cffi>=25.1.0",
     "ruff>=0.14.1",
     "langchain-tavily>=0.2.12",
+    "langchain-openai>=0.3.35",
 ]
 
 [project.scripts]

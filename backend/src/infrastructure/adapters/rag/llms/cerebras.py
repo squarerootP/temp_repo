@@ -1,10 +1,10 @@
 from typing import Any, Dict, List
+
 from cerebras.cloud.sdk import Cerebras
 from langchain_core.documents import Document
 
-from rag.config_optimized import Config
 from backend.src.infrastructure.config.settings import api_settings
-
+from rag.config_optimized import Config
 
 LLM_MODEL = api_settings.LLM_MODEL
 

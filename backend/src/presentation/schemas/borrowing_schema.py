@@ -6,9 +6,6 @@ from pydantic import BaseModel, Field
 
 from .book_schema import BookResponse
 
-# from .user_schema import UserResponse
-
-
 class BorrowStatus(str, Enum):
     BORROWED = "borrowed"
     RETURNED = "returned"

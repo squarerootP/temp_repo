@@ -2,8 +2,9 @@ import functools
 import time
 from typing import Any
 
-from rag.config_optimized import Config
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
+
+from rag.config_optimized import Config
 
 
 @functools.lru_cache(maxsize=1)

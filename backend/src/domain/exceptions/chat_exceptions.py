@@ -10,3 +10,14 @@ class FileSizeExceeded(Exception):
 class UnsupportedFileType(Exception):
     """Exception raised when the uploaded file type is not supported."""
     pass
+
+class ChatSessionNotFoundError(Exception):
+    """Exception raised when a chat session is not found."""
+    pass
+
+class MessageProcessingError(Exception):
+    """Exception raised when there is an error processing a chat message."""
+    pass
+class SessionCreationError(Exception):
+    """Exception raised when there is an error creating a chat session."""
+    pass

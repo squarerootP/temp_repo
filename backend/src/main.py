@@ -95,7 +95,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     body = await request.body()
     error_data = {
         "error": "Validation error",
-        "detials": exc.errors(), 
+        "details": exc.errors(), 
         "body": body.decode() if body else "",
         "path": str(request.url),
         "method": request.method,

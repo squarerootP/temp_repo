@@ -7,7 +7,7 @@ from backend.src.application.interfaces.user_repository import UserRepository
 from backend.src.domain.entities.user import User
 from backend.src.domain.services.utils import get_password_hash
 from backend.src.infrastructure.adapters.mappers.user_mapper import UserMapper
-from backend.src.infrastructure.persistence.models import UserModel
+from backend.src.infrastructure.persistence.models.normal_models import UserModel
 
 
 class UserRepositoryImpl(UserRepository):

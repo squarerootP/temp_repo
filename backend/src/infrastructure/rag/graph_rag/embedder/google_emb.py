@@ -1,16 +1,13 @@
 import os
-from typing import cast, Dict, Any
-from pydantic import BaseModel, Field
-from langchain.tools import StructuredTool
-
+from typing import Any, Dict, cast
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.tools import Tool, tool
+from langchain.tools import StructuredTool, Tool, tool
 from langchain.tools.retriever import create_retriever_tool
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import TextLoader
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from pydantic import SecretStr
+from pydantic import BaseModel, Field, SecretStr
 
 from backend.src.infrastructure.config.settings import api_settings
 

@@ -1,11 +1,12 @@
 from typing import List, Optional
 
-from backend.src.application.interfaces.chat_history_repository import \
-    ChatHistoryRepository
-from backend.src.domain.entities.chat_history import ChatSession, ChatMessage
+from backend.src.application.interfaces._chat_session_repository import \
+    IChatSessionRepository
+from backend.src.domain.entities.chat_history import ChatMessage, ChatSession
+
 
 def create_chat_session(
-    chat_repo: ChatHistoryRepository,
+    chat_repo: IChatSessionRepository,
     user_id: Optional[int] = None,
     initial_messages: Optional[List[ChatMessage]] = None
 ) -> ChatSession:

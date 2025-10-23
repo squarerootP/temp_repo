@@ -1,5 +1,5 @@
 from backend.src.domain.entities.book import Book
-from backend.src.infrastructure.persistence.models import BookModel
+from backend.src.infrastructure.persistence.models.normal_models import BookModel
 
 
 class BookMapper:

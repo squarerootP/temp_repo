@@ -9,7 +9,7 @@ from backend.src.application.interfaces.borrowing_repository import \
 from backend.src.domain.entities.borrowing import BorrowingManager
 from backend.src.infrastructure.adapters.mappers.borrowing_mapper import \
     BorrowingManagerMapper
-from backend.src.infrastructure.persistence.models import (
+from backend.src.infrastructure.persistence.models.normal_models import (
     BookModel, BorrowingManagerModel)
 
 

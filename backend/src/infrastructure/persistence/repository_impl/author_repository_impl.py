@@ -8,7 +8,7 @@ from backend.src.application.interfaces.author_repository import \
 from backend.src.domain.entities.author import Author
 from backend.src.infrastructure.adapters.mappers.author_mapper import \
     AuthorMapper
-from backend.src.infrastructure.persistence.models import AuthorModel
+from backend.src.infrastructure.persistence.models.normal_models import AuthorModel
 
 
 class AuthorRepositoryImpl(AuthorRepository):

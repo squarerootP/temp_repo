@@ -1,5 +1,5 @@
 from backend.src.domain.entities.borrowing import BorrowingManager
-from backend.src.infrastructure.persistence.models import BorrowingManagerModel
+from backend.src.infrastructure.persistence.models.normal_models import BorrowingManagerModel
 
 
 class BorrowingManagerMapper:

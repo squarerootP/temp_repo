@@ -1,5 +1,5 @@
 from backend.src.domain.entities.user import User
-from backend.src.infrastructure.persistence.models import UserModel
+from backend.src.infrastructure.persistence.models.normal_models import UserModel
 
 
 class UserMapper:

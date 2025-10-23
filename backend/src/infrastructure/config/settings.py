@@ -27,6 +27,7 @@ class APISettings(BaseSettings):
     TAVILY_API_KEY: str
     GOOGLE_EMBEDDING_MODEL: str
     LLM_MODEL: str
+    OPENAI_API_KEY: str = ""  # Added with default empty string
 
     model_config = SettingsConfigDict(
         env_file=ENV_FILE_PATH,

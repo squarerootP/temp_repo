@@ -1,5 +1,5 @@
 from backend.src.domain.entities.author import Author
-from backend.src.infrastructure.persistence.models import AuthorModel
+from backend.src.infrastructure.persistence.models.normal_models import AuthorModel
 
 
 class AuthorMapper:

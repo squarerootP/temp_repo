@@ -1,13 +1,10 @@
-from backend.src.domain.entities.chat_history import ChatMessage
-from backend.src.infrastructure.persistence.models import ChatMessageModel
+from backend.src.domain.entities._chat_history import ChatMessage
+from backend.src.infrastructure.persistence.models._rag_models import ChatMessageModel
 
 
 class ChatMessageMapper:
     """Handles conversion between ChatMessage entity and ChatMessageModel."""
 
-    # -------------------------------------------------------------------------
-    # Entity → Model
-    # -------------------------------------------------------------------------
     @staticmethod
     def to_model(session_id: str, entity: ChatMessage) -> ChatMessageModel:
         """Convert ChatMessage entity to ChatMessageModel."""
@@ -18,13 +15,11 @@ class ChatMessageMapper:
             timestamp=entity.timestamp,
         )
 
-    # -------------------------------------------------------------------------
-    # Model → Entity
-    # -------------------------------------------------------------------------
     @staticmethod
     def to_entity(model: ChatMessageModel) -> ChatMessage:
         """Convert ChatMessageModel to ChatMessage entity."""
         return ChatMessage(
+            session_id=model.session_id,
             content=model.content,
             role=model.role,
             timestamp=model.timestamp,

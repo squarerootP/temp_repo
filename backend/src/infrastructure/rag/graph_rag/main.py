@@ -1,18 +1,25 @@
 import json
 import re
-from typing import Annotated, TypedDict, Dict, Any, List
+from typing import Annotated, TypedDict
 
+from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage
 from langgraph.checkpoint.memory import MemorySaver
-from langgraph.graph import START, END, StateGraph
+from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode
 
 # --- Import your modular components ---
-from backend.src.infrastructure.rag.graph_rag.embedder.google_emb import get_retriever_tool
+from backend.src.infrastructure.rag.graph_rag.embedder.google_emb import \
+    get_retriever_tool
 from backend.src.infrastructure.rag.graph_rag.llm.llm import get_llm
 from backend.src.infrastructure.rag.graph_rag.prompts import SYSTEM_PROMPT
-from backend.src.infrastructure.rag.graph_rag.tools.tavily_search import search_tool
-from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage
+from backend.src.infrastructure.rag.graph_rag.tools.tavily_search import \
+    search_tool
+import logging
+
+logging.getLogger("langchain").setLevel(logging.ERROR)
+
+# --- Helper Functions ---
 
 def to_messages(msgs):
     formatted = []
@@ -96,7 +103,7 @@ class EnhancedSearchNode:
             # Try to extract a query from previous human message
             for msg in reversed(state["messages"]):
                 if isinstance(msg, HumanMessage):
-                    query = msg.content
+                    query = msg.content #type: ignore
                     break
             if not query:
                 query = "latest information"
