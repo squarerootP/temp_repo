@@ -7,13 +7,13 @@ from jose import JWTError, jwt
 from sqlalchemy.orm import Session
 
 from backend.src.application.use_cases import user_ops
-from backend.src.domain.entities.user import User
+from backend.src.domain.entities.library_entities.user import User
 from backend.src.domain.services.utils import verify_password
 from backend.src.infrastructure.config.settings import settings
 from backend.src.infrastructure.persistence.database import get_db
-from backend.src.infrastructure.persistence.repository_impl.user_repository_impl import \
+from backend.src.infrastructure.persistence.repository_impl.library_repos_impl.user_repository_impl import \
     UserRepositoryImpl
-from backend.src.presentation.schemas import token_schema
+from backend.src.presentation.schemas.library_schemas import token_schema
 
 SECRET_KEY = settings.SECRET_KEY
 ACCESS_TOKEN_EXPIRE_MINUTES = settings.ACCESS_TOKEN_EXPIRE_MINUTES

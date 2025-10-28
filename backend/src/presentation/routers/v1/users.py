@@ -4,14 +4,14 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from backend.src.application.use_cases import user_ops
-from backend.src.domain.entities.user import User
+from backend.src.domain.entities.library_entities.user import User
 from backend.src.domain.exceptions.user_exceptions import UserNotFound
 from backend.src.infrastructure.persistence.database import get_db
-from backend.src.infrastructure.persistence.repository_impl.user_repository_impl import \
+from backend.src.infrastructure.persistence.repository_impl.library_repos_impl.user_repository_impl import \
     UserRepositoryImpl
 from backend.src.infrastructure.web.auth_provider import (
     get_current_active_user, has_role)
-from backend.src.presentation.schemas import user_schema
+from backend.src.presentation.schemas.library_schemas import user_schema
 
 router = APIRouter(
     prefix="/users", 

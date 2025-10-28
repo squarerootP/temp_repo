@@ -1,13 +1,15 @@
-from langchain.schema.messages import HumanMessage, SystemMessage, AIMessage, ToolMessage
-from langgraph.graph import StateGraph, START, END
+from typing import Annotated, Literal, TypedDict
+
+from langchain.schema.messages import (AIMessage, HumanMessage, SystemMessage,
+                                       ToolMessage)
+from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode
-from typing import TypedDict, Annotated, Literal
 
 from dev.graph_rag.embedder.google_emb import get_retriever_tool
 from dev.graph_rag.llm.llm import get_llm
 from dev.graph_rag.prompts import SYSTEM_PROMPT
-
+from tools.tavily_search import search_tool
 
 class State(TypedDict):
     messages: Annotated[list, add_messages]
@@ -30,8 +32,9 @@ def call_llm(state: State):
     return {"messages": [response]}
 
 retriever_node = ToolNode([retriever_tool], name="retriever_node")
+search_node = ToolNode([search_tool], name="search_node") 
 
-def router(state: State) -> Literal["retriever_node", "__end__"]:
+def router(state: State) -> Literal["retriever_node", "search_node","__end__"]:
     print("---NODE: Router---")
     last_message = state["messages"][-1]
     

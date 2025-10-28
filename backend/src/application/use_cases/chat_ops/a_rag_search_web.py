@@ -1,5 +1,8 @@
 from typing import List
-from backend.src.application.interfaces.a_search_repository import ISearchRepository
+
+from backend.src.application.interfaces.rag_interfaces.search_repository import \
+    ISearchRepository
+
 
 class SearchWeb:
     def __init__(self, search_repo: ISearchRepository):

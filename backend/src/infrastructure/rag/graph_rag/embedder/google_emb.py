@@ -14,7 +14,7 @@ from backend.src.infrastructure.config.settings import api_settings
 # --- Configuration ---
 CHROMA_PERSIST_DIR = "./chroma_db"
 TEXT_FILES = ["data/alice_in_wonderland.txt", "data/gutenberg.txt"]
-GOOGLE_API_KEY = api_settings.GOOGLE_GENAI_API_KEY
+GOOGLE_API_KEY = api_settings.GOOGLE_API_KEY
 EMBEDDING_MODEL = f"models/{api_settings.GOOGLE_EMBEDDING_MODEL}"
 
 # --- Embedding Function ---
@@ -70,7 +70,7 @@ def get_retriever_tool():
     # Create a tool using create_retriever_tool for consistent parameter handling
     retriever_tool = StructuredTool.from_function(
         func=lambda query: retriever.invoke(query),
-        name="Document_Retriever",
+        name="Retriever",
         description="""Useful for answering questions about Alice in Wonderland and Project Gutenberg.
         Use this tool first before considering web search.""",
         args_schema=RetrieverInput,

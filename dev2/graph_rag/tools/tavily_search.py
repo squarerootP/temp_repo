@@ -1,6 +1,7 @@
 # backend/src/infrastructure/rag/graph_rag/tools/tavily_search.py
 
 from langchain_community.tools import TavilySearchResults
+
 from backend.src.infrastructure.config.settings import api_settings
 
 # This is a pre-built BaseTool object with the correct schema

@@ -10,7 +10,7 @@ from backend.src.infrastructure.config.settings import settings
 from backend.src.infrastructure.persistence.database import get_db
 from backend.src.infrastructure.web.auth_provider import (
     ACCESS_TOKEN_EXPIRE_MINUTES, authenticate_user, create_access_token)
-from backend.src.presentation.schemas import token_schema
+from backend.src.presentation.schemas.library_schemas import token_schema
 
 SYSTEM_BOOT_TIME = datetime.fromtimestamp(psutil.boot_time())
 APP_START_TIME = datetime.now()

@@ -1,7 +1,3 @@
-from .author import Author
-from .book import Book
-from .borrowing import BorrowingManager
-from .user import User
-
-__all__ = ["Author", "Book", "BorrowingManager", "UserModel"]
-
+from .library_entities import Author, Book, BorrowingManager, User
+from .rag_entities import (ChatMessage, ChatSession, Document, DocumentChunk,
+                           Query, Response)

@@ -1,5 +1,6 @@
-from backend.src.application.interfaces.user_repository import UserRepository
-from backend.src.domain.entities.user import User
+from backend.src.application.interfaces.library_interfaces.user_repository import \
+    UserRepository
+from backend.src.domain.entities.library_entities.user import User
 
 
 def create_user(user_repo: UserRepository, data: dict) -> User:

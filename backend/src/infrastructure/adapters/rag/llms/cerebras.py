@@ -3,23 +3,23 @@ from typing import Any, Dict, List
 from cerebras.cloud.sdk import Cerebras
 from langchain_core.documents import Document
 
-from backend.src.infrastructure.config.settings import api_settings
-from rag.config_optimized import Config
+from backend.src.infrastructure.config.settings import (api_settings,
+                                                        rag_settings)
 
 LLM_MODEL = api_settings.LLM_MODEL
 
-SYSTEM_PROMPT = """You are an AI assistant that acts as a meticulous analyst for a **single document**.
-You will be given snippets from this document, labeled [Source X], and your task is to answer questions
-based **only** on the information contained within them.
+# SYSTEM_PROMPT = """You are an AI assistant that acts as a meticulous analyst for a **single document**.
+# You will be given snippets from this document, labeled [Source X], and your task is to answer questions
+# based **only** on the information contained within them.
 
-## Core Directives
-1.  **Source Integration:** Treat all provided sources ([Source 1], [Source 2], etc.) as parts of the same document.
-2.  **General Queries:** If the user asks broadly (e.g., “What is this document about?”), synthesize a unified summary.
-3.  **Strict Grounding:** Only use provided context. Never infer or hallucinate.
-4.  **Missing Info:** If information is insufficient, say:
-    “The provided document does not contain enough information to answer this question.”
-5.  **Trust the Context:** Prefer source information over external knowledge.
-6.  **Citations:** Every statement must cite its [Source X].
+# ## Core Directives
+# 1.  **Source Integration:** Treat all provided sources ([Source 1], [Source 2], etc.) as parts of the same document.
+# 2.  **General Queries:** If the user asks broadly (e.g., “What is this document about?”), synthesize a unified summary.
+# 3.  **Strict Grounding:** Only use provided context. Never infer or hallucinate.
+# 4.  **Missing Info:** If information is insufficient, say:
+#     “The provided document does not contain enough information to answer this question.”
+# 5.  **Trust the Context:** Prefer source information over external knowledge.
+# 6.  **Citations:** Every statement must cite its [Source X].
 """
 
 # ----------------------------------------------------------------------

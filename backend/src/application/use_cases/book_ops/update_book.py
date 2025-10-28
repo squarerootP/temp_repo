@@ -1,7 +1,8 @@
 from typing import Optional
 
-from backend.src.application.interfaces.book_repository import BookRepository
-from backend.src.domain.entities.book import Book
+from backend.src.application.interfaces.library_interfaces.book_repository import \
+    BookRepository
+from backend.src.domain.entities.library_entities.book import Book
 from backend.src.domain.exceptions.book_exceptions import BookNotFound
 
 

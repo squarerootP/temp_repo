@@ -1,4 +1,4 @@
-from backend.src.application.interfaces.author_repository import \
+from backend.src.application.interfaces.library_interfaces.author_repository import \
     AuthorRepository
 from backend.src.domain.exceptions.author_exceptions import AuthorNotFound
 

@@ -1,7 +1,8 @@
 from typing import List, Optional
 
-from backend.src.application.interfaces.book_repository import BookRepository
-from backend.src.domain.entities.book import Book
+from backend.src.application.interfaces.library_interfaces.book_repository import \
+    BookRepository
+from backend.src.domain.entities.library_entities.book import Book
 
 
 def search_books(book_repo: BookRepository, text_to_search: str, skip: int =0, limit: int = 100) -> Optional[List[Book]]:

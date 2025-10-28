@@ -1,4 +1,5 @@
-from backend.src.application.interfaces.user_repository import UserRepository
+from backend.src.application.interfaces.library_interfaces.user_repository import \
+    UserRepository
 from backend.src.domain.exceptions.user_exceptions import UserNotFound
 
 

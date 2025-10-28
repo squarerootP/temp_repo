@@ -1,6 +1,6 @@
-from backend.src.application.interfaces._chat_session_repository import \
+from backend.src.application.interfaces.rag_interfaces.chat_session_repository import \
     IChatSessionRepository
-from backend.src.domain.entities._chat_history import ChatSession
+from backend.src.domain.entities.rag_entities.chat_history import ChatSession
 from backend.src.domain.exceptions.chat_exceptions import ChatHistoryNotFound
 
 

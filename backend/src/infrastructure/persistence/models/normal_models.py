@@ -9,7 +9,7 @@ from sqlalchemy import Enum as SQLEnum
 from sqlalchemy import ForeignKey, Integer, String, Text, func
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
-from backend.src.domain.entities.chat_history import MessageRole
+from backend.src.domain.entities.rag_entities.chat_history import MessageRole
 
 
 # --- Base ---

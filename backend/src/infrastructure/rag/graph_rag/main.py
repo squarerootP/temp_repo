@@ -2,7 +2,7 @@ import json
 import re
 from typing import Annotated, TypedDict
 
-from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage
+from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage, AIMessage
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
@@ -11,207 +11,178 @@ from langgraph.prebuilt import ToolNode
 # --- Import your modular components ---
 from backend.src.infrastructure.rag.graph_rag.embedder.google_emb import \
     get_retriever_tool
-from backend.src.infrastructure.rag.graph_rag.llm.llm import get_llm
-from backend.src.infrastructure.rag.graph_rag.prompts import SYSTEM_PROMPT
+from backend.src.infrastructure.rag.graph_rag.llm.llm import get_llm, get_normal_llm
+from backend.src.infrastructure.rag.graph_rag.prompts import RAG_PROMPT, ROUTER_INSTRUCTION, DOC_GRADER_PROMPT
 from backend.src.infrastructure.rag.graph_rag.tools.tavily_search import \
-    search_tool
+    search_web
 import logging
+from langchain_core.messages import AnyMessage
+from pydantic import BaseModel
+from langchain_core.documents import Document
+import operator
 
 logging.getLogger("langchain").setLevel(logging.ERROR)
 
-# --- Helper Functions ---
-
-def to_messages(msgs):
-    formatted = []
-    for m in msgs:
-        if isinstance(m, tuple):
-            role, content = m
-            if role == "user":
-                formatted.append(HumanMessage(content=content))
-            elif role == "system":
-                formatted.append(SystemMessage(content=content))
-        else:
-            formatted.append(m)
-    return formatted
-
-
-# --- 1. Define the State ---
-class State(TypedDict):
-    messages: Annotated[list, add_messages]
-
-
-# --- 2. Initialize your Tools and LLM ---
+web_search_tool = search_web
 retriever_tool = get_retriever_tool()
-llm = get_llm()
-tools = [retriever_tool, search_tool]
-# Bind both tools
-llm_with_tools = llm.bind_tools(tools, strict=False) 
+
+class State(TypedDict):
+    """State contains information about the conversation."""
+    query: str
+    messages: Annotated[list[AnyMessage], add_messages]
+    web_search: str
+    documents: list[Document]
+    search_results: Annotated[list[str], operator.add]
 
 
-# --- 3. Define Graph Nodes ---
-def call_model(state: State):
-    print("---NODE: Calling Model---")
+# 1. Retrieve node
+def retrieve_node(state: State) -> State:
+    """Retrieve documents based on the query."""
+    print("==Retrieving documents...")
+    query = state["query"]
+    retrieval_result = retriever_tool.invoke(query)
+    if isinstance(retrieval_result, list):
+        state['documents'].extend(retrieval_result)
+    elif isinstance(retrieval_result, Document):
+        state['documents'].append(retrieval_result)
+    else:
+        raise ValueError("Incompatible formats")
+    return state
 
-    messages = to_messages(state["messages"])
+# 2. Generate node
+def generate_node(state: State) -> State:
+    """Generate final answer based on retrieved documents and web search if needed."""
+    print("==Generating final answer...")
+    llm = get_normal_llm()
+    query = state["query"]
+    documents = state["documents"]
+    formatted_docs = ""
+    if documents:
+        formatted_docs = "\n".join(doc.page_content for doc in documents)
+    formatted_search = "\n".join(s for s in state['search_results'])
+    formatted_docs += "SEARCH RESULT: " + formatted_search
+    human = HumanMessage(RAG_PROMPT.format(
+        context= formatted_docs,
+        question=query
+    ))
+    response = llm.invoke([human])
+    response = AIMessage(response.content)
+    state['messages'].append(response)
+    return state 
 
-    if not any(m.type == "system" for m in messages):
-        messages.insert(0, SystemMessage(content=SYSTEM_PROMPT))
+# 3. Grade documents to update web_search flag
+def grade_documents_node(state: State) -> State:
+    """Decide whether web search is needed based on retrieved documents."""
+    print("==Grading retrieved documents for relevance...")
+    llm = get_normal_llm()
+    query = state["query"]
+    documents = state["documents"]
+    formatted_docs = "\n".join(doc.page_content for doc in documents)
+    human = HumanMessage(DOC_GRADER_PROMPT.format(
+        document=formatted_docs, 
+        question=query
+    ))
+    response = llm.invoke([human])
+    response.pretty_print()
+    web_search_decision = "no" if response.content.strip().lower().startswith("yes") else "yes" 
+    state['web_search'] = web_search_decision
+    return state 
 
-    # use the bound llm
-    response = llm_with_tools.invoke(messages)
-
-    return {"messages": [response]}
-
-
-# --- Enhanced Search Node ---
-class EnhancedSearchNode:
-    def __init__(self, search_tool):
-        self.search_tool = search_tool
-        
-    def __call__(self, state: State):
-        last_message = state["messages"][-1]
-        query = None
-        
-        # Extract query from tool_calls if available
-        if hasattr(last_message, "tool_calls") and last_message.tool_calls:
-            for tool_call in last_message.tool_calls:
-                if tool_call["name"] == "tavily_search":
-                    query = tool_call["args"].get("query")
-                    break
-        
-        # Fallback: try to parse from content
-        if not query and hasattr(last_message, "content") and last_message.content:
-            try:
-                # Look for JSON pattern
-                json_match = re.search(r'(\{.*"type"\s*:\s*"function".*\})', last_message.content, re.DOTALL)
-                if json_match:
-                    json_str = json_match.group(1)
-                    tool_call = json.loads(json_str)
-                    
-                    if tool_call.get("name") == "tavily_search":
-                        query = tool_call.get("parameters", {}).get("query", "")
-                else:
-                    # Simple regex fallback
-                    match = re.search(r'"query"\s*:\s*"([^"]+)"', last_message.content)
-                    if match:
-                        query = match.group(1)
-            except Exception as e:
-                print(f"Error parsing search query: {e}")
-        
-        # Default query if all else fails
-        if not query:
-            # Try to extract a query from previous human message
-            for msg in reversed(state["messages"]):
-                if isinstance(msg, HumanMessage):
-                    query = msg.content #type: ignore
-                    break
-            if not query:
-                query = "latest information"
-            
-        print(f"Searching for: {query}")
-        result = self.search_tool.invoke({"query": query})
-        
-        return {"messages": [ToolMessage(content=result, tool_call_id="tavily_search", name="tavily_search")]}
-
-
-# Tool nodes
-retriever_node = ToolNode([retriever_tool])
-search_node = EnhancedSearchNode(search_tool)
-
-
-# --- 4. Define Router Logic ---
-def route_after_llm(state: State):
-    """
-    After LLM call, route based on tool calls:
-    - If retriever_tool -> call retriever
-    - If search_tool -> call search
-    - No tool calls -> END
-    """
-    print("---EDGE: Routing after LLM Call---")
-    last_message = state["messages"][-1]
-
-    # Check for standard tool_calls format
-    if hasattr(last_message, "tool_calls") and last_message.tool_calls:
-        tool_names = [tc["name"] for tc in last_message.tool_calls]
-        print(f"Tool names in message: {tool_names}")
-        
-        # Filter tool calls to include only the one we're routing to
-        if "Document_Retriever" in tool_names:
-            # Keep only the Document_Retriever tool call
-            filtered_calls = [tc for tc in last_message.tool_calls if tc["name"] == "Document_Retriever"]
-            last_message.tool_calls = filtered_calls
-            print("Decision: Call Retriever (filtered other tool calls)")
-            return "call_retriever"
-        elif "tavily_search" in tool_names:
-            # Keep only the tavily_search tool call
-            filtered_calls = [tc for tc in last_message.tool_calls if tc["name"] == "tavily_search"]
-            last_message.tool_calls = filtered_calls
-            print("Decision: Call Web Search (filtered other tool calls)")
-            return "call_search"
+# 4. Web search node
+def web_search_node(state: State) -> State:
+    """Perform web search if needed."""
+    print(f"==Performing web search...{state['web_search']}")
     
-    # Extract JSON-formatted tool calls from the content
-    if hasattr(last_message, "content") and last_message.content:
-        content = last_message.content
+    if state["web_search"] == "yes":
+        search_result = web_search_tool.invoke(state["query"])
+        print(search_result)
         
-        # Try to find and parse JSON in the content
-        try:
-            # Look for JSON pattern
-            json_match = re.search(r'(\{.*"type"\s*:\s*"function".*\})', content, re.DOTALL)
-            if json_match:
-                json_str = json_match.group(1)
-                tool_call = json.loads(json_str)
-                
-                if tool_call.get("name") == "tavily_search":
-                    print("Decision: Found JSON tavily_search tool call")
-                    return "call_search"
-        except (json.JSONDecodeError, AttributeError) as e:
-            print(f"Error parsing JSON tool call: {e}")
+        for item in search_result['results']:
+            cur_msg = item['content']
+            state['search_results'].append(cur_msg)
         
-        # Fallback for simpler detection
-        if "tavily_search" in content and "function" in content.lower():
-            print("Decision: Detected tavily_search in content text")
-            return "call_search"
+        return state 
+    return state
+
+# 5. Route the initial question
+def route_question(state: State) -> str:
+    """
+    Route question to websearch or RAG
+    Args: 
+        state (State): The current state containing the query.
+    Returns:
+        str: Next node to call ('web_search' or 'retrieve', or 'only_greet')
+    """
+    print("==Routing question to appropriate data source...")
+    llm = get_llm()
+    query = state["query"]
     
-    print("Decision: No tool calls, ending.")
-    return END
+    sysmes = SystemMessage(ROUTER_INSTRUCTION)
+    human = HumanMessage(query)
+    response = llm.invoke([sysmes, human])
+    response.pretty_print()
+    
+    route_data = json.loads(response.content) 
+    datasource = route_data.get("datasource", "vectorstore").lower()
+    if datasource == "web_search":
+        state['web_search'] = "yes"
+        print("heading to web_search")
+        return "web_search"
+    elif datasource == "only_greet":
+        return "only_greet"
+    else:
+        return "retrieve"
 
+def decide_to_generate(state: State) -> str:
+    """Determine whether to generate or add web search"""
+    web_search = state['web_search']
+    if web_search == "yes":
+        return "web_search"
+    else:
+        return "generate"
 
-# --- 5. Build the Graph ---
-graph_builder = StateGraph(State)
+def only_greet(state: State) -> State:
+    """Generate a greeting response."""
+    print("==Generating greeting response...")
+    llm = get_normal_llm()
+    query = state["query"]
+    
+    human = HumanMessage(query)
+    response = llm.invoke([human])
+    response = AIMessage(response.content)
+    state['messages'].append(response) 
+    return state 
 
-# Nodes
-graph_builder.add_node("reasoning", call_model)
-graph_builder.add_node("call_retriever", retriever_node)
-graph_builder.add_node("call_search", search_node)
-
-# Entry → always go to reasoning first
-graph_builder.add_edge(START, "reasoning")
-
-# Conditional edges after reasoning
-graph_builder.add_conditional_edges(
-    "reasoning", 
-    route_after_llm,
+graph = StateGraph(State)
+graph.add_node("retrieve", retrieve_node)
+graph.add_node("web_search", web_search_node)
+graph.add_node("generate", generate_node)
+graph.add_node("grade_documents", grade_documents_node)
+graph.add_node("only_greet", only_greet)
+graph.set_conditional_entry_point(
+    route_question,
     {
-        "call_retriever": "call_retriever",
-        "call_search": "call_search",
-        END: END
+        "web_search": "web_search",
+        "retrieve": "retrieve",
+        'only_greet':'only_greet',
     }
 )
+graph.add_edge("retrieve", "grade_documents")
+graph.add_conditional_edges(
+    'grade_documents',
+    decide_to_generate,
+    {
+        "web_search": "web_search",
+        "generate": "generate",        
+    }
 
-# After tool usage, go back to reasoning to incorporate new information
-graph_builder.add_edge("call_retriever", "reasoning")
-graph_builder.add_edge("call_search", "reasoning")
+)
+graph.add_edge("web_search", "generate")
+graph.add_edge("generate", END)
+app = graph.compile()
 
-# Memory
-# memory = MemorySaver()
-# app = graph_builder.compile(checkpointer=memory)
-app = graph_builder.compile()
-
-# --- 6. Chat Interface ---
 def main():
     print("Graph compiled. Multi-tool RAG agent ready.")
-    thread_id = "thread_1"
-    config = {"configurable": {"thread_id": thread_id}}
 
     while True:
         user_input = input("You: ")
@@ -219,12 +190,14 @@ def main():
             break
 
         events = app.stream(
-            {"messages": [("user", user_input)]},
-            config=config,  # type: ignore
+            {"query": user_input, "documents": [], "web_search": "yes", "messages": []}, 
             stream_mode="values",
         )
+        final_event = dict()
+        
         for event in events:
-            event["messages"][-1].pretty_print()
+            final_event = event
+        final_event["messages"][-1].pretty_print()
 
 
 if __name__ == "__main__":

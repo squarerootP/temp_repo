@@ -1,7 +1,8 @@
 from typing import Optional
 
-from backend.src.application.interfaces.user_repository import UserRepository
-from backend.src.domain.entities.user import User
+from backend.src.application.interfaces.library_interfaces.user_repository import \
+    UserRepository
+from backend.src.domain.entities.library_entities.user import User
 
 
 def update_user(user_repo: UserRepository, user_id: int, data: dict) -> Optional[User]:

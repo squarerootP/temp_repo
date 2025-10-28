@@ -1,21 +1,22 @@
-import os
+import hashlib
+import json
 import logging
+import os
 from typing import Any, Dict, List, Optional, cast
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.tools import StructuredTool
 from langchain_chroma import Chroma
-from langchain_community.document_loaders import (
-    TextLoader, PDFMinerLoader, Docx2txtLoader, CSVLoader, UnstructuredMarkdownLoader
-)
+from langchain_community.document_loaders import (CSVLoader, Docx2txtLoader,
+                                                  PDFMinerLoader, TextLoader,
+                                                  UnstructuredMarkdownLoader)
 from langchain_community.document_loaders.base import BaseLoader
 from langchain_core.documents import Document
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from pydantic import BaseModel, Field, SecretStr
 
 from backend.src.infrastructure.adapters.rag.rag_config import rag_settings
-import hashlib
-import json
+
 # Configure logging
 logger = logging.getLogger(__name__)
 

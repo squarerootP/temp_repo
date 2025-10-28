@@ -9,8 +9,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from backend.src.infrastructure.config.settings import settings
+from backend.src.infrastructure.persistence.database import create_tables
 from backend.src.presentation.routers.v1 import (authors, books, borrowings,
-                                                 users)
+                                                 rag, users)
 from backend.src.presentation.routers.v1.api import router as api_router
 
 RATE_LIMIT = settings.RATE_LIMIT  
@@ -19,6 +20,10 @@ WINDOW_SIZE = settings.RATE_LIMIT_WINDOW_SIZE
 request_counts = {}
 app = FastAPI()
 
+@app.on_event("startup")
+def startup_event():
+    create_tables()
+    
 ### LOGGING
 # logger for all logs
 all_logger = logging.getLogger("all_logs")
@@ -125,7 +130,7 @@ app.include_router(users.router, prefix="/v1")
 app.include_router(books.router, prefix="/v1") 
 app.include_router(authors.router, prefix="/v1") 
 app.include_router(borrowings.router, prefix="/v1") 
-# app.include_router(rag.router, prefix="/v1")
+app.include_router(rag.router, prefix="/v1")
 
 @app.get("/")
 def read_root():

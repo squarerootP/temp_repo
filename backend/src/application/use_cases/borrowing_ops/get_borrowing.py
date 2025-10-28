@@ -1,8 +1,9 @@
 from typing import List, Optional
 
-from backend.src.application.interfaces.borrowing_repository import \
+from backend.src.application.interfaces.library_interfaces.borrowing_repository import \
     BorrowingRepository
-from backend.src.domain.entities.borrowing import BorrowingManager
+from backend.src.domain.entities.library_entities.borrowing import \
+    BorrowingManager
 from backend.src.domain.exceptions.borrowing_exceptions import \
     BorrowingNotFoundException
 

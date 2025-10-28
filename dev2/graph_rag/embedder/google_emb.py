@@ -17,7 +17,7 @@ from backend.src.infrastructure.config.settings import api_settings
 # --- Configuration ---
 CHROMA_PERSIST_DIR = "./chroma_db"
 TEXT_FILES = ["data/alice_in_wonderland.txt", "data/gutenberg.txt"]
-GOOGLE_API_KEY = api_settings.GOOGLE_GENAI_API_KEY
+GOOGLE_API_KEY = api_settings.GOOGLE_API_KEY
 EMBEDDING_MODEL = f"models/{api_settings.GOOGLE_EMBEDDING_MODEL}"
 
 # --- Embedding Function ---

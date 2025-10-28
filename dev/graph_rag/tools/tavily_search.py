@@ -2,12 +2,15 @@
 Tool for Tavily web search integration with LangGraph.
 Uses standardized tool format from LangChain for compatibility.
 """
+from typing import Any
+
 from langchain.tools import Tool
 from langchain_community.tools import TavilySearchResults
 from langchain_tavily import TavilySearch
-from backend.src.infrastructure.config.settings import api_settings
-from typing import Any
 from pydantic import BaseModel, Field
+
+from backend.src.infrastructure.config.settings import api_settings
+
 
 class TavilyInput(BaseModel):
     query: str = Field(description="The search query for current events, news, or general knowledge.")

@@ -1243,6 +1243,23 @@ wheels = [
 ]
 
 [[package]]
+name = "langgraph-cli"
+version = "0.4.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "click" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/fd/d3/8799897f41ade873787f6184b7d0fd58b05260d3b80211b9ef917afe28da/langgraph_cli-0.4.4.tar.gz", hash = "sha256:bcc959c9270115e6b1be3971d98924552731d67ef2d4f2d05eadccf9b53d00a5", size = 781327, upload-time = "2025-10-17T00:46:53.095Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/04/e0/25e157e65015b8195a74fa0be3e67e2c7db71b2ab066a8b59c8b99647cda/langgraph_cli-0.4.4-py3-none-any.whl", hash = "sha256:661889c202b3e3900ae5b49bea915d6717c452fd48066f3e5cfc229d84454cfc", size = 38319, upload-time = "2025-10-17T00:46:51.802Z" },
+]
+
+[package.optional-dependencies]
+inmem = [
+    { name = "python-dotenv" },
+]
+
+[[package]]
 name = "langgraph-prebuilt"
 version = "0.6.4"
 source = { registry = "https://pypi.org/simple" }
@@ -1667,6 +1684,7 @@ dependencies = [
     { name = "langchain-openai" },
     { name = "langchain-tavily" },
     { name = "langgraph" },
+    { name = "langgraph-cli", extra = ["inmem"] },
     { name = "passlib" },
     { name = "psutil" },
     { name = "pydantic", extra = ["email"] },
@@ -1693,6 +1711,7 @@ requires-dist = [
     { name = "langchain-openai", specifier = ">=0.3.35" },
     { name = "langchain-tavily", specifier = ">=0.2.12" },
     { name = "langgraph", specifier = ">=0.6.10" },
+    { name = "langgraph-cli", extras = ["inmem"], specifier = ">=0.4.4" },
     { name = "passlib", specifier = ">=1.7.4" },
     { name = "psutil", specifier = ">=7.1.1" },
     { name = "pydantic", extras = ["email"], specifier = ">=2.12.2" },

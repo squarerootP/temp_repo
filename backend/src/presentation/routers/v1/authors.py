@@ -4,14 +4,14 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from backend.src.application.use_cases import author_ops
-from backend.src.domain.entities.user import User
+from backend.src.domain.entities.library_entities.user import User
 from backend.src.domain.exceptions.author_exceptions import (
     AuthorEmailAlreadyRegistered, AuthorNotFound)
 from backend.src.infrastructure.persistence.database import get_db
-from backend.src.infrastructure.persistence.repository_impl.author_repository_impl import \
+from backend.src.infrastructure.persistence.repository_impl.library_repos_impl.author_repository_impl import \
     AuthorRepositoryImpl
 from backend.src.infrastructure.web.auth_provider import has_role
-from backend.src.presentation.schemas import author_schema
+from backend.src.presentation.schemas.library_schemas import author_schema
 
 router = APIRouter(
     prefix="/authors",

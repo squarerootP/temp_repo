@@ -4,18 +4,18 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from backend.src.application.use_cases import book_ops, borrowing_ops
-from backend.src.domain.entities.user import User
+from backend.src.domain.entities.library_entities.user import User
 from backend.src.domain.exceptions.book_exceptions import BookNotFound
 from backend.src.domain.exceptions.borrowing_exceptions import (
     BorrowingNotFoundException, BorrowingNotYetReturnedException)
 from backend.src.infrastructure.persistence.database import get_db
-from backend.src.infrastructure.persistence.repository_impl.book_repository_impl import \
+from backend.src.infrastructure.persistence.repository_impl.library_repos_impl.book_repository_impl import \
     BookRepositoryImpl
-from backend.src.infrastructure.persistence.repository_impl.borrowing_repository_impl import \
+from backend.src.infrastructure.persistence.repository_impl.library_repos_impl.borrowing_repository_impl import \
     BorrowingRepositoryImpl
 from backend.src.infrastructure.web.auth_provider import (
     get_current_active_user, has_role)
-from backend.src.presentation.schemas import borrowing_schema
+from backend.src.presentation.schemas.library_schemas import borrowing_schema
 
 router = APIRouter(
     prefix="/borrowings",

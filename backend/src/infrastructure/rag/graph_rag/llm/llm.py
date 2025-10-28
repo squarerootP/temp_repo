@@ -4,25 +4,50 @@ from langchain_cerebras import ChatCerebras
 from pydantic import SecretStr
 
 from backend.src.infrastructure.config.settings import api_settings
+from langchain_openai import ChatOpenAI
+from pydantic import BaseModel, Field
 
-
+class ToolCallerRequest(BaseModel):
+    query: str = Field(description="The input query for the tool caller LLM")
+    
 def get_llm():
     """
     Initializes and returns the ChatCerebras LLM instance.
     Raises ValueError if the API key is not configured.
     """
-    cerebras_api_key = api_settings.CEREBRAS_API_KEY
     
-    # It's good practice to check if the key exists
-    if not cerebras_api_key:
-        raise ValueError("CEREBRAS_API_KEY not found in settings.")
-
-    llm = ChatCerebras(
-        model=api_settings.LLM_MODEL,
-        api_key=cast(SecretStr, cerebras_api_key),
-        temperature=0.1,
+    llm = ChatOpenAI(
+        model="llama-3.1-8b",            # example model name
+        api_key=api_settings.CEREBRAS_API_KEY, #type: ignore
+        base_url="https://api.cerebras.ai/v1",
+        temperature=0.1,  # Lower temperature for more consistent outputs
+        model_kwargs={
+            "response_format": {"type": "json_object"}  # Force JSON response format
+        }
     )
     return llm
+
+def get_normal_llm():
+    llm = ChatOpenAI(
+        model="llama-3.1-8b",            # example model name
+        api_key=api_settings.CEREBRAS_API_KEY, #type: ignore
+        base_url="https://api.cerebras.ai/v1",
+        temperature=0.1, 
+    )
+    return llm
+
+def get_tool_caller_llm():
+    """
+    Initializes and returns the ChatCerebras LLM instance configured for JSON output.
+    Raises ValueError if the API key is not configured.
+    """
+
+    llm_caller = ChatCerebras(
+        model="llama-3.1-8b",            # example model name
+        api_key=api_settings.CEREBRAS_API_KEY, #type: ignore
+        base_url="https://api.cerebras.ai/v1",
+        temperature=0.1,  # Lower temperature for more consistent outputs
+    )
 
 # This block allows you to run this file directly to test it
 if __name__ == "__main__":
