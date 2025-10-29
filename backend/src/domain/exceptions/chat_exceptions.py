@@ -21,3 +21,6 @@ class MessageProcessingError(Exception):
 class SessionCreationError(Exception):
     """Exception raised when there is an error creating a chat session."""
     pass
+class NotAuthorizedToViewSession(Exception):
+    """Exception raised when you're not an admin and want to load another people session"""
+    pass

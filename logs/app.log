@@ -1361,3 +1361,35 @@ Incoming request: GET http://localhost:8000/v1/rag/sessions/9
 Completed request: GET http://localhost:8000/v1/rag/sessions/9Status: 200 Duration: 7.61ms
 Incoming request: GET http://localhost:8000/v1/rag/sessions/10
 Completed request: GET http://localhost:8000/v1/rag/sessions/10Status: 200 Duration: 6.52ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.00ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 161.71ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 94.42ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3243.77ms
+Incoming request: POST http://localhost:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acb
+Completed request: POST http://localhost:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acbStatus: 200 Duration: 1694.63ms
+Incoming request: GET http://localhost:8000/v1/rag/documents
+Completed request: GET http://localhost:8000/v1/rag/documentsStatus: 200 Duration: 3.57ms
+Incoming request: GET http://localhost:8000/v1/rag/sessions/
+Completed request: GET http://localhost:8000/v1/rag/sessions/Status: 200 Duration: 6.15ms
+Incoming request: GET http://localhost:8000/v1/rag/sessions/10
+Completed request: GET http://localhost:8000/v1/rag/sessions/10Status: 200 Duration: 6.54ms
+Incoming request: GET http://localhost:8000/v1/rag/sessions/7
+Completed request: GET http://localhost:8000/v1/rag/sessions/7Status: 200 Duration: 7.84ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.98ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 130.54ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 401 Duration: 1.99ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 85.39ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 1875.27ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3655.37ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3096.06ms

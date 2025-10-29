@@ -1,5 +1,5 @@
 import os
-from typing import Any, Dict, cast
+from typing import Any, Dict, Optional, cast
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.tools import StructuredTool, Tool, tool
@@ -29,35 +29,29 @@ class RetrieverInput(BaseModel):
     query: str = Field(description="Search query string to find information in the documents.")
 
 
-def get_retriever_tool():
+def get_retriever_tool(doc_hash: Optional[str] = None) -> Tool:
     """
     Creates and returns a retriever tool.
     If the vector database exists, it loads it.
     If not, it builds the database from the source documents.
     """
     if os.path.exists(CHROMA_PERSIST_DIR):
-        # 1. Load the existing database
         print("--- Loading existing Chroma database ---")
         vectorstore = Chroma(
             persist_directory=CHROMA_PERSIST_DIR,
             embedding_function=embedding_function
         )
     else:
-        # 2. Build the database if it doesn't exist
         print("--- Building new Chroma database ---")
-        # Load documents
         all_docs = []
         for file_path in TEXT_FILES:
             loader = TextLoader(file_path, encoding="utf-8")
             all_docs.extend(loader.load())
 
-        # Split documents
         text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
             chunk_size=512, chunk_overlap=20
         )
         docs_splits = text_splitter.split_documents(all_docs)
-
-        # Create and persist the vectorstore
         vectorstore = Chroma.from_documents(
             documents=docs_splits,
             embedding=embedding_function,
@@ -65,7 +59,15 @@ def get_retriever_tool():
         )
 
     # 3. Create the retriever and the tool
-    retriever = vectorstore.as_retriever(search_kwargs={"k": 2})
+    if doc_hash: 
+        retriever = vectorstore.as_retriever(
+            search_kwargs={"k": 2, "filter": {"doc_hash": doc_hash}
+                           }
+        )
+    else:
+        retriever = vectorstore.as_retriever(
+            search_kwargs={"k": 2}
+        )
     
     # Create a tool using create_retriever_tool for consistent parameter handling
     retriever_tool = StructuredTool.from_function(
@@ -76,7 +78,7 @@ def get_retriever_tool():
         args_schema=RetrieverInput,
     )
 
-    return retriever_tool
+    return retriever_tool #type: ignore
 
 if __name__ == "__main__":
     # This block allows you to test this file directly

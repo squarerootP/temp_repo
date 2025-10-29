@@ -25,9 +25,6 @@ class ChatSessionRepositoryImpl(IChatSessionRepository):
     def __init__(self, db: Session):
         self.db = db
 
-    # ------------------------------------------------------------
-    # CREATE
-    # ------------------------------------------------------------
     def create_session(self, chat_session: ChatSession) -> ChatSession:
         """Create a new chat session and return the persisted entity."""
         db_session = ChatSessionMapper.to_model(chat_session)
@@ -41,9 +38,6 @@ class ChatSessionRepositoryImpl(IChatSessionRepository):
             self.db.rollback()
             raise RuntimeError(f"Failed to create chat session: {e}") from e
 
-    # ------------------------------------------------------------
-    # READ
-    # ------------------------------------------------------------
     def get_session_by_id(self, session_id: str) -> Optional[ChatSession]:
         """Retrieve a chat session by its ID."""
         db_session = (
@@ -71,9 +65,6 @@ class ChatSessionRepositoryImpl(IChatSessionRepository):
             for session in db_sessions
         ]
 
-    # ------------------------------------------------------------
-    # UPDATE
-    # ------------------------------------------------------------
     def update_session(self, session: ChatSession) -> None:
         """
         Update an existing chat session (messages, timestamps, metadata).
@@ -110,9 +101,6 @@ class ChatSessionRepositoryImpl(IChatSessionRepository):
             self.db.rollback()
             raise RuntimeError(f"Database error while updating session: {e}") from e
 
-    # ------------------------------------------------------------
-    # DELETE
-    # ------------------------------------------------------------
     def delete_session(self, session_id: str) -> bool:
         """Delete a chat session and all its messages."""
         try:
@@ -128,9 +116,6 @@ class ChatSessionRepositoryImpl(IChatSessionRepository):
             self.db.rollback()
             raise RuntimeError(f"Failed to delete chat session: {e}") from e
 
-    # ------------------------------------------------------------
-    # ADD MESSAGE
-    # ------------------------------------------------------------
     def add_message_to_session(self, session_id: str, message: ChatMessage) -> None:
         """Append a message to an existing chat session."""
         db_session = (
@@ -150,7 +135,7 @@ class ChatSessionRepositoryImpl(IChatSessionRepository):
         db_session.messages.append(chatmessage_model)
 
         try:
-            self.db.add(db_session)  # safe even if already attached
+            self.db.add(db_session) 
             self.db.commit()
             self.db.refresh(db_session)
         except SQLAlchemyError as e:

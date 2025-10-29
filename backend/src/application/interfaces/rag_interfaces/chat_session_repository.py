@@ -5,9 +5,6 @@ from backend.src.domain.entities.rag_entities.chat_history import (ChatMessage,
                                                                    ChatSession)
 
 
-# -------------------------------------------------------------------------
-# Chat Session Repository Interface
-# -------------------------------------------------------------------------
 class IChatSessionRepository(ABC):
     """Abstract repository for managing chat sessions."""
 

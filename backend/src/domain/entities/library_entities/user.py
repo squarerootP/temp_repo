@@ -6,7 +6,7 @@ Role = Literal["member", "admin"]
 
 @dataclass
 class User:
-    user_id: Optional[int] = None
+    user_id: int 
     first_name: str = ""
     second_name: str = ""
     email: str = ""

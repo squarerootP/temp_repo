@@ -1,11 +1,11 @@
 from typing import cast
 
 from langchain_cerebras import ChatCerebras
-from pydantic import SecretStr
+from langchain_openai import ChatOpenAI
+from pydantic import BaseModel, Field, SecretStr
 
 from backend.src.infrastructure.config.settings import api_settings
-from langchain_openai import ChatOpenAI
-from pydantic import BaseModel, Field
+
 
 class ToolCallerRequest(BaseModel):
     query: str = Field(description="The input query for the tool caller LLM")

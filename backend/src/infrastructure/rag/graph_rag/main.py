@@ -1,25 +1,27 @@
 import json
+import logging
+import operator
 import re
 from typing import Annotated, TypedDict
 
-from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage, AIMessage
+from langchain_core.documents import Document
+from langchain_core.messages import (AIMessage, AnyMessage, HumanMessage,
+                                     SystemMessage, ToolMessage)
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode
+from pydantic import BaseModel
 
 # --- Import your modular components ---
 from backend.src.infrastructure.rag.graph_rag.embedder.google_emb import \
     get_retriever_tool
-from backend.src.infrastructure.rag.graph_rag.llm.llm import get_llm, get_normal_llm
-from backend.src.infrastructure.rag.graph_rag.prompts import RAG_PROMPT, ROUTER_INSTRUCTION, DOC_GRADER_PROMPT
+from backend.src.infrastructure.rag.graph_rag.llm.llm import (get_llm,
+                                                              get_normal_llm)
+from backend.src.infrastructure.rag.graph_rag.prompts import (
+    DOC_GRADER_PROMPT, RAG_PROMPT, ROUTER_INSTRUCTION)
 from backend.src.infrastructure.rag.graph_rag.tools.tavily_search import \
     search_web
-import logging
-from langchain_core.messages import AnyMessage
-from pydantic import BaseModel
-from langchain_core.documents import Document
-import operator
 
 logging.getLogger("langchain").setLevel(logging.ERROR)
 
@@ -84,7 +86,7 @@ def grade_documents_node(state: State) -> State:
     ))
     response = llm.invoke([human])
     response.pretty_print()
-    web_search_decision = "no" if response.content.strip().lower().startswith("yes") else "yes" 
+    web_search_decision = "no" if response.content.strip().lower().startswith("yes") else "yes" # type: ignore
     state['web_search'] = web_search_decision
     return state 
 
@@ -122,7 +124,7 @@ def route_question(state: State) -> str:
     response = llm.invoke([sysmes, human])
     response.pretty_print()
     
-    route_data = json.loads(response.content) 
+    route_data = json.loads(response.content) #type: ignore
     datasource = route_data.get("datasource", "vectorstore").lower()
     if datasource == "web_search":
         state['web_search'] = "yes"
@@ -190,9 +192,9 @@ def main():
             break
 
         events = app.stream(
-            {"query": user_input, "documents": [], "web_search": "yes", "messages": []}, 
+            {"query": user_input, "documents": [], "web_search": "yes", "messages": []}, #type: ignore
             stream_mode="values",
-        )
+        ) #type: ignore
         final_event = dict()
         
         for event in events:

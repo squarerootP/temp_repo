@@ -8,7 +8,6 @@ from typing import Any, Dict, List, Optional
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from tenacity import retry, stop_after_attempt, wait_exponential
 
 from backend.src.application.interfaces.rag_interfaces.document_repository import \
     IVectorStoreRepository
@@ -42,9 +41,6 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
         self._load_metadata()
         self._load_vectorstore()
 
-    # --------------------------------------------------------------------
-    # Internal helpers
-    # --------------------------------------------------------------------
 
     def _load_metadata(self):
         if os.path.exists(self.metadata_file):
@@ -81,9 +77,6 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
                 hasher.update(chunk)
         return hasher.hexdigest()
 
-    # --------------------------------------------------------------------
-    # Public repository methods
-    # --------------------------------------------------------------------
 
     def add_document(self, pdf_path: str) -> Dict[str, Any]:
         """Load a PDF, split it, embed chunks, and persist to vectorstore."""
@@ -171,10 +164,6 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
             search_type="similarity", search_kwargs=kwargs
         )
 
-    # --------------------------------------------------------------------
-    # Embedding repository interface methods
-    # --------------------------------------------------------------------
-
     def save_embedding(self, document: Document, embedding: Any) -> None:
         """Save a vector embedding to the vectorstore."""
         if not self.vectorstore:
@@ -188,7 +177,6 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
             metadatas=[document.metadata],
             ids=[embedding.id],
         )
-
 
     def get_embedding(self, doc_hash: str) -> Optional[Any]:
         """Retrieve an embedding vector for a document by its hash."""

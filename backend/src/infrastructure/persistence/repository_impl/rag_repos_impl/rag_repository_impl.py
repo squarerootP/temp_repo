@@ -18,9 +18,10 @@ from backend.src.application.interfaces.rag_interfaces.rag_repository import \
     IRAGRepository
 from backend.src.domain.entities.rag_entities.chat_history import (ChatMessage,
                                                                    MessageRole)
-from backend.src.infrastructure.rag.graph_builder import \
-    build_langgraph_rag_graph
-from backend.src.infrastructure.rag.tools.llm_tool import get_llm
+from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.graph_builder import \
+    build_graph
+from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.llm.llm import (
+    get_llm, get_normal_llm)
 
 logger = logging.getLogger(__name__)
 
@@ -41,30 +42,34 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
     ):
         self.vector_repo = vector_repo
         self.chat_repo = chat_repo
-        self.graph = build_langgraph_rag_graph()
-        self.simple_llm = get_llm()
+        self.graph = build_graph()
+        self.llm = get_llm()
+        self.simple_llm = get_normal_llm()
 
     def initialize_graph(self) -> Any:
         """Return the compiled graph-like object (framework-agnostic)."""
         return self.graph
 
     # ---------- Helpers ----------
-    def _run_graph_and_get_last_content(self, messages_payload: List[tuple]) -> str:
+    def _run_graph_and_get_last_content(self, messages_payload: List[tuple], query: str, doc_hash: Optional[str] = None) -> str:
         """
         Run the compiled graph with given messages payload and return the final message.content.
-
-        messages_payload: list of tuples like ("user", "text") or ("system", "text")
         """
         try:
-            # stream returns an iterator of events; we collect and return the last message content
             events = self.graph.stream(
-                {"messages": messages_payload},
+                {
+                    "query": query,
+                    "messages": messages_payload,  # list of ("user", text)
+                    "documents": [],
+                    "search_results": [],
+                    "web_search": "yes",
+                    "doc_hash": doc_hash,
+                },
                 stream_mode="values",
             )
 
             last_content: Optional[str] = None
             for event in events:
-                # safety checks - event["messages"] is expected
                 if event and "messages" in event and event["messages"]:
                     last_msg = event["messages"][-1]
                     content = getattr(last_msg, "content", None)
@@ -77,7 +82,7 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
             return ""
 
     # ---------- IRAG methods ----------
-    def answer_query(self, session_id: str, user_query: str) -> str:
+    def answer_query(self, user_query: str) -> str:
         """
         Run the full RAG pipeline for a query and persist conversation messages.
 
@@ -88,12 +93,8 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
         - Return assistant text
         """
         try:
-            # persist user message
-            user_msg = ChatMessage(content=user_query, role=MessageRole.USER, session_id=session_id)
-
-            # Run graph with simple payload
             messages_payload = [("user", user_query)]
-            assistant_text = self._run_graph_and_get_last_content(messages_payload)
+            assistant_text = self._run_graph_and_get_last_content(messages_payload, query=user_query)
 
             if not assistant_text:
                 assistant_text = "I'm sorry — I couldn't generate an answer at the moment."
@@ -104,17 +105,15 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
             logger.exception("answer_query failed: %s", e)
             return "I'm sorry, something went wrong while processing your request."
 
-    def summarize_history(self, history: List[Dict[str, Any]]) -> str:
+    def summarize_history(self, formatted_history: List[Dict[str, Any]]) -> str:
         """
         Summarize chat history for context.
 
         Default: create a simple summarization prompt and run the graph to produce a summary.
         If the graph fails, fallback to a short heuristic summary.
         """
-        if not history:
+        if not formatted_history:
             return ""
-        
-        formatted_history = history
 
         summarization_prompt = (
             "Please provide a short concise summary of the conversation below. "
@@ -128,7 +127,7 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
             return result or f"Conversation of {len(history)} messages about various topics." #type: ignore
         except Exception as e:
             logger.exception("summarize_history fallback: %s", e)
-            return f"Conversation of {len(history)} messages about various topics."
+            return f"Conversation of {len(formatted_history)} messages about various topics."
 
     def revise_query_with_context(self, query: str, context: str) -> str:
         """
@@ -161,7 +160,7 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
         refined = self.simple_llm.invoke(prompt).content
         return refined or f"{query} {context}" # type: ignore
 
-    def answer_query_with_specific_document(self, session_id: str, user_query: str, doc_hash: str) -> str:
+    def answer_query_with_specific_document(self, session_id: str, user_query: str, doc_hash: Optional[str]) -> str:
         """
         Answer a query but instruct the retrieval component to focus on a specific document.
 
@@ -175,21 +174,12 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
         """
         
         try:
-            # Persist user message
-            user_msg = ChatMessage(content=user_query, role=MessageRole.USER, session_id=session_id)
-            
-            # Create a system instruction asking tools to focus on the given doc_hash
-            system_instruction = (
-                f"ONLY use the document identified by hash '{doc_hash}' for retrieval. "
-                "If the document does not contain an answer, say you cannot find the requested information."
-            )
-
+        
             messages_payload = [
-                ("system", system_instruction),
                 ("user", user_query),
             ]
 
-            assistant_text = self._run_graph_and_get_last_content(messages_payload)
+            assistant_text = self._run_graph_and_get_last_content(messages_payload, user_query, doc_hash=doc_hash)
 
             if not assistant_text:
                 assistant_text = "I'm sorry — I couldn't find an answer in the specified document."

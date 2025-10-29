@@ -5,7 +5,7 @@ from typing import Any, Dict, List, Optional
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
-from langchain_core.documents import Document as LangchainDocument
+from langchain_core.documents import Document
 from sqlalchemy.orm import Session
 
 from backend.src.application.interfaces.rag_interfaces.document_repository import (

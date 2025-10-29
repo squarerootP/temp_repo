@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 
 class IRAGRepository(ABC):
@@ -9,12 +9,12 @@ class IRAGRepository(ABC):
         pass
     
     @abstractmethod
-    def answer_query(self, session_id: str, user_query: str) -> str:
+    def answer_query(self, user_query: str) -> str:
         """Run retrieval + generation + storage pipeline."""
         pass
     
     @abstractmethod
-    def summarize_history(self, history: List[Dict[str, Any]]) -> str:
+    def summarize_history(self, formatted_history: List[Dict[str, Any]]) -> str:
         """Summarize chat history for context.
         
         Args:
@@ -37,7 +37,7 @@ class IRAGRepository(ABC):
         """
         pass
     @abstractmethod
-    def answer_query_with_specific_document(self, session_id: str, user_query: str, doc_hash: str) -> str:
+    def answer_query_with_specific_document(self, session_id: str, user_query: str, doc_hash: Optional[str]) -> str:
         """Run retrieval + generation + storage pipeline with a specific document.
         
         Args:

@@ -1,5 +1,5 @@
 import os
-from typing import Any, Dict, cast
+from typing import Any, Dict, Optional, cast
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.tools import StructuredTool, Tool, tool
@@ -29,7 +29,7 @@ class RetrieverInput(BaseModel):
     query: str = Field(description="Search query string to find information in the documents.")
 
 
-def get_retriever_tool():
+def get_retriever_tool(doc_hash: Optional[str]) -> Tool:
     """
     Creates and returns a retriever tool.
     If the vector database exists, it loads it.
@@ -40,7 +40,7 @@ def get_retriever_tool():
         print("--- Loading existing Chroma database ---")
         vectorstore = Chroma(
             persist_directory=CHROMA_PERSIST_DIR,
-            embedding_function=embedding_function
+            embedding_function=embedding_function,
         )
     else:
         # 2. Build the database if it doesn't exist
@@ -65,7 +65,9 @@ def get_retriever_tool():
         )
 
     # 3. Create the retriever and the tool
-    retriever = vectorstore.as_retriever(search_kwargs={"k": 2})
+    retriever = vectorstore.as_retriever(
+        search_kwargs={"k": 2,
+        doc_hash: doc_hash} if doc_hash else {"k": 2})
     
     # Create a tool using create_retriever_tool for consistent parameter handling
     retriever_tool = StructuredTool.from_function(
@@ -76,4 +78,4 @@ def get_retriever_tool():
         args_schema=RetrieverInput,
     )
 
-    return retriever_tool
+    return retriever_tool #type: ignore
