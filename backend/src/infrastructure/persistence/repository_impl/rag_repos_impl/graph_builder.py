@@ -2,16 +2,17 @@ import json
 import operator
 from typing import Annotated, Any, List, Literal, Optional, TypedDict
 
-from backend.src.infrastructure.config.promtps import (DOC_GRADER_PROMPT, RAG_PROMPT,
-                                           ROUTER_INSTRUCTION)
 from langchain_core.documents import Document
 from langchain_core.messages import (AIMessage, HumanMessage, SystemMessage,
                                      ToolMessage)
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
 
+from backend.src.infrastructure.config.promtps import (DOC_GRADER_PROMPT,
+                                                       RAG_PROMPT,
+                                                       ROUTER_INSTRUCTION)
 from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.llm.llm import (
-    get_llm, get_normal_llm)
+    get_big_llm, get_small_llm)
 from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.tools.doc_retriever_tool import \
     get_retriever_tool
 from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.tools.search_tool import \
@@ -23,7 +24,7 @@ class State(TypedDict):
     query: str
     messages: Annotated[List[Any], add_messages]
     web_search: str
-    doc_hash: Optional[str]
+    document_hash: Optional[str]
     documents: List[Document]
     search_results: Annotated[List[str], operator.add]
     
@@ -32,11 +33,12 @@ class State(TypedDict):
 def retrieve_node(state: State) -> State:
     """Retrieve documents based on the query."""
     print("==Retrieving documents...")
+    
     query = state["query"]
     
-    doc_hash = state.get("doc_hash", None)
+    document_hash = state.get("document_hash", None)
     
-    retriever_tool = get_retriever_tool(doc_hash=doc_hash)
+    retriever_tool = get_retriever_tool(document_hash=document_hash)
     
     retrieval_result = retriever_tool.invoke(query)
     if isinstance(retrieval_result, list):
@@ -45,13 +47,14 @@ def retrieve_node(state: State) -> State:
         state['documents'].append(retrieval_result)
     else:
         raise ValueError("Incompatible formats")
+    print("======Retrieved documents:", state['documents'])
     return state
 
 # 2. Generate node
 def generate_node(state: State) -> State:
     """Generate final answer based on retrieved documents and web search if needed."""
     print("==Generating final answer...")
-    llm = get_normal_llm()
+    big_llm = get_big_llm()
     query = state["query"]
     documents = state["documents"]
     formatted_docs = ""
@@ -66,7 +69,7 @@ def generate_node(state: State) -> State:
         question=query
     ))
     
-    response = llm.invoke([human_msg])
+    response = big_llm.invoke([human_msg])
     response = AIMessage(response.content)
     state["messages"].append(response)
     return state
@@ -75,7 +78,7 @@ def generate_node(state: State) -> State:
 def grade_documents_node(state: State) -> State:
     """Decide whether web search is needed based on retrieved documents."""
     print("==Grading retrieved documents for relevance...")
-    llm = get_normal_llm()
+    big_llm = get_big_llm()
     query = state["query"]
     documents = state["documents"]
     formatted_docs = "\n".join(doc.page_content for doc in documents)
@@ -83,9 +86,9 @@ def grade_documents_node(state: State) -> State:
         document=formatted_docs, 
         question=query
     ))
-    response = llm.invoke([human])
+    response = big_llm.invoke([human])
     response.pretty_print()
-    web_search_decision = "no" if response.content.strip().lower().startswith("yes") else "yes" # type: ignore
+    web_search_decision = "no" if "yes" in response.content.strip().lower() else "yes" # type: ignore
     state['web_search'] = web_search_decision
     return state 
 
@@ -117,21 +120,20 @@ def route_question(state: State) -> str:
         str: Next node to call ('web_search' or 'retrieve', or 'only_greet')
     """
     print("==Routing question to appropriate data source...")
-    llm = get_llm()
+    small_llm = get_small_llm()
     query = state["query"]
     
     sysmes = SystemMessage(ROUTER_INSTRUCTION)
     human = HumanMessage(query)
-    response = llm.invoke([sysmes, human])
+    response = small_llm.invoke([sysmes, human])
     response.pretty_print()
     
-    route_data = json.loads(response.content) #type: ignore
-    datasource = route_data.get("datasource", "vectorstore").lower()
-    if datasource == "web_search":
+    datasource = response.content.strip().lower()    # type: ignore
+    if  "web" in datasource or "search" in datasource:
         state['web_search'] = "yes"
         print("heading to web_search")
         return "web_search"
-    elif datasource == "only_greet":
+    elif "greet" in datasource:
         return "only_greet"
     else:
         return "retrieve"
@@ -147,11 +149,11 @@ def decide_to_generate(state: State) -> str:
 def only_greet(state: State) -> State:
     """Generate a greeting response."""
     print("==Generating greeting response...")
-    llm = get_normal_llm()
+    small_llm = get_small_llm()
     query = state["query"]
     
     human = HumanMessage(query)
-    response = llm.invoke([human])
+    response = small_llm.invoke([human])
     response = AIMessage(response.content)
     state['messages'].append(response) 
     return state 
@@ -219,7 +221,7 @@ def main():
             break
 
         events = app.stream(
-            {"query": user_input, "documents": [], "web_search": "yes", "messages": [], "doc_hash": None}, #type: ignore
+            {"query": user_input, "documents": [], "web_search": "yes", "messages": [], "document_hash": None}, #type: ignore
             stream_mode="values",
         ) #type: ignore
         final_event = dict()

@@ -1,3 +1,5 @@
+from typing import Optional
+
 from backend.src.application.interfaces.rag_interfaces.chat_session_repository import \
     IChatSessionRepository
 from backend.src.application.interfaces.rag_interfaces.rag_repository import \
@@ -6,7 +8,7 @@ from backend.src.domain.entities.rag_entities.chat_history import (ChatMessage,
                                                                    ChatSession,
                                                                    MessageRole)
 from backend.src.domain.exceptions.chat_exceptions import ChatHistoryNotFound
-from typing import Optional
+
 
 class ChatWithContext:
     """
@@ -45,9 +47,11 @@ class ChatWithContext:
             history_msg = chat_session.messages[-10:]
             formatted_history = [{"role": msg.role.value, "content": msg.content} 
                                 for msg in history_msg]
+            print("=======Here are the last 4 of the formatted history (for short): ", formatted_history[-4:])
             summarized_history = self.rag_repo.summarize_history(formatted_history)
-    
+            print("=======Here is summarized history:", summarized_history)
             revised_query = self.rag_repo.revise_query_with_context(query, summarized_history)
+            print("=======Here is revised query:", revised_query)
             
         # Add user message to session
         user_msg = ChatMessage(content=query, role=MessageRole.USER, session_id=session_id)
@@ -57,7 +61,7 @@ class ChatWithContext:
         response = self.rag_repo.answer_query_with_specific_document(
             session_id=session_id,
             user_query=revised_query,
-            doc_hash = self.hash
+            document_hash = self.hash
         )
         final_response = response or "I couldn't generate a response."
         

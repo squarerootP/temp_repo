@@ -1,18 +1,22 @@
 import os
 import tempfile
 from functools import lru_cache
-from typing import List
+from typing import List, Optional
 
-from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
+from fastapi import (APIRouter, Depends, File, HTTPException, Query,
+                     UploadFile, status)
 from sqlalchemy.orm import Session
 
 from backend.src.application.use_cases._rag_ops.chat_with_context import \
     ChatWithContext
+from backend.src.application.use_cases._rag_ops.get_all_processed_docs import \
+    GetAllProcessedDocsUseCase
 from backend.src.application.use_cases._rag_ops.get_session import \
     get_session_history
 from backend.src.application.use_cases._rag_ops.upload_doc import \
-    DocumentUploaderAndProcessor
+    AddAndProcessDocument
 from backend.src.domain.entities.library_entities.user import User
+from backend.src.domain.exceptions.chat_exceptions import *
 from backend.src.domain.exceptions.chat_exceptions import (
     ChatHistoryNotFound, NotAuthorizedToViewSession)
 from backend.src.domain.exceptions.user_exceptions import UserNotFound
@@ -34,8 +38,7 @@ from backend.src.presentation.schemas.rag_schemas.chat_schema import (
     ChatSessionResponse)
 from backend.src.presentation.schemas.rag_schemas.document_schema import \
     DocumentUploadResponse
-from fastapi import Query
-from typing import Optional
+
 # ----------------------------------------------------------
 # Dependency Factories (cached for performance)
 # ----------------------------------------------------------
@@ -79,12 +82,12 @@ def chat_with_context(
     current_user: User = Depends(get_current_user),
     rag_repo: LangGraphRAGRepositoryImpl = Depends(get_rag_repo),
     chat_repo: ChatSessionRepositoryImpl = Depends(get_chat_session_repo),
-    role_check: None = Depends(has_role("admin")),
+    # role_check: None = Depends(has_role("admin")),
     hash: Optional[str] = Query(None, description="Optional document hash"),
 ):
     """
     Chat with the RAG system using all prior documents.
-    Only admins can access this endpoint.
+    Only admins can access this endpoint. (But now is open for normal users too)
     """
     chat_use_case = ChatWithContext(
         rag_repo=rag_repo,
@@ -123,8 +126,9 @@ async def upload_document_to_process(
     """
     await validate_uploaded_file(file) # validate size and extension
     
-    doc_repo = DocumentRepositoryImpl(db=db, vector_repo=vector_repo)
-    doc_use_case = DocumentUploaderAndProcessor(
+    doc_repo = DocumentRepositoryImpl(db=db)
+    
+    upload_doc_use_case = AddAndProcessDocument(
         doc_repo=doc_repo,
         vector_repo=vector_repo,
     )
@@ -135,7 +139,7 @@ async def upload_document_to_process(
         temp_file_path = temp_file.name
 
     try:
-        response_message = doc_use_case.ingest_document(temp_file_path, user_id = current_user.user_id) #type: ignore
+        response_message = upload_doc_use_case.add_documents(temp_file_path, user_id = current_user.user_id) #type: ignore
         return DocumentUploadResponse(
             document_id=response_message.id,
             title=response_message.title,
@@ -143,6 +147,10 @@ async def upload_document_to_process(
             chunk_count=len(response_message.chunks),
             uploaded_at=response_message.uploaded_at
         )
+    except DocumentAlreadyProcessed as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to process document: {str(e)}")
     finally:
@@ -153,15 +161,17 @@ async def upload_document_to_process(
 
 
 @router.get("/documents", status_code=status.HTTP_200_OK)
-def list_processed_documents(
+def list_processed_documents_hashes(
     vector_repo: ChromaVectorStoreRepositoryImpl = Depends(get_vector_repo),
     role_check: None = Depends(has_role("admin")),
 ):
     """
     List all processed documents stored in the vector database.
     """
-    return vector_repo.processed_documents
-
+    processed_docs = GetAllProcessedDocsUseCase(vectorstore_repo=vector_repo).execute()
+    print(processed_docs)
+    
+    return processed_docs
 @router.get("/sessions/", response_model = List[ChatSessionResponse])
 def get_user_sessions(
     current_user: User = Depends(get_current_user),

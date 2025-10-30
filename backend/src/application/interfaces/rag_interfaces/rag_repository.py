@@ -37,13 +37,13 @@ class IRAGRepository(ABC):
         """
         pass
     @abstractmethod
-    def answer_query_with_specific_document(self, session_id: str, user_query: str, doc_hash: Optional[str]) -> str:
+    def answer_query_with_specific_document(self, session_id: str, user_query: str, document_hash: Optional[str]) -> str:
         """Run retrieval + generation + storage pipeline with a specific document.
         
         Args:
             session_id: The chat session identifier
             user_query: The user's query
-            doc_hash: The hash of the specific document to use
+            document_hash: The hash of the specific document to use
             
         Returns:
             The generated response string

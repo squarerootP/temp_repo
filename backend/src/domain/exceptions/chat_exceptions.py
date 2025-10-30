@@ -24,3 +24,6 @@ class SessionCreationError(Exception):
 class NotAuthorizedToViewSession(Exception):
     """Exception raised when you're not an admin and want to load another people session"""
     pass
+class DocumentAlreadyProcessed(Exception):
+    """Exception raised when trying to process a document that has already been processed."""
+    pass

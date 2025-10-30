@@ -65,42 +65,6 @@ class ChatSessionRepositoryImpl(IChatSessionRepository):
             for session in db_sessions
         ]
 
-    def update_session(self, session: ChatSession) -> None:
-        """
-        Update an existing chat session (messages, timestamps, metadata).
-        Ensures both session info and related messages are correctly persisted.
-        """
-        try:
-            orm_session = (
-                self.db.query(ChatSessionModel)
-                .filter_by(session_id=session.session_id)
-                .first()
-            )
-
-            if not orm_session:
-                raise ChatSessionNotFoundError
-
-            # --- Update metadata and timestamp ---
-            orm_session.updated_at = session.updated_at or datetime.now()
-
-            # --- Replace messages if provided ---
-            if session.messages:
-                orm_session.messages.clear()
-                for msg in session.messages:
-                    orm_session.messages.append(
-                        ChatMessageMapper.to_model(
-                            session_id=session.session_id,
-                            entity=msg
-                        )
-                    )
-
-            self.db.commit()
-            self.db.refresh(orm_session)
-
-        except SQLAlchemyError as e:
-            self.db.rollback()
-            raise RuntimeError(f"Database error while updating session: {e}") from e
-
     def delete_session(self, session_id: str) -> bool:
         """Delete a chat session and all its messages."""
         try:
@@ -141,6 +105,4 @@ class ChatSessionRepositoryImpl(IChatSessionRepository):
         except SQLAlchemyError as e:
             self.db.rollback()
             raise RuntimeError(f"Failed to add message to session: {e}") from e
-    def clear_session_messages(self, session_id: str) -> None:
-        return super().clear_session_messages(session_id)
     

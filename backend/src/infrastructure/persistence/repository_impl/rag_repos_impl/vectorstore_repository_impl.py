@@ -5,30 +5,31 @@ import os
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
+import chardet
 from langchain_chroma import Chroma
-from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-from backend.src.application.interfaces.rag_interfaces.document_repository import \
+from backend.src.application.interfaces.rag_interfaces.vectorstore_repo import \
     IVectorStoreRepository
 from backend.src.domain.entities.rag_entities.document import (Document,
                                                                DocumentChunk)
-from backend.src.infrastructure.adapters.rag.embedders.google_genai import \
-    create_embeddings
-from backend.src.infrastructure.adapters.rag.rag_config import rag_settings
+from backend.src.infrastructure.adapters.document_hasher import DocumentHasher
+from backend.src.infrastructure.config.settings import rag_settings
+from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.tools.doc_retriever_tool import \
+    get_embedding_function
 
 
 class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
     """Concrete vector store repository using Chroma and Google embeddings."""
 
-    def __init__(self, persist_directory: str = "./chroma_db"):
+    def __init__(self, persist_directory: str = rag_settings.CHROMA_PERSIST_DIR):
         self.persist_directory = persist_directory
         self.metadata_file = os.path.join(persist_directory, "document_metadata.json")
 
-        self.text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000,
-            chunk_overlap=150,
-            length_function=len,
+        self.text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
+            chunk_size=512,
+            chunk_overlap=50,
             separators=["\n\n", "\n", ". ", "? ", "! ", " ", ""],
             keep_separator=True,
         )
@@ -43,173 +44,141 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
 
 
     def _load_metadata(self):
+        """Load document metadata from JSON file"""
         if os.path.exists(self.metadata_file):
             try:
-                with open(self.metadata_file, "r") as f:
+                with open(self.metadata_file, 'r') as f:
                     self.processed_documents = json.load(f)
-            except Exception:
+                print(f"✓ Loaded metadata for {len(self.processed_documents)} documents")
+            except Exception as e:
+                print(f"⚠️  Failed to load metadata: {e}")
                 self.processed_documents = {}
 
     def _save_metadata(self):
-        os.makedirs(self.persist_directory, exist_ok=True)
-        with open(self.metadata_file, "w") as f:
-            json.dump(self.processed_documents, f, indent=2, default=str)
-
-    def _initialize_embeddings(self):
-        return create_embeddings()
-
+        """Save document metadata to JSON file"""
+        try:
+            os.makedirs(self.persist_directory, exist_ok=True)
+            with open(self.metadata_file, 'w') as f:
+                json.dump(self.processed_documents, f, indent=2, default=str)
+        except Exception as e:
+            print(f"⚠️  Failed to save metadata: {e}")
+            
     def _load_vectorstore(self):
+        """Load vectorstore from disk if exists"""
         if os.path.exists(self.persist_directory):
             try:
                 self._initialize_embeddings()
                 self.vectorstore = Chroma(
                     persist_directory=self.persist_directory,
                     embedding_function=self.embeddings,
-                    collection_metadata={"hnsw:space": "cosine"},
+                    collection_metadata={"hnsw:space": "cosine"}
                 )
-            except Exception:
-                self.vectorstore = None
+                print(f"✓ Loaded vectorstore with {self.vectorstore._collection.count()} chunks")
+            except Exception as e:
+                print(f"⚠️  Failed to load vectorstore: {e}")
+                self.vectorstore = None            
 
-    def _calculate_file_hash(self, file_path: str) -> str:
-        hasher = hashlib.sha256()
-        with open(file_path, "rb") as f:
-            for chunk in iter(lambda: f.read(8192), b""):
-                hasher.update(chunk)
-        return hasher.hexdigest()
+    def _initialize_embeddings(self):
+        return get_embedding_function()
 
+    
+    # ==== CORE METHODS ====
+    def process_document(self, file_path: str, hash: str) -> Document:
+        """Load, hash, chunk, and prepare a document for storage."""
 
-    def add_document(self, pdf_path: str) -> Dict[str, Any]:
-        """Load a PDF, split it, embed chunks, and persist to vectorstore."""
-        if not os.path.isfile(pdf_path):
-            raise FileNotFoundError(f"File not found: {pdf_path}")
-
-        file_hash = self._calculate_file_hash(pdf_path)
-
-        # Skip duplicates
-        if file_hash in self.processed_documents:
-            self.current_document_hash = file_hash
-            return {"status": "duplicate", "hash": file_hash}
-
-        self._initialize_embeddings()
-        loader = PyPDFLoader(pdf_path)
-        documents = loader.load()
-        splits = self.text_splitter.split_documents(documents)
-
-        for i, split in enumerate(splits):
-            split.metadata.update(
-                {
-                    "document_hash": file_hash,
-                    "chunk_id": f"{file_hash[:8]}_chunk_{i}",
-                    "source_file": os.path.basename(pdf_path),
+        try:
+            # Read file
+            with open(file_path, "rb") as file:
+                raw_data = file.read()
+                result = chardet.detect(raw_data)
+                encoding = result['encoding'] if result['encoding'] else 'utf-8'
+            with open(file_path, "r", encoding=encoding) as file:
+                content = file.read()
+            # Load content
+            documents = TextLoader(file_path, encoding="utf-8").load()
+            # Chunking
+            chunks = self.text_splitter.split_documents(documents)
+            
+            for i, chunk in enumerate(chunks):
+                chunk.metadata.update({
+                    "document_hash": hash,
+                    "chunk_id": f"{hash[:8]}_chunk_{i}",
+                    "source_file": os.path.basename(file_path),
                     "chunk_index": i,
-                    "total_chunks": len(splits),
-                }
-            )
+                    "total_chunks": len(chunks)
+                })      
 
-        BATCH_SIZE = 50
-        if self.vectorstore is None:
-            first_batch = splits[:BATCH_SIZE]
-            first_ids = [doc.metadata["chunk_id"] for doc in first_batch]
+            if not self.vectorstore:
+                self._initialize_embeddings()
+                self.vectorstore = Chroma.from_documents(
+                    documents=chunks,
+                    embedding=self.embeddings,
+                    persist_directory=self.persist_directory,
+                    collection_metadata={"hnsw:space": "cosine"},
+                    ids=[chunk.metadata["chunk_id"] for chunk in chunks]
+                )
+            
+            self.processed_documents[hash] = {
+                "filename": os.path.basename(file_path),
+                "chunk_count": len(chunks),
+                "chunk_ids": [chunk.metadata["chunk_id"] for chunk in chunks]
+            }
+            
+            self._save_metadata()
+            
+            document_entity = Document(
+                id=hash,
+                title=os.path.basename(file_path),
+                content=content,
+                hash=hash,)
+            
+            return document_entity
+        except Exception as e:
+            raise RuntimeError(f"Failed to process document {file_path}: {e}")
+
+    def add_chunks_to_vectorstore(self, chunks: List[Any], chunk_ids: List[str]):
+        """Add new chunks to existing vectorstore"""
+        if not self.vectorstore:
+            self._initialize_embeddings()
             self.vectorstore = Chroma.from_documents(
-                documents=first_batch,
+                documents=chunks,
                 embedding=self.embeddings,
                 persist_directory=self.persist_directory,
                 collection_metadata={"hnsw:space": "cosine"},
-                ids=first_ids,
+                ids=chunk_ids
+            )
+        else:
+            self.vectorstore.add_documents(
+                documents=chunks,
+                ids=chunk_ids
             )
 
-        for i in range(BATCH_SIZE, len(splits), BATCH_SIZE):
-            batch = splits[i : i + BATCH_SIZE]
-            ids = [doc.metadata["chunk_id"] for doc in batch]
-            self.vectorstore.add_documents(batch, ids=ids)
-            gc.collect()
 
-        self.processed_documents[file_hash] = {
-            "filename": os.path.basename(pdf_path),
-            "upload_time": datetime.now().isoformat(),
-            "chunk_count": len(splits),
-            "file_size": os.path.getsize(pdf_path),
-            "chunk_ids": [d.metadata["chunk_id"] for d in splits],
-        }
-        self._save_metadata()
-        self.current_document_hash = file_hash
+    def get_similar_chunks(self, query: str, k: int = 4) -> List[Any]:
+        """Retrieve similar chunks for a query"""
+        if not self.vectorstore:
+            raise RuntimeError("Vector store not initialized")
+        results = self.vectorstore.similarity_search(query, k=k)
+        return results
 
-        return {"status": "success", "hash": file_hash, "chunks": len(splits)}
-
-    def delete_document(self, document_hash: str) -> bool:
-        """Remove all chunks and metadata for a document."""
+    def delete_document_chunks(self, document_hash: str) -> bool:
+        """Delete all chunks for a document"""
         if document_hash not in self.processed_documents:
             return False
-        try:
-            chunk_ids = self.processed_documents[document_hash].get("chunk_ids", [])
-            if chunk_ids and self.vectorstore:
-                self.vectorstore._collection.delete(ids=chunk_ids)
-            del self.processed_documents[document_hash]
-            self._save_metadata()
-            if self.current_document_hash == document_hash:
-                self.current_document_hash = None
-            return True
-        except Exception:
-            return False
-
-    def get_retriever(self, k: int = 4, document_hash: Optional[str] = None):
-        """Return a retriever with optional filtering by document hash."""
-        if not self.vectorstore:
-            raise ValueError("Vectorstore not initialized")
-        selected_hash = document_hash or self.current_document_hash
-        kwargs = {"k": k}
-        if selected_hash:
-            kwargs["filter"] = {"document_hash": selected_hash}  # type: ignore
-        return self.vectorstore.as_retriever(
-            search_type="similarity", search_kwargs=kwargs
-        )
-
-    def save_embedding(self, document: Document, embedding: Any) -> None:
-        """Save a vector embedding to the vectorstore."""
-        if not self.vectorstore:
-            self._load_vectorstore()
-
-        if not self.vectorstore:
-            raise RuntimeError("Vectorstore is not initialized")
-
-        self.vectorstore.add_texts(
-            texts=[document.content],
-            metadatas=[document.metadata],
-            ids=[embedding.id],
-        )
-
-    def get_embedding(self, doc_hash: str) -> Optional[Any]:
-        """Retrieve an embedding vector for a document by its hash."""
-        if not self.vectorstore:
-            self._load_vectorstore()
-
-        if not self.vectorstore:
-            return None
-
-        results = self.vectorstore._collection.get(where={"document_hash": doc_hash})
-        if results and results.get("embeddings"):
-            return Any(
-                id=doc_hash,
-                vector=results["embeddings"][0], #type: ignore
-                metadata={"document_hash": doc_hash},
-            )
-        return None
-
-    def generate_embedding(self, text: str, model: Optional[str] = None) -> List[float]:
-        """Generate an embedding vector for arbitrary text."""
-        self._initialize_embeddings()
-        embedding_vector = self.embeddings.embed_query(text)  # type: ignore
-        return embedding_vector
-
-    def get_chunk_count(self) -> int:
-        return super().get_chunk_count()
-    def delete_document_chunks(self, document_id: str) -> bool:
-        return super().delete_document_chunks(document_id)
-    def add_chunks(self, chunks: List[DocumentChunk]) -> int:
-        return super().add_chunks(chunks)
-    def search_similar(self, query: str, k: int = 4) -> List[DocumentChunk]:
-        return super().search_similar(query, k)
-    
-    def list_documents_hashses(self):
-        return list(self.processed_documents.keys())
         
+        chunk_ids = self.processed_documents[document_hash]["chunk_ids"]
+        self.vectorstore._collection.delete(ids=chunk_ids) #type: ignore
+        del self.processed_documents[document_hash]
+        self._save_metadata()
+        return True
+
+    def get_document_chunks(self, document_hash: str) -> List[DocumentChunk]:
+        """Retrieve all chunks for a document"""
+        if document_hash not in self.processed_documents:
+            return []
+        
+        chunk_ids = self.processed_documents[document_hash]["chunk_ids"]
+        return self.vectorstore.get(ids=chunk_ids) #type: ignore
+    
+    def get_all_processed_docs(self) -> List[Any]:
+        return list(self.processed_documents.keys())

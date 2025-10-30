@@ -1,4 +1,5 @@
 import os
+from functools import lru_cache
 from typing import Any, Dict, Optional, cast
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -9,27 +10,34 @@ from langchain_community.document_loaders import TextLoader
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from pydantic import BaseModel, Field, SecretStr
 
-from backend.src.infrastructure.config.settings import api_settings
+from backend.src.infrastructure.adapters.document_hasher import DocumentHasher
+from backend.src.infrastructure.config.settings import (api_settings,
+                                                        db_settings,
+                                                        rag_settings)
 
 # --- Configuration ---
-CHROMA_PERSIST_DIR = "./chroma_db"
-TEXT_FILES = ["data/alice_in_wonderland.txt", "data/gutenberg.txt"]
+CHROMA_PERSIST_DIR = rag_settings.CHROMA_PERSIST_DIR
+TEXT_FILES = ["data/alice_in_wonderland.txt"]
 GOOGLE_API_KEY = api_settings.GOOGLE_API_KEY
 EMBEDDING_MODEL = f"models/{api_settings.GOOGLE_EMBEDDING_MODEL}"
 
 # --- Embedding Function ---
-embedding_function = GoogleGenerativeAIEmbeddings(
-    model=EMBEDDING_MODEL,
-    google_api_key=cast(SecretStr, GOOGLE_API_KEY),
-    task_type="retrieval_document",
-)
+@lru_cache(maxsize=1)
+def get_embedding_function() -> GoogleGenerativeAIEmbeddings:
+    embedding_function = GoogleGenerativeAIEmbeddings(
+        model=EMBEDDING_MODEL,
+        google_api_key=cast(SecretStr, GOOGLE_API_KEY),
+        task_type="retrieval_document",
+    )
+    return embedding_function
 
+embedding_function = get_embedding_function()
 
 class RetrieverInput(BaseModel):
     query: str = Field(description="Search query string to find information in the documents.")
 
 
-def get_retriever_tool(doc_hash: Optional[str] = None) -> Tool:
+def get_retriever_tool(document_hash: Optional[str] = None) -> Tool:
     """
     Creates and returns a retriever tool.
     If the vector database exists, it loads it.
@@ -46,7 +54,11 @@ def get_retriever_tool(doc_hash: Optional[str] = None) -> Tool:
         all_docs = []
         for file_path in TEXT_FILES:
             loader = TextLoader(file_path, encoding="utf-8")
-            all_docs.extend(loader.load())
+            docs = loader.load()
+            file_hash = DocumentHasher.hash_file(file_path)
+            for doc in docs:
+                doc.metadata["document_hash"] = file_hash
+            all_docs.extend(docs)
 
         text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
             chunk_size=512, chunk_overlap=20
@@ -57,11 +69,14 @@ def get_retriever_tool(doc_hash: Optional[str] = None) -> Tool:
             embedding=embedding_function,
             persist_directory=CHROMA_PERSIST_DIR,
         )
+    print(vectorstore._collection.get(include=["metadatas"], limit=10))
+
 
     # 3. Create the retriever and the tool
-    if doc_hash: 
+    if document_hash: 
+        print("we do have document_hash")
         retriever = vectorstore.as_retriever(
-            search_kwargs={"k": 2, "filter": {"doc_hash": doc_hash}
+            search_kwargs={"k": 2, "filter": {"document_hash": document_hash}
                            }
         )
     else:
@@ -79,10 +94,3 @@ def get_retriever_tool(doc_hash: Optional[str] = None) -> Tool:
     )
 
     return retriever_tool #type: ignore
-
-if __name__ == "__main__":
-    # This block allows you to test this file directly
-    print("Testing retriever tool creation...")
-    tool = get_retriever_tool()
-    print("Tool created successfully!")
-    print(f"Tool Name: {tool.name}")

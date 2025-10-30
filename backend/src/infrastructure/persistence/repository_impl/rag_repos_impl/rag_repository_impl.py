@@ -12,16 +12,18 @@ as the canonical provider of the IRAGRepository contract.
 
 from backend.src.application.interfaces.rag_interfaces.chat_session_repository import \
     IChatSessionRepository
-from backend.src.application.interfaces.rag_interfaces.document_repository import (
-    IDocumentRepository, IVectorStoreRepository)
+from backend.src.application.interfaces.rag_interfaces.document_repository import \
+    IDocumentRepository
 from backend.src.application.interfaces.rag_interfaces.rag_repository import \
     IRAGRepository
+from backend.src.application.interfaces.rag_interfaces.vectorstore_repo import \
+    IVectorStoreRepository
 from backend.src.domain.entities.rag_entities.chat_history import (ChatMessage,
                                                                    MessageRole)
 from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.graph_builder import \
     build_graph
 from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.llm.llm import (
-    get_llm, get_normal_llm)
+    get_big_llm, get_decent_llm, get_small_llm)
 
 logger = logging.getLogger(__name__)
 
@@ -43,15 +45,15 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
         self.vector_repo = vector_repo
         self.chat_repo = chat_repo
         self.graph = build_graph()
-        self.llm = get_llm()
-        self.simple_llm = get_normal_llm()
+        self.decent_llm = get_decent_llm()
+        self.big_llm = get_big_llm()    
 
     def initialize_graph(self) -> Any:
         """Return the compiled graph-like object (framework-agnostic)."""
         return self.graph
 
     # ---------- Helpers ----------
-    def _run_graph_and_get_last_content(self, messages_payload: List[tuple], query: str, doc_hash: Optional[str] = None) -> str:
+    def _run_graph_and_get_last_content(self, messages_payload: List[tuple], query: str, document_hash: Optional[str] = None) -> str:
         """
         Run the compiled graph with given messages payload and return the final message.content.
         """
@@ -63,7 +65,7 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
                     "documents": [],
                     "search_results": [],
                     "web_search": "yes",
-                    "doc_hash": doc_hash,
+                    "document_hash": document_hash,
                 },
                 stream_mode="values",
             )
@@ -123,7 +125,7 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
 
         # Run the graph with a system/system-like prompt then a user summarization request
         try:
-            result = self.simple_llm.invoke(summarization_prompt).content
+            result = self.decent_llm.invoke(summarization_prompt).content
             return result or f"Conversation of {len(history)} messages about various topics." #type: ignore
         except Exception as e:
             logger.exception("summarize_history fallback: %s", e)
@@ -140,27 +142,33 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
 
         # Small, explicit instruction to the LLM to prefer context while keeping original intent
         prompt = f"""
-        You are a text rewriting engine. 
-        You will ONLY output a single rewritten user question, nothing else.
+        You are a precise text rewriting engine. 
+        Your goal is to rewrite the user's question so that it naturally and concisely includes any useful information from the given context.
 
-        Rewrite the following question so that it includes the relevant context.
-        Keep it concise and natural.
-        If you think you don't have enough information to rewrite the user message, just return the original text.
+        Rules:
+        - Output ONLY the rewritten question. Do NOT include any explanations, labels, or formatting.
+        - The rewritten question must sound natural and human-like.
+        - If the user’s question already makes sense without the context, keep it mostly the same.
+        - If the context provides missing details or references that clarify the query, integrate them smoothly.
+        - If the user’s query is vague, incomplete, or ambiguous, rewrite it into a clearer, more general question.
+        - If the query is completely unrelated to the context, ignore the context and output a neutral, general rewrite.
+        - If you don’t have enough information to confidently rewrite, just return the original text unchanged.
+        - If the user greets or says thanks, keep it as is.
 
         Context:
         {context}
 
-        Original question:
+        User’s original question:
         {query}
 
         Rewritten question:
         """
-
+        
         # Use the graph to produce a refined query
-        refined = self.simple_llm.invoke(prompt).content
+        refined = self.big_llm.invoke(prompt).content
         return refined or f"{query} {context}" # type: ignore
 
-    def answer_query_with_specific_document(self, session_id: str, user_query: str, doc_hash: Optional[str]) -> str:
+    def answer_query_with_specific_document(self, session_id: str, user_query: str, document_hash: Optional[str]) -> str:
         """
         Answer a query but instruct the retrieval component to focus on a specific document.
 
@@ -168,9 +176,6 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
         - Inject a system message that instructs retriever/tools/LLM to prioritize the document with given hash.
         - Then run the usual graph pipeline.
         - Persist messages to chat session.
-
-        NOTE: For stronger enforcement, implement a retriever method that accepts doc_hash
-        and use it inside your retriever tool (recommended).
         """
         
         try:
@@ -179,7 +184,7 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
                 ("user", user_query),
             ]
 
-            assistant_text = self._run_graph_and_get_last_content(messages_payload, user_query, doc_hash=doc_hash)
+            assistant_text = self._run_graph_and_get_last_content(messages_payload, user_query, document_hash=document_hash)
 
             if not assistant_text:
                 assistant_text = "I'm sorry — I couldn't find an answer in the specified document."

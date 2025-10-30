@@ -28,6 +28,7 @@ dependencies = [
     "langchain-tavily>=0.2.12",
     "langchain-openai>=0.3.35",
     "langgraph-cli[inmem]>=0.4.4",
+    "chardet>=5.2.0",
 ]
 
 [project.scripts]

@@ -2,8 +2,7 @@ from typing import List, Optional
 
 from backend.src.application.interfaces.rag_interfaces.chat_session_repository import \
     IChatSessionRepository
-from backend.src.domain.entities.rag_entities.chat_history import (ChatMessage,
-                                                                   ChatSession)
+from backend.src.domain.entities.rag_entities.chat_history import ChatSession
 
 
 def create_chat_session(

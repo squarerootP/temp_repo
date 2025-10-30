@@ -1,42 +1,43 @@
+import os
 from typing import List, Optional
 
-from backend.src.application.interfaces.rag_interfaces.document_repository import (
-    IDocumentRepository, IVectorStoreRepository)
-from backend.src.domain.entities.rag_entities.document import (Document,
-                                                               DocumentChunk)
+from backend.src.application.interfaces.rag_interfaces.document_repository import \
+    IDocumentRepository
+from backend.src.application.interfaces.rag_interfaces.vectorstore_repo import \
+    IVectorStoreRepository
+from backend.src.domain.entities.rag_entities.document import Document
+from backend.src.domain.exceptions.chat_exceptions import \
+    DocumentAlreadyProcessed
+from backend.src.infrastructure.adapters.document_hasher import DocumentHasher
 from logs.log_config import setup_logger
 
 doc_logger = setup_logger("document")
 
-class DocumentUploaderAndProcessor:
+class AddAndProcessDocument:
     """Coordinates document ingestion, embedding, and retrieval."""
 
     def __init__(self, doc_repo: IDocumentRepository, vector_repo: IVectorStoreRepository):
         self.doc_repo = doc_repo
         self.vector_repo = vector_repo
 
-    def ingest_document(self, file_path: str, user_id: int) -> Document:
+    def add_documents(self, file_path: str, user_id: int) -> Document:
         """Add a document if new, or skip if already processed."""
-        # Step 1: Process and hash
-        document = self.doc_repo.process_document(file_path)
+        if not os.path.isfile(file_path):
+            raise FileNotFoundError(f"File not found: {file_path}")
         
-        document_hash = self.doc_repo.hash_document(document)
-
-        # Step 2: Check for existing
+        document_hash = DocumentHasher.hash_file(file_path)
+        
+        # Check if document exists in database
         if self.doc_repo.document_exists(document_hash):
-            doc_logger.info(f"Document with hash {document_hash} already exists. Skipping ingestion.")
-            return self.doc_repo.get_document_by_hash(document_hash) #type: ignore
-
-        doc_logger.info(f"Ingesting new document: {document.title} with hash {document_hash}")
+            doc_logger.info(f"Document with hash {document_hash} already exists")
+            raise DocumentAlreadyProcessed(f"Document already exists with hash {document_hash}")
         
-        # Step 3: Chunk and embed
-        chunks = self.doc_repo.chunk_document(document)
-        num_added = self.vector_repo.add_chunks(chunks)
-        
+        # Process document through vector store
+        document = self.vector_repo.process_document(file_path, document_hash)
         document.user_id = user_id
 
-        # Step 4: Save metadata
+        # Save document metadata to database
         saved_doc = self.doc_repo.save_document(document)
-        print(f"Document {saved_doc.title} saved with {num_added} chunks.")
-        return saved_doc
+        doc_logger.info(f"Successfully processed and saved document {document_hash}")
 
+        return saved_doc
