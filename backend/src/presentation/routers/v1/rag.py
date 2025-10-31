@@ -7,14 +7,10 @@ from fastapi import (APIRouter, Depends, File, HTTPException, Query,
                      UploadFile, status)
 from sqlalchemy.orm import Session
 
-from backend.src.application.use_cases._rag_ops.chat_with_context import \
-    ChatWithContext
-from backend.src.application.use_cases._rag_ops.get_all_processed_docs import \
-    GetAllProcessedDocsUseCase
-from backend.src.application.use_cases._rag_ops.get_session import \
-    get_session_history
-from backend.src.application.use_cases._rag_ops.upload_doc import \
-    AddAndProcessDocument
+from backend.src.application.use_cases._rag_ops.chat_with_context import ChatWithContext
+from backend.src.application.use_cases._rag_ops.get_all_processed_docs import GetAllProcessedDocsUseCase
+from backend.src.application.use_cases._rag_ops.get_session import get_session_history
+from backend.src.application.use_cases._rag_ops.upload_doc import AddAndProcessDocument
 from backend.src.domain.entities.library_entities.user import User
 from backend.src.domain.exceptions.chat_exceptions import *
 from backend.src.domain.exceptions.chat_exceptions import (
@@ -31,13 +27,11 @@ from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.vecto
     ChromaVectorStoreRepositoryImpl
 from backend.src.infrastructure.web.auth_provider import (get_current_user,
                                                           has_role)
-from backend.src.infrastructure.web.file_validator import \
-    validate_uploaded_file
+from backend.src.infrastructure.web.file_validator import validate_uploaded_file
 from backend.src.presentation.schemas.rag_schemas.chat_schema import (
     ChatMessageRequest, ChatMessageResponse, ChatResponse, ChatSessionRequest,
     ChatSessionResponse)
-from backend.src.presentation.schemas.rag_schemas.document_schema import \
-    DocumentUploadResponse
+from backend.src.presentation.schemas.rag_schemas.document_schema import DocumentUploadResponse
 
 # ----------------------------------------------------------
 # Dependency Factories (cached for performance)
@@ -48,11 +42,9 @@ def get_vector_repo() -> ChromaVectorStoreRepositoryImpl:
     """Singleton instance of the Chroma vectorstore."""
     return ChromaVectorStoreRepositoryImpl()
 
-
 def get_chat_session_repo(db: Session = Depends(get_db)) -> ChatSessionRepositoryImpl:
     """Provides chat session repository per request."""
     return ChatSessionRepositoryImpl(db)
-
 
 def get_rag_repo(
     vector_repo: ChromaVectorStoreRepositoryImpl = Depends(get_vector_repo),
@@ -64,18 +56,17 @@ def get_rag_repo(
         chat_repo=chat_repo,
     )
 
-
-# ----------------------------------------------------------
-# Router Setup
-# ----------------------------------------------------------
-
 router = APIRouter(
     prefix="/rag",
-    tags=["RAG"]
+    tags=["RAG"],
+    responses={
+        404: {"description": "Not found"},
+        403: {"description": "Not authorized"},
+        500: {"description": "Internal server error"},
+    }
 )
 
-
-
+### CHAT WITH CONTEXT ENDPOINT, THIS MIGHT RECEIVE AND OPTIONAL HASH PARAMETER ###
 @router.post("/chat", response_model=ChatMessageResponse)
 def chat_with_context(
     chat_request: ChatMessageRequest,
@@ -89,13 +80,13 @@ def chat_with_context(
     Chat with the RAG system using all prior documents.
     Only admins can access this endpoint. (But now is open for normal users too)
     """
-    chat_use_case = ChatWithContext(
+    chat_with_context_use_case = ChatWithContext(
         rag_repo=rag_repo,
         chat_session_repo=chat_repo,
         hash=hash
     )
     try:
-        response_message = chat_use_case.generate_response(
+        response_message = chat_with_context_use_case.generate_response(
             user_id=current_user.user_id,  # type: ignore
             session_id=chat_request.session_id, # type: ignore
             query=chat_request.content,
@@ -108,10 +99,8 @@ def chat_with_context(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Internal RAG error: {str(e)}")
 
-# ----------------------------------------------------------
-# 3️⃣ Upload & Process Document
-# ----------------------------------------------------------
 
+### UPLOAD DOCUMENT, THIS WILL GO INTO THE VECTORSTORE AND THE NORMAL DB###
 @router.post("/documents", status_code=status.HTTP_201_CREATED, response_model=DocumentUploadResponse)
 async def upload_document_to_process(
     file: UploadFile = File(...),
@@ -159,7 +148,7 @@ async def upload_document_to_process(
 
 
 
-
+### LIST ALL PROCESSED DOCUMENTS IN VECTORSTORE ###
 @router.get("/documents", status_code=status.HTTP_200_OK)
 def list_processed_documents_hashes(
     vector_repo: ChromaVectorStoreRepositoryImpl = Depends(get_vector_repo),
@@ -183,6 +172,7 @@ def get_user_sessions(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to retrieve sessions: {str(e)}")
     
+### GET SESSION BY ID ENDPOINT ###
 @router.get("/sessions/{session_id}", response_model = ChatSessionResponse)
 def get_session_by_id(
     session_id: str,

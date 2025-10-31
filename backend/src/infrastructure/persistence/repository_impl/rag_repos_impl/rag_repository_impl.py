@@ -44,7 +44,7 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
     ):
         self.vector_repo = vector_repo
         self.chat_repo = chat_repo
-        self.graph = build_graph()
+        self.graph = build_graph(vector_repo=vector_repo) # type: ignore
         self.decent_llm = get_decent_llm()
         self.big_llm = get_big_llm()    
 
@@ -58,7 +58,7 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
         Run the compiled graph with given messages payload and return the final message.content.
         """
         try:
-            events = self.graph.stream(
+            events = self.graph.stream( #type: ignore
                 {
                     "query": query,
                     "messages": messages_payload,  # list of ("user", text)

@@ -1,10 +1,10 @@
 import os
 
 from fastapi import HTTPException, UploadFile, status
-
+from backend.src.infrastructure.config.settings import rag_settings
 # --- Configuration ---
-MAX_FILE_SIZE_MB = 5
-ALLOWED_EXTENSIONS = {".txt", ".pdf", ".docx", ".md"}
+MAX_FILE_SIZE_MB = rag_settings.MAX_FILE_SIZE_MB
+ALLOWED_EXTENSIONS = rag_settings.ALLOWED_EXTENSIONS
 
 
 async def validate_uploaded_file(file: UploadFile) -> None:

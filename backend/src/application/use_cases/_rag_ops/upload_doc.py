@@ -27,8 +27,7 @@ class AddAndProcessDocument:
         
         document_hash = DocumentHasher.hash_file(file_path)
         
-        # Check if document exists in database
-        if self.doc_repo.document_exists(document_hash):
+        if document_hash in self.vector_repo.get_all_processed_docs():
             doc_logger.info(f"Document with hash {document_hash} already exists")
             raise DocumentAlreadyProcessed(f"Document already exists with hash {document_hash}")
         
@@ -37,7 +36,14 @@ class AddAndProcessDocument:
         document.user_id = user_id
 
         # Save document metadata to database
-        saved_doc = self.doc_repo.save_document(document)
+        # saved_doc = self.doc_repo.save_document(document)
         doc_logger.info(f"Successfully processed and saved document {document_hash}")
 
-        return saved_doc
+        return Document(
+            id=document.id,
+            title=document.title,
+            user_id=document.user_id,
+            content=document.content,
+            hash=document.hash,
+            uploaded_at=document.uploaded_at
+        )

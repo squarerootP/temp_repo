@@ -1,6 +1,6 @@
 ROUTER_INSTRUCTION = """You are an expert at routing a user question to a vectorstore or web search or just simple greettings.
 
-The vectorstore contains documents related to books about Alice in Wonderland, Project Gutenberg and Dracula.
+The vectorstore contains documents related to books about Alice in Wonderland, Project Gutenberg, Romeo and Juliet, Price and Prejudice, Frankstein, and other classic literature.
 
 Use the vectorstore for questions on these topics. For all else, and especially for current events, use web-search.
 

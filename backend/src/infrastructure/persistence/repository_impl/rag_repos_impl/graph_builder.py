@@ -17,8 +17,9 @@ from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.tools
     get_retriever_tool
 from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.tools.search_tool import \
     search_web
-
-
+from backend.src.application.interfaces.rag_interfaces.vectorstore_repo import IVectorStoreRepository
+from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.vectorstore_repository_impl import \
+    ChromaVectorStoreRepositoryImpl
 # --- State ---
 class State(TypedDict):
     query: str
@@ -30,24 +31,44 @@ class State(TypedDict):
     
 
 # 1. Retrieve node
-def retrieve_node(state: State) -> State:
+def retrieve_node(state: State, vector_repo: ChromaVectorStoreRepositoryImpl) -> State:
     """Retrieve documents based on the query."""
     print("==Retrieving documents...")
     
     query = state["query"]
-    
     document_hash = state.get("document_hash", None)
     
-    retriever_tool = get_retriever_tool(document_hash=document_hash)
-    
-    retrieval_result = retriever_tool.invoke(query)
-    if isinstance(retrieval_result, list):
-        state['documents'].extend(retrieval_result)
-    elif isinstance(retrieval_result, Document):
-        state['documents'].append(retrieval_result)
-    else:
-        raise ValueError("Incompatible formats")
-    print("======Retrieved documents:", state['documents'])
+    try:
+        # Get documents from vector store
+        if document_hash:
+            docs_and_scores = vector_repo.vectorstore.similarity_search_with_relevance_scores( #type: ignore
+                query,
+                k=6,
+                filter={"document_hash": document_hash}
+            )
+        else:
+            docs_and_scores = vector_repo.vectorstore.similarity_search_with_relevance_scores( #type: ignore
+                query,
+                k=6
+            )
+        threshold = 0.7  # Adjust this threshold as needed
+        relevant_docs = [doc for doc, score in docs_and_scores if score >= threshold]
+        
+        if relevant_docs:
+            state['documents'].extend(relevant_docs)
+            print(f"Retrieved {len(relevant_docs)} relevant documents (score >= {threshold})")
+            print(state['documents'])
+        else:
+            print("No documents met the relevance threshold")
+            state['web_search'] = "yes"  # Fallback to web search
+            
+        print(f"Retrieved {len(state['documents'])} documents")
+        print("Sample document content:" + state['documents'][0].page_content[200:] + "...")
+        
+    except Exception as e:
+        print(f"Error retrieving documents: {e}")
+        # Don't fail completely, just return state without documents
+        
     return state
 
 # 2. Generate node
@@ -159,10 +180,13 @@ def only_greet(state: State) -> State:
     return state 
 
 # --- Main graph builder ---
-def build_graph():
+def build_graph(vector_repo: IVectorStoreRepository) -> StateGraph:
     graph = StateGraph(State)
     # add functionalities: retrieve, web_search, generate, grade_documents, only_greet
-    graph.add_node("retrieve", retrieve_node)
+    def retrieve_with_repo(state: State) -> State:
+        return retrieve_node(state, vector_repo) #type: ignore
+    
+    graph.add_node("retrieve", retrieve_with_repo)
     graph.add_node("web_search", web_search_node)
     graph.add_node("generate", generate_node)
     graph.add_node("grade_documents", grade_documents_node)
@@ -195,7 +219,7 @@ def build_graph():
     graph.add_edge("generate", END)
     graph.add_edge("only_greet", END)
 
-    return graph.compile()
+    return graph.compile() #type: ignore
 
 
 
@@ -213,23 +237,31 @@ def build_graph():
 
 # for testting only
 def main():
+    from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.vectorstore_repository_impl import ChromaVectorStoreRepositoryImpl
+    
+    vector_repo = ChromaVectorStoreRepositoryImpl()
+    app = build_graph(vector_repo)
+    
     print("Graph compiled. Multi-tool RAG agent ready.")
-    app = build_graph()
     while True:
         user_input = input("You: ")
         if user_input.lower() in ["quit", "exit", "q"]:
             break
 
-        events = app.stream(
-            {"query": user_input, "documents": [], "web_search": "yes", "messages": [], "document_hash": None}, #type: ignore
+        events = app.stream( #type: ignore
+            {
+                "query": user_input, 
+                "documents": [], 
+                "web_search": "yes", 
+                "messages": [], 
+                "document_hash": None
+            },
             stream_mode="values",
-        ) #type: ignore
-        final_event = dict()
+        )
         
+        final_event = dict()
         for event in events:
             final_event = event
         final_event["messages"][-1].pretty_print()
-
-
 if __name__ == "__main__":
     main()

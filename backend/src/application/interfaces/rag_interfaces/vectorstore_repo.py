@@ -16,7 +16,7 @@ class IVectorStoreRepository(ABC):
         pass
     
     @abstractmethod
-    def get_document_chunks(self, document_hash: str) -> List[Any]:
+    def get_document_chunks(self, query: str, document_hash: str, k: int = 6) -> List[Any]:
         pass
     
     @abstractmethod

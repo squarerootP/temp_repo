@@ -14,10 +14,24 @@ from backend.src.infrastructure.adapters.document_hasher import DocumentHasher
 from backend.src.infrastructure.config.settings import (api_settings,
                                                         db_settings,
                                                         rag_settings)
+from backend.src.application.interfaces.rag_interfaces.vectorstore_repo import IVectorStoreRepository
+from langchain.tools import StructuredTool
+from pydantic import BaseModel, Field
+from typing import Optional, List
+from langchain_core.documents import Document
 
 # --- Configuration ---
 CHROMA_PERSIST_DIR = rag_settings.CHROMA_PERSIST_DIR
-TEXT_FILES = ["data/alice_in_wonderland.txt"]
+METADATA_FILE = os.path.join(CHROMA_PERSIST_DIR, "document_metadata.json")
+TEXT_FILES_DIR = rag_settings.TEXT_FILES_DIR
+TEXT_FILES = [
+    "data/alice_in_wonderland.txt",
+    "data/frankeinstein.txt",
+    "data/gutenberg.txt",
+    "data/mobydick_or_the_white_whale.txt",
+    "data/price_and_prejudice.txt", 
+    "data/romeo_and_juliet.txt"
+]
 GOOGLE_API_KEY = api_settings.GOOGLE_API_KEY
 EMBEDDING_MODEL = f"models/{api_settings.GOOGLE_EMBEDDING_MODEL}"
 
@@ -29,68 +43,35 @@ def get_embedding_function() -> GoogleGenerativeAIEmbeddings:
         google_api_key=cast(SecretStr, GOOGLE_API_KEY),
         task_type="retrieval_document",
     )
+    # Test embedding
+    test_text = "This is a test embedding."
+    test_embedding = embedding_function.embed_query(test_text)
+    print(f"Embedding test successful. Vector dimension: {len(test_embedding)}")
+    
     return embedding_function
 
 embedding_function = get_embedding_function()
 
+
+
 class RetrieverInput(BaseModel):
-    query: str = Field(description="Search query string to find information in the documents.")
+    query: str = Field(description="The query to search for in the documents")
 
-
-def get_retriever_tool(document_hash: Optional[str] = None) -> Tool:
+def get_retriever_tool(vector_store_repo: IVectorStoreRepository, document_hash: Optional[str] = None) -> StructuredTool:
     """
-    Creates and returns a retriever tool.
-    If the vector database exists, it loads it.
-    If not, it builds the database from the source documents.
+    Creates a retriever tool that uses the provided vector store repository.
     """
-    if os.path.exists(CHROMA_PERSIST_DIR):
-        print("--- Loading existing Chroma database ---")
-        vectorstore = Chroma(
-            persist_directory=CHROMA_PERSIST_DIR,
-            embedding_function=embedding_function
-        )
-    else:
-        print("--- Building new Chroma database ---")
-        all_docs = []
-        for file_path in TEXT_FILES:
-            loader = TextLoader(file_path, encoding="utf-8")
-            docs = loader.load()
-            file_hash = DocumentHasher.hash_file(file_path)
-            for doc in docs:
-                doc.metadata["document_hash"] = file_hash
-            all_docs.extend(docs)
-
-        text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-            chunk_size=512, chunk_overlap=20
-        )
-        docs_splits = text_splitter.split_documents(all_docs)
-        vectorstore = Chroma.from_documents(
-            documents=docs_splits,
-            embedding=embedding_function,
-            persist_directory=CHROMA_PERSIST_DIR,
-        )
-    print(vectorstore._collection.get(include=["metadatas"], limit=10))
-
-
-    # 3. Create the retriever and the tool
-    if document_hash: 
-        print("we do have document_hash")
-        retriever = vectorstore.as_retriever(
-            search_kwargs={"k": 2, "filter": {"document_hash": document_hash}
-                           }
-        )
-    else:
-        retriever = vectorstore.as_retriever(
-            search_kwargs={"k": 2}
-        )
-    
-    # Create a tool using create_retriever_tool for consistent parameter handling
-    retriever_tool = StructuredTool.from_function(
-        func=lambda query: retriever.invoke(query),
+    def retrieve(query: str) -> List[Document]:
+        print(f"Retrieve called with document_hash: {document_hash!r}")  # !r shows quotes
+        if document_hash is not None:
+            print("Using get_document_chunks")
+            return vector_store_repo.get_document_chunks(query, document_hash)
+        print("Using get_similar_chunks")
+        return vector_store_repo.get_similar_chunks(query)
+            
+    return StructuredTool.from_function(
+        func=retrieve,
         name="Retriever",
-        description="""Useful for answering questions about Alice in Wonderland and Project Gutenberg.
-        Use this tool first before considering web search.""",
-        args_schema=RetrieverInput,
+        description="Retrieves relevant information from stored documents",
+        args_schema=RetrieverInput
     )
-
-    return retriever_tool #type: ignore

@@ -29,10 +29,12 @@ class RAGSettings(BaseSettings):
     CEREBRAS_API_KEY: str
     GOOGLE_API_KEY: str 
     APP_VERSION: str 
+    CHUNK_SIZE: int
+    CHUNK_OVERLAP: int
 
     # Optional settings with defaults
     MAX_FILE_SIZE_MB: int = 5
-    ALLOWED_EXTENSIONS: Set[str] = {".txt", ".pdf", ".docx", ".md", ".csv"}
+    ALLOWED_EXTENSIONS: Set[str] = {".txt"}
 
     model_config = SettingsConfigDict(
         env_file=ENV_FILE_PATH,

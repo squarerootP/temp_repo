@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional
 
 import chardet
 from langchain_chroma import Chroma
-from langchain_community.document_loaders import PyPDFLoader, TextLoader
+from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from backend.src.application.interfaces.rag_interfaces.vectorstore_repo import \
@@ -18,7 +18,16 @@ from backend.src.infrastructure.adapters.document_hasher import DocumentHasher
 from backend.src.infrastructure.config.settings import rag_settings
 from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.tools.doc_retriever_tool import \
     get_embedding_function
+from backend.src.infrastructure.config.settings import rag_settings
+from langchain_core.documents import Document as LCDocument
 
+TEXT_FILES_DIR = rag_settings.TEXT_FILES_DIR
+CHROMA_PERSIST_DIR = rag_settings.CHROMA_PERSIST_DIR
+TEXT_FILES = [
+    os.path.join(TEXT_FILES_DIR, f)
+    for f in os.listdir(TEXT_FILES_DIR) if os.path.isfile(os.path.join(TEXT_FILES_DIR, f)) and f.lower().endswith('.txt')
+]
+print("=== Text files to process:", TEXT_FILES)
 
 class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
     """Concrete vector store repository using Chroma and Google embeddings."""
@@ -28,8 +37,8 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
         self.metadata_file = os.path.join(persist_directory, "document_metadata.json")
 
         self.text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-            chunk_size=512,
-            chunk_overlap=50,
+            chunk_size=rag_settings.CHUNK_SIZE,
+            chunk_overlap=rag_settings.CHUNK_OVERLAP,
             separators=["\n\n", "\n", ". ", "? ", "! ", " ", ""],
             keep_separator=True,
         )
@@ -64,10 +73,10 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
             print(f"⚠️  Failed to save metadata: {e}")
             
     def _load_vectorstore(self):
-        """Load vectorstore from disk if exists"""
+        """Load vectorstore from disk if exists or create new one from documents"""
         if os.path.exists(self.persist_directory):
             try:
-                self._initialize_embeddings()
+                self.embeddings = self._initialize_embeddings()
                 self.vectorstore = Chroma(
                     persist_directory=self.persist_directory,
                     embedding_function=self.embeddings,
@@ -76,7 +85,40 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
                 print(f"✓ Loaded vectorstore with {self.vectorstore._collection.count()} chunks")
             except Exception as e:
                 print(f"⚠️  Failed to load vectorstore: {e}")
-                self.vectorstore = None            
+                self.vectorstore = None
+        else:
+            try:
+                print("Creating new vectorstore...")
+                self.embeddings = self._initialize_embeddings()
+                
+                # Process all documents first
+                all_chunks = []
+                all_chunk_ids = []
+                
+                for text_file_path in TEXT_FILES:
+                    file_hash = DocumentHasher.hash_file(text_file_path)
+                    if file_hash not in self.processed_documents:
+                        print(f"Processing document: {text_file_path}")
+                        document = self.process_document(text_file_path, file_hash)
+                        # Note: process_document already adds chunks to processed_documents
+                        
+                # Create vectorstore with all documents at once
+                if self.processed_documents:
+                    print("Initializing vectorstore with processed documents...")
+                    self.vectorstore = Chroma(
+                        persist_directory=self.persist_directory,
+                        embedding_function=self.embeddings,
+                        collection_metadata={"hnsw:space": "cosine"}
+                    )
+
+                    print(f"✓ Created and persisted vectorstore with {self.vectorstore._collection.count()} chunks")
+                else:
+                    print("No documents to process")
+                    
+            except Exception as e:
+                print(f"⚠️  Failed to create vectorstore: {e}")
+                self.vectorstore = None
+                raise
 
     def _initialize_embeddings(self):
         return get_embedding_function()
@@ -154,12 +196,7 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
             )
 
 
-    def get_similar_chunks(self, query: str, k: int = 4) -> List[Any]:
-        """Retrieve similar chunks for a query"""
-        if not self.vectorstore:
-            raise RuntimeError("Vector store not initialized")
-        results = self.vectorstore.similarity_search(query, k=k)
-        return results
+
 
     def delete_document_chunks(self, document_hash: str) -> bool:
         """Delete all chunks for a document"""
@@ -172,13 +209,40 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
         self._save_metadata()
         return True
 
-    def get_document_chunks(self, document_hash: str) -> List[DocumentChunk]:
-        """Retrieve all chunks for a document"""
-        if document_hash not in self.processed_documents:
+    def get_similar_chunks(self, query: str, k: int = 4) -> List[LCDocument]:
+        """Get similar chunks for a query"""
+        if not self.vectorstore:
+            return []
+            
+        try:
+            results = self.vectorstore.similarity_search(query, k=k)
+            
+            documents = results
+            print("+++++Hello")
+            print(document.page_content for document in documents)
+            
+            return documents
+            
+        except Exception as e:
+            print(f"Error in similarity search: {e}")
             return []
         
-        chunk_ids = self.processed_documents[document_hash]["chunk_ids"]
-        return self.vectorstore.get(ids=chunk_ids) #type: ignore
+    def get_document_chunks(self, query: str, document_hash: str, k: int = 6) -> List[LCDocument]:
+        """Get all chunks for a specific document"""
+        if not self.vectorstore:
+            return []
+            
+        try:
+            # results = self.vectorstore.similarity_search(query, k=1000, filter={"document_hash": document_hash})
+            
+            return self.vectorstore.similarity_search(
+                query, k=k, filter={"document_hash": document_hash}
+            )
+            
+            
+        except Exception as e:
+            print(f"Error retrieving document chunks: {e}")
+            return []
     
     def get_all_processed_docs(self) -> List[Any]:
         return list(self.processed_documents.keys())
