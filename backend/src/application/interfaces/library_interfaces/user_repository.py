@@ -6,7 +6,7 @@ from backend.src.domain.entities.library_entities.user import User
 
 class UserRepository(ABC):
     @abstractmethod
-    def create(self, user: dict) -> User:
+    def create(self, user: User) -> User:
         pass
 
     @abstractmethod
@@ -22,11 +22,22 @@ class UserRepository(ABC):
         pass
 
     @abstractmethod
-    def list(self, skip: Optional[int|None] = 0, limit: Optional[int|None] = 100) -> List[User]:
+    def get_by_username(self, username: str) -> Optional[User]:
         pass
 
     @abstractmethod
-    def search(self, text_to_search: str, skip: Optional[int|None] = 0, limit: Optional[int|None] = 100) -> List[User]:
+    def list(
+        self, skip: Optional[int | None] = 0, limit: Optional[int | None] = 100
+    ) -> List[User]:
+        pass
+
+    @abstractmethod
+    def search(
+        self,
+        text_to_search: str,
+        skip: Optional[int | None] = 0,
+        limit: Optional[int | None] = 100,
+    ) -> List[User]:
         pass
 
     @abstractmethod

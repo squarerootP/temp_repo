@@ -7,7 +7,7 @@ def setup_logger(log_name: str):
 
     if not logger.handlers:  # Prevent duplicate handlers
         handler = logging.FileHandler(f"logs/{log_name}.log")
-        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
         handler.setFormatter(formatter)
         logger.addHandler(handler)
 

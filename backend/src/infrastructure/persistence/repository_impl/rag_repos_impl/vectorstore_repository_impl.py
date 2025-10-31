@@ -8,26 +8,26 @@ from typing import Any, Dict, List, Optional
 import chardet
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import TextLoader
+from langchain_core.documents import Document as LCDocument
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from backend.src.application.interfaces.rag_interfaces.vectorstore_repo import \
     IVectorStoreRepository
-from backend.src.domain.entities.rag_entities.document import (Document,
-                                                               DocumentChunk)
+from backend.src.domain.entities.rag_entities.document import Document
 from backend.src.infrastructure.adapters.document_hasher import DocumentHasher
 from backend.src.infrastructure.config.settings import rag_settings
 from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.tools.doc_retriever_tool import \
     get_embedding_function
-from backend.src.infrastructure.config.settings import rag_settings
-from langchain_core.documents import Document as LCDocument
 
 TEXT_FILES_DIR = rag_settings.TEXT_FILES_DIR
 CHROMA_PERSIST_DIR = rag_settings.CHROMA_PERSIST_DIR
 TEXT_FILES = [
     os.path.join(TEXT_FILES_DIR, f)
-    for f in os.listdir(TEXT_FILES_DIR) if os.path.isfile(os.path.join(TEXT_FILES_DIR, f)) and f.lower().endswith('.txt')
+    for f in os.listdir(TEXT_FILES_DIR)
+    if os.path.isfile(os.path.join(TEXT_FILES_DIR, f)) and f.lower().endswith(".txt")
 ]
 print("=== Text files to process:", TEXT_FILES)
+
 
 class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
     """Concrete vector store repository using Chroma and Google embeddings."""
@@ -51,14 +51,15 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
         self._load_metadata()
         self._load_vectorstore()
 
-
     def _load_metadata(self):
         """Load document metadata from JSON file"""
         if os.path.exists(self.metadata_file):
             try:
-                with open(self.metadata_file, 'r') as f:
+                with open(self.metadata_file, "r") as f:
                     self.processed_documents = json.load(f)
-                print(f"✓ Loaded metadata for {len(self.processed_documents)} documents")
+                print(
+                    f"✓ Loaded metadata for {len(self.processed_documents)} documents"
+                )
             except Exception as e:
                 print(f"⚠️  Failed to load metadata: {e}")
                 self.processed_documents = {}
@@ -67,11 +68,11 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
         """Save document metadata to JSON file"""
         try:
             os.makedirs(self.persist_directory, exist_ok=True)
-            with open(self.metadata_file, 'w') as f:
+            with open(self.metadata_file, "w") as f:
                 json.dump(self.processed_documents, f, indent=2, default=str)
         except Exception as e:
             print(f"⚠️  Failed to save metadata: {e}")
-            
+
     def _load_vectorstore(self):
         """Load vectorstore from disk if exists or create new one from documents"""
         if os.path.exists(self.persist_directory):
@@ -80,9 +81,11 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
                 self.vectorstore = Chroma(
                     persist_directory=self.persist_directory,
                     embedding_function=self.embeddings,
-                    collection_metadata={"hnsw:space": "cosine"}
+                    collection_metadata={"hnsw:space": "cosine"},
                 )
-                print(f"✓ Loaded vectorstore with {self.vectorstore._collection.count()} chunks")
+                print(
+                    f"✓ Loaded vectorstore with {self.vectorstore._collection.count()} chunks"
+                )
             except Exception as e:
                 print(f"⚠️  Failed to load vectorstore: {e}")
                 self.vectorstore = None
@@ -90,31 +93,33 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
             try:
                 print("Creating new vectorstore...")
                 self.embeddings = self._initialize_embeddings()
-                
+
                 # Process all documents first
                 all_chunks = []
                 all_chunk_ids = []
-                
+
                 for text_file_path in TEXT_FILES:
                     file_hash = DocumentHasher.hash_file(text_file_path)
                     if file_hash not in self.processed_documents:
                         print(f"Processing document: {text_file_path}")
                         document = self.process_document(text_file_path, file_hash)
                         # Note: process_document already adds chunks to processed_documents
-                        
+
                 # Create vectorstore with all documents at once
                 if self.processed_documents:
                     print("Initializing vectorstore with processed documents...")
                     self.vectorstore = Chroma(
                         persist_directory=self.persist_directory,
                         embedding_function=self.embeddings,
-                        collection_metadata={"hnsw:space": "cosine"}
+                        collection_metadata={"hnsw:space": "cosine"},
                     )
 
-                    print(f"✓ Created and persisted vectorstore with {self.vectorstore._collection.count()} chunks")
+                    print(
+                        f"✓ Created and persisted vectorstore with {self.vectorstore._collection.count()} chunks"
+                    )
                 else:
                     print("No documents to process")
-                    
+
             except Exception as e:
                 print(f"⚠️  Failed to create vectorstore: {e}")
                 self.vectorstore = None
@@ -123,7 +128,6 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
     def _initialize_embeddings(self):
         return get_embedding_function()
 
-    
     # ==== CORE METHODS ====
     def process_document(self, file_path: str, hash: str) -> Document:
         """Load, hash, chunk, and prepare a document for storage."""
@@ -133,22 +137,24 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
             with open(file_path, "rb") as file:
                 raw_data = file.read()
                 result = chardet.detect(raw_data)
-                encoding = result['encoding'] if result['encoding'] else 'utf-8'
+                encoding = result["encoding"] if result["encoding"] else "utf-8"
             with open(file_path, "r", encoding=encoding) as file:
                 content = file.read()
             # Load content
             documents = TextLoader(file_path, encoding="utf-8").load()
             # Chunking
             chunks = self.text_splitter.split_documents(documents)
-            
+
             for i, chunk in enumerate(chunks):
-                chunk.metadata.update({
-                    "document_hash": hash,
-                    "chunk_id": f"{hash[:8]}_chunk_{i}",
-                    "source_file": os.path.basename(file_path),
-                    "chunk_index": i,
-                    "total_chunks": len(chunks)
-                })      
+                chunk.metadata.update(
+                    {
+                        "document_hash": hash,
+                        "chunk_id": f"{hash[:8]}_chunk_{i}",
+                        "source_file": os.path.basename(file_path),
+                        "chunk_index": i,
+                        "total_chunks": len(chunks),
+                    }
+                )
 
             if not self.vectorstore:
                 self._initialize_embeddings()
@@ -157,23 +163,24 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
                     embedding=self.embeddings,
                     persist_directory=self.persist_directory,
                     collection_metadata={"hnsw:space": "cosine"},
-                    ids=[chunk.metadata["chunk_id"] for chunk in chunks]
+                    ids=[chunk.metadata["chunk_id"] for chunk in chunks],
                 )
-            
+
             self.processed_documents[hash] = {
                 "filename": os.path.basename(file_path),
                 "chunk_count": len(chunks),
-                "chunk_ids": [chunk.metadata["chunk_id"] for chunk in chunks]
+                "chunk_ids": [chunk.metadata["chunk_id"] for chunk in chunks],
             }
-            
+
             self._save_metadata()
-            
+
             document_entity = Document(
-                id=hash,
+                book_isbn=hash,
                 title=os.path.basename(file_path),
                 content=content,
-                hash=hash,)
-            
+                hash=hash,
+            )
+
             return document_entity
         except Exception as e:
             raise RuntimeError(f"Failed to process document {file_path}: {e}")
@@ -187,24 +194,18 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
                 embedding=self.embeddings,
                 persist_directory=self.persist_directory,
                 collection_metadata={"hnsw:space": "cosine"},
-                ids=chunk_ids
+                ids=chunk_ids,
             )
         else:
-            self.vectorstore.add_documents(
-                documents=chunks,
-                ids=chunk_ids
-            )
-
-
-
+            self.vectorstore.add_documents(documents=chunks, ids=chunk_ids)
 
     def delete_document_chunks(self, document_hash: str) -> bool:
         """Delete all chunks for a document"""
         if document_hash not in self.processed_documents:
             return False
-        
+
         chunk_ids = self.processed_documents[document_hash]["chunk_ids"]
-        self.vectorstore._collection.delete(ids=chunk_ids) #type: ignore
+        self.vectorstore._collection.delete(ids=chunk_ids)  # type: ignore
         del self.processed_documents[document_hash]
         self._save_metadata()
         return True
@@ -213,36 +214,37 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
         """Get similar chunks for a query"""
         if not self.vectorstore:
             return []
-            
+
         try:
             results = self.vectorstore.similarity_search(query, k=k)
-            
+
             documents = results
             print("+++++Hello")
             print(document.page_content for document in documents)
-            
+
             return documents
-            
+
         except Exception as e:
             print(f"Error in similarity search: {e}")
             return []
-        
-    def get_document_chunks(self, query: str, document_hash: str, k: int = 6) -> List[LCDocument]:
+
+    def get_document_chunks(
+        self, query: str, document_hash: str, k: int = 6
+    ) -> List[LCDocument]:
         """Get all chunks for a specific document"""
         if not self.vectorstore:
             return []
-            
+
         try:
             # results = self.vectorstore.similarity_search(query, k=1000, filter={"document_hash": document_hash})
-            
+
             return self.vectorstore.similarity_search(
                 query, k=k, filter={"document_hash": document_hash}
             )
-            
-            
+
         except Exception as e:
             print(f"Error retrieving document chunks: {e}")
             return []
-    
+
     def get_all_processed_docs(self) -> List[Any]:
         return list(self.processed_documents.keys())

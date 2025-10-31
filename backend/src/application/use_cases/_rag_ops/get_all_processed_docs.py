@@ -9,4 +9,3 @@ class GetAllProcessedDocsUseCase:
 
     def execute(self) -> list[Document]:
         return self.vectorstore_repo.get_all_processed_docs()
-    

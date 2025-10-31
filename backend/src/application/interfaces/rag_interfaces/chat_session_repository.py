@@ -25,11 +25,11 @@ class IChatSessionRepository(ABC):
         """Retrieve all chat sessions for a given user."""
         pass
 
-    @abstractmethod # NOT YET USED
+    @abstractmethod  # NOT YET USED
     def delete_session(self, session_id: str) -> bool:
         """Delete a chat session and return True if successful."""
         pass
-    
+
     @abstractmethod
     def add_message_to_session(self, session_id: str, message: ChatMessage) -> None:
         """Add a message to an existing chat session."""

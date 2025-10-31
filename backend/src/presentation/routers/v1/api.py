@@ -17,8 +17,12 @@ APP_START_TIME = datetime.now()
 APP_VERSION = settings.APP_VERSION
 
 router = APIRouter()
+
+
 @router.post("/token", response_model=token_schema.Token)
-def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+def login_for_access_token(
+    form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)
+):
     user = authenticate_user(db, form_data.username, form_data.password)
     if not user:
         raise HTTPException(
@@ -61,6 +65,5 @@ def health_check(db: Session = Depends(get_db)):
         "system_uptime": sys_uptime_str,
         "app_uptime": app_uptime_str,
         "total_token_validity": f"{ACCESS_TOKEN_EXPIRE_MINUTES} minutes",
-        "version": APP_VERSION
+        "version": APP_VERSION,
     }
-            

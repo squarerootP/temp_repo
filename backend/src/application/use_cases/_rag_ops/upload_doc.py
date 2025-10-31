@@ -13,10 +13,13 @@ from logs.log_config import setup_logger
 
 doc_logger = setup_logger("document")
 
+
 class AddAndProcessDocument:
     """Coordinates document ingestion, embedding, and retrieval."""
 
-    def __init__(self, doc_repo: IDocumentRepository, vector_repo: IVectorStoreRepository):
+    def __init__(
+        self, doc_repo: IDocumentRepository, vector_repo: IVectorStoreRepository
+    ):
         self.doc_repo = doc_repo
         self.vector_repo = vector_repo
 
@@ -24,13 +27,15 @@ class AddAndProcessDocument:
         """Add a document if new, or skip if already processed."""
         if not os.path.isfile(file_path):
             raise FileNotFoundError(f"File not found: {file_path}")
-        
+
         document_hash = DocumentHasher.hash_file(file_path)
-        
+
         if document_hash in self.vector_repo.get_all_processed_docs():
             doc_logger.info(f"Document with hash {document_hash} already exists")
-            raise DocumentAlreadyProcessed(f"Document already exists with hash {document_hash}")
-        
+            raise DocumentAlreadyProcessed(
+                f"Document already exists with hash {document_hash}"
+            )
+
         # Process document through vector store
         document = self.vector_repo.process_document(file_path, document_hash)
         document.user_id = user_id
@@ -40,10 +45,8 @@ class AddAndProcessDocument:
         doc_logger.info(f"Successfully processed and saved document {document_hash}")
 
         return Document(
-            id=document.id,
+            book_isbn=document.book_isbn,
             title=document.title,
-            user_id=document.user_id,
             content=document.content,
             hash=document.hash,
-            uploaded_at=document.uploaded_at
         )

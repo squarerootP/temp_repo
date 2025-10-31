@@ -6,7 +6,11 @@ class UserNotFound(Exception):
     @classmethod
     def by_email(cls, email: str):
         return cls(f"User with email {email} not found.")
-    
+
     @classmethod
     def by_phone(cls, phone: str):
         return cls(f"User with phone {phone} not found.")
+
+    @classmethod
+    def by_username(cls, username: str):
+        return cls(f"User with username {username} not found.")

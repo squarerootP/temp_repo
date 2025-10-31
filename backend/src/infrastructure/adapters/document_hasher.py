@@ -10,7 +10,7 @@ class DocumentHasher:
             for chunk in iter(lambda: f.read(8192), b""):
                 hasher.update(chunk)
         return hasher.hexdigest()
-    
-    @staticmethod 
+
+    @staticmethod
     def hash_content(content: str) -> str:
         return sha256(content.encode("utf-8")).hexdigest()

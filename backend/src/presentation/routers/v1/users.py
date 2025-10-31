@@ -9,148 +9,120 @@ from backend.src.domain.exceptions.user_exceptions import UserNotFound
 from backend.src.infrastructure.persistence.database import get_db
 from backend.src.infrastructure.persistence.repository_impl.library_repos_impl.user_repository_impl import \
     UserRepositoryImpl
-from backend.src.infrastructure.web.auth_provider import (
-    get_current_active_user, has_role)
+from backend.src.infrastructure.web.auth_provider import (get_current_user,
+                                                          has_role)
 from backend.src.presentation.schemas.library_schemas import user_schema
 
-router = APIRouter(
-    prefix="/users", 
-    tags=["Users"]  
-)
+router = APIRouter(prefix="/users", tags=["Users"])
+
+
 
 @router.get("/me", response_model=user_schema.UserResponse)
-def read_users_me(current_user: User = Depends(get_current_active_user)):
+def read_users_me(current_user: User = Depends(get_current_user)):
     """
     Return the current user's simple information.
     """
     return current_user
-@router.get("/", response_model=List[user_schema.UserResponse]) # R
+
+
+@router.get("/", response_model=List[user_schema.UserResponse])  # R
 def get_users(
     skip: int = 0,
     limit: int = 100,
     current_user: User = Depends(has_role("admin")),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     """
     Retrieve all users, default to 0-100
     """
     user_repo = UserRepositoryImpl(db)
-    users = user_ops.get_users(user_repo = user_repo,  skip=skip, limit=limit)
+    user_use_case = user_ops.GetUserUseCase(user_repo=user_repo)
+    users = user_use_case.get_users(current_user=current_user, skip=skip, limit=limit)
     return users
 
-@router.get("", 
-            response_model=List[user_schema.UserResponse]) # R
-def search_users(text_to_search: str, 
-                 skip: Optional[int] = 0,
-                 limit: Optional[int] = 100,
-                 db: Session = Depends(get_db)):
+
+@router.get("", response_model=List[user_schema.UserResponse])  # R
+def search_users(
+    text_to_search: str,
+    skip: Optional[int] = 0,
+    limit: Optional[int] = 100,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(has_role("admin")),
+):
     """
     Retrieve all users with matching information, default to 0-100
     """
+
     user_repo = UserRepositoryImpl(db)
-    users = user_ops.search_user(user_repo = user_repo,  text_to_search=text_to_search, skip=skip, 
-                                 limit=limit) 
+    user_use_case = user_ops.SearchUserUseCase(user_repo=user_repo)
+    users = user_use_case.execute(current_user=current_user, text_to_search=text_to_search, skip=skip, limit=limit
+    )
     return users
-@router.get("/{user_id}", response_model=user_schema.UserResponse) # R
-def read_user_by_id(
-    user_id: int,
-    db: Session = Depends(get_db)
-):
-    """
-    Retrieve a user using Id.
-    """
-    user_repo = UserRepositoryImpl(db)
-    try:
-        db_user = user_ops.get_user_by_id(user_repo = user_repo,  user_id=user_id)
-    except UserNotFound:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail="User not found")
-    return db_user
 
 
-@router.post("/", response_model=user_schema.UserResponse, # C
-             status_code=status.HTTP_201_CREATED)
+@router.post(
+    "/",
+    response_model=user_schema.UserResponse,  # C
+    status_code=status.HTTP_201_CREATED,
+)
 def create_user(
     user: user_schema.UserCreate,
+    db: Session = Depends(get_db),
+):
+    user_repo = UserRepositoryImpl(db)
+
+    try:
+        create_user_use_case = user_ops.CreateUserUseCase(user_repo=user_repo)
+    except UserNotFound:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="User creation failed due to existing user.",
+        )
+    return create_user_use_case.execute(user=User(**user.model_dump())
+    )
+
+
+@router.put("/{user_id}", response_model=user_schema.UserResponse)
+def update_user(
+    user_id: int, user_update: user_schema.UserUpdate, db: Session = Depends(get_db),
+    current_user: User = Depends(has_role("admin"))
+):
+    user_repo = UserRepositoryImpl(db)
+    update_user_use_case = user_ops.UpdateUserUseCase(user_repo=user_repo)
+    # Update the user
+    try:
+        updated_user = update_user_use_case.execute(
+            current_user=current_user,
+            user_id=user_id,
+            data=user_update.model_dump(exclude_unset=True),
+        )
+    except ValueError as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e),
+        )
+    if not updated_user:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to update user",
+        )
+
+    # Return the updated user object
+    return updated_user
+
+
+@router.delete("/{user_id}", status_code=status.HTTP_200_OK)  # D
+def delete_user(
+    user_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(has_role("admin"))
 ):
     user_repo = UserRepositoryImpl(db)
-
+    delete_user_use_case = user_ops.DeleteUserUseCase(user_repo=user_repo)
     try:
-        user_db = user_ops.get_user_by_email(user_repo = user_repo,  email=user.email)
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, 
-                            detail="Email already registered")
-    except UserNotFound:
-        pass
-    
-    try:
-        if user.phone:
-            db_user = user_ops.get_user_by_phone(user_repo = user_repo,  phone=user.phone) 
-            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, 
-                                detail="Phone number already registered")
-    except UserNotFound:
-        pass
-        
-    return user_ops.create_user(user_repo = user_repo,  data=user.model_dump(exclude_unset=True))
-@router.put("/{user_id}", response_model=user_schema.UserResponse)
-def update_user(
-    user_id: int,
-    user_update: user_schema.UserUpdate,
-    db: Session = Depends(get_db)
-):
-    user_repo = UserRepositoryImpl(db)
-    # Check if user exists
-    try:
-        existing_user = user_ops.get_user_by_id(user_repo = user_repo,  user_id=user_id)
+        delete_user_use_case.execute(current_user=current_user, user_id=user_id)
     except UserNotFound:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"User with ID {user_id} not found"
+            status_code=status.HTTP_404_NOT_FOUND, detail="User not found"
         )
-    
-    # Check email uniqueness if being updated
-    if user_update.email and user_update.email != existing_user.email:
-        db_user = user_ops.get_user_by_email(user_repo = user_repo,  email=user_update.email)
-        if db_user and db_user.user_id != user_id:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Email already registered to another user"
-            )
-    
-    # Check phone uniqueness if being updated
-    if user_update.phone and user_update.phone != existing_user.phone:
-        db_user = user_ops.get_user_by_phone(user_repo = user_repo,  phone=user_update.phone)
-        if db_user and db_user.user_id != user_id:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Phone number already registered to another user"
-            )
-    
-    # Update the user
-    updated_user = user_ops.update_user(user_repo = user_repo,  user_id=user_id, data=user_update.model_dump(exclude_unset=True))
-    if not updated_user:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to update user"
-        )
-    
-    # Return the updated user object
-    return updated_user
-
-@router.delete("/{user_id}", status_code=status.HTTP_200_OK) # D
-def delete_user(user_id: int, 
-                current_user: User = Depends(has_role('admin')),
-                db: Session = Depends(get_db)):
-    user_repo = UserRepositoryImpl(db)
-    if current_user.user_id == user_id:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Admin users cannot delete their own account."
-        )
-    try:
-        user_ops.delete_user(user_repo = user_repo,  user_id=user_id)
-    except UserNotFound:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-    return {"message":f"user with user_id {user_id} was successully deleted"}
-
+    return {"message": f"user with user_id {user_id} was successully deleted"}

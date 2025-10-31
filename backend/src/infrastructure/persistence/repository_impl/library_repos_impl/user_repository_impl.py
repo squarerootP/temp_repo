@@ -17,18 +17,19 @@ class UserRepositoryImpl(UserRepository):
     def __init__(self, db: Session):
         self.db = db
 
-    def create(self, user: dict) -> User:
-        hashed_password = get_password_hash(user["password"])
-        user_data = {**user, "hashed_password": hashed_password}
-        user_data.pop("password", None)
+    def create(self, user: User) -> User:
+        data = user.__dict__.copy()
+        hashed_pw = get_password_hash(data["password"])
+
+        data['hashed_password'] = hashed_pw
         
-        user_entity = User(**user_data)
-        db_user = UserMapper.to_model(user_entity)
         
+        db_user = UserMapper.to_model(User(**data))
+
         self.db.add(db_user)
         self.db.commit()
         self.db.refresh(db_user)
-        
+
         return UserMapper.to_entity(db_user)
 
     def get_by_id(self, user_id: int) -> Optional[User]:
@@ -43,11 +44,24 @@ class UserRepositoryImpl(UserRepository):
         db_user = self.db.query(UserModel).filter(UserModel.phone == phone).first()
         return UserMapper.to_entity(db_user) if db_user else None
 
-    def list(self, skip: Optional[int|None] = 0, limit: Optional[int|None] = 100) -> List[User]:
+    def get_by_username(self, username: str) -> User | None:
+        db_user = (
+            self.db.query(UserModel).filter(UserModel.user_name == username).first()
+        )
+        return UserMapper.to_entity(db_user) if db_user else None
+
+    def list(
+        self, skip: Optional[int | None] = 0, limit: Optional[int | None] = 100
+    ) -> List[User]:
         db_users = self.db.query(UserModel).offset(skip).limit(limit).all()
         return [UserMapper.to_entity(user) for user in db_users]
 
-    def search(self, text_to_search: str, skip: Optional[int|None] = 0, limit: Optional[int|None] = 100) -> List[User]:
+    def search(
+        self,
+        text_to_search: str,
+        skip: Optional[int | None] = 0,
+        limit: Optional[int | None] = 100,
+    ) -> List[User]:
         search_pattern = f"%{text_to_search}%"
         query = self.db.query(UserModel).filter(
             or_(
@@ -61,7 +75,7 @@ class UserRepositoryImpl(UserRepository):
 
     def update(self, user_id: int, user: dict) -> Optional[User]:
         db_user = self.db.query(UserModel).filter(UserModel.user_id == user_id).first()
-        
+
         if not db_user:
             return None
 
@@ -75,15 +89,15 @@ class UserRepositoryImpl(UserRepository):
 
         self.db.commit()
         self.db.refresh(db_user)
-        
+
         return UserMapper.to_entity(db_user)
 
     def delete(self, user_id: int) -> bool:
         db_user = self.db.query(UserModel).filter(UserModel.user_id == user_id).first()
-        
+
         if not db_user:
             return False
-            
+
         self.db.delete(db_user)
         self.db.commit()
         return True

@@ -29,6 +29,9 @@ dependencies = [
     "langchain-openai>=0.3.35",
     "langgraph-cli[inmem]>=0.4.4",
     "chardet>=5.2.0",
+    "pandas>=2.3.3",
+    "openpyxl>=3.1.5",
+    "autoimport>=1.6.1",
 ]
 
 [project.scripts]

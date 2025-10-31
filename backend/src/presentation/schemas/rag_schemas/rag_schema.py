@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field
 
 class QuerySchema(BaseModel):
     """Schema for a user query."""
+
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     text: str
     timestamp: datetime = Field(default_factory=datetime.now)
@@ -20,6 +21,7 @@ class QuerySchema(BaseModel):
 
 class ResponseSchema(BaseModel):
     """Schema for a model-generated response to a query."""
+
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     answer: str
     source_chunks: List[str] = Field(default_factory=list)

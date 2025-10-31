@@ -13,6 +13,7 @@ from logs.log_config import setup_logger
 
 doc_logger = setup_logger("document_repo")
 
+
 class DocumentRepositoryImpl(IDocumentRepository):
     """Handles document CRUD operations in the database."""
 
@@ -53,7 +54,7 @@ class DocumentRepositoryImpl(IDocumentRepository):
         if not db_doc:
             doc_logger.info(f"No document found with hash {document_hash} to delete")
             return False
-        
+
         self.db.delete(db_doc)
         self.db.commit()
         doc_logger.info(f"Deleted document with hash {document_hash}")

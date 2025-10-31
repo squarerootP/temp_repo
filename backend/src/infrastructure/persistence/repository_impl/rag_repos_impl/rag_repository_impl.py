@@ -44,21 +44,26 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
     ):
         self.vector_repo = vector_repo
         self.chat_repo = chat_repo
-        self.graph = build_graph(vector_repo=vector_repo) # type: ignore
+        self.graph = build_graph(vector_repo=vector_repo)  # type: ignore
         self.decent_llm = get_decent_llm()
-        self.big_llm = get_big_llm()    
+        self.big_llm = get_big_llm()
 
     def initialize_graph(self) -> Any:
         """Return the compiled graph-like object (framework-agnostic)."""
         return self.graph
 
     # ---------- Helpers ----------
-    def _run_graph_and_get_last_content(self, messages_payload: List[tuple], query: str, document_hash: Optional[str] = None) -> str:
+    def _run_graph_and_get_last_content(
+        self,
+        messages_payload: List[tuple],
+        query: str,
+        document_hash: Optional[str] = None,
+    ) -> str:
         """
         Run the compiled graph with given messages payload and return the final message.content.
         """
         try:
-            events = self.graph.stream( #type: ignore
+            events = self.graph.stream(  # type: ignore
                 {
                     "query": query,
                     "messages": messages_payload,  # list of ("user", text)
@@ -96,10 +101,14 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
         """
         try:
             messages_payload = [("user", user_query)]
-            assistant_text = self._run_graph_and_get_last_content(messages_payload, query=user_query)
+            assistant_text = self._run_graph_and_get_last_content(
+                messages_payload, query=user_query
+            )
 
             if not assistant_text:
-                assistant_text = "I'm sorry — I couldn't generate an answer at the moment."
+                assistant_text = (
+                    "I'm sorry — I couldn't generate an answer at the moment."
+                )
 
             return assistant_text
 
@@ -126,7 +135,10 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
         # Run the graph with a system/system-like prompt then a user summarization request
         try:
             result = self.decent_llm.invoke(summarization_prompt).content
-            return result or f"Conversation of {len(history)} messages about various topics." #type: ignore
+            return (
+                result
+                or f"Conversation of {len(history)} messages about various topics."
+            )  # type: ignore
         except Exception as e:
             logger.exception("summarize_history fallback: %s", e)
             return f"Conversation of {len(formatted_history)} messages about various topics."
@@ -163,12 +175,14 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
 
         Rewritten question:
         """
-        
+
         # Use the graph to produce a refined query
         refined = self.big_llm.invoke(prompt).content
-        return refined or f"{query} {context}" # type: ignore
+        return refined or f"{query} {context}"  # type: ignore
 
-    def answer_query_with_specific_document(self, session_id: str, user_query: str, document_hash: Optional[str]) -> str:
+    def answer_query_with_specific_document(
+        self, session_id: str, user_query: str, document_hash: Optional[str]
+    ) -> str:
         """
         Answer a query but instruct the retrieval component to focus on a specific document.
 
@@ -177,25 +191,37 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
         - Then run the usual graph pipeline.
         - Persist messages to chat session.
         """
-        
+
         try:
-        
             messages_payload = [
                 ("user", user_query),
             ]
 
-            assistant_text = self._run_graph_and_get_last_content(messages_payload, user_query, document_hash=document_hash)
+            assistant_text = self._run_graph_and_get_last_content(
+                messages_payload, user_query, document_hash=document_hash
+            )
 
             if not assistant_text:
-                assistant_text = "I'm sorry — I couldn't find an answer in the specified document."
+                assistant_text = (
+                    "I'm sorry — I couldn't find an answer in the specified document."
+                )
 
             # Persist assistant message
-            ai_msg = ChatMessage(content=assistant_text, role=MessageRole.ASSISTANT, session_id=session_id)
+            ai_msg = ChatMessage(
+                content=assistant_text,
+                role=MessageRole.ASSISTANT,
+                session_id=session_id,
+            )
             try:
                 if self.chat_repo:
-                    self.chat_repo.add_message_to_session(session_id=session_id, message=ai_msg)
+                    self.chat_repo.add_message_to_session(
+                        session_id=session_id, message=ai_msg
+                    )
             except Exception:
-                logger.exception("Failed to persist assistant message (specific doc) for session %s", session_id)
+                logger.exception(
+                    "Failed to persist assistant message (specific doc) for session %s",
+                    session_id,
+                )
 
             return assistant_text
 

@@ -12,13 +12,20 @@ base_search = TavilySearch(
     tavily_api_key=tavily_api_key,
 )
 
+
 class SearchInput(BaseModel):
     query: str = Field(description="The search query for Tavily web search")
+
 
 from langchain_core.tools import tool
 
 
-@tool("Search", return_direct=True, description="A general web search tool (Tavily). Use this to find information on current events, news, or any general knowledge question that your local documents do not have an answer for.", args_schema=SearchInput)
+@tool(
+    "Search",
+    return_direct=True,
+    description="A general web search tool (Tavily). Use this to find information on current events, news, or any general knowledge question that your local documents do not have an answer for.",
+    args_schema=SearchInput,
+)
 def search_web(query: str) -> str:
     """Search the web for up-to-date information"""
     return base_search.invoke(query)

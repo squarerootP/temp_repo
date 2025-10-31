@@ -1731,3 +1731,207 @@ Incoming request: GET http://localhost:8000/redoc
 Completed request: GET http://localhost:8000/redocStatus: 200 Duration: 0.00ms
 Incoming request: GET http://localhost:8000/openapi.json
 Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 338.07ms
+Incoming request: GET http://127.0.0.1:8000/
+Completed request: GET http://127.0.0.1:8000/Status: 200 Duration: 2.52ms
+Incoming request: GET http://127.0.0.1:8000/favicon.ico
+Completed request: GET http://127.0.0.1:8000/favicon.icoStatus: 404 Duration: 0.51ms
+Incoming request: GET http://127.0.0.1:8000/docs
+Completed request: GET http://127.0.0.1:8000/docsStatus: 200 Duration: 1.50ms
+Incoming request: GET http://127.0.0.1:8000/openapi.json
+Completed request: GET http://127.0.0.1:8000/openapi.jsonStatus: 200 Duration: 112.44ms
+Incoming request: GET http://127.0.0.1:8000/docs
+Completed request: GET http://127.0.0.1:8000/docsStatus: 200 Duration: 0.00ms
+Incoming request: GET http://127.0.0.1:8000/openapi.json
+Completed request: GET http://127.0.0.1:8000/openapi.jsonStatus: 200 Duration: 114.20ms
+Incoming request: GET http://127.0.0.1:8000/docs
+Completed request: GET http://127.0.0.1:8000/docsStatus: 200 Duration: 0.00ms
+Incoming request: GET http://127.0.0.1:8000/openapi.json
+Completed request: GET http://127.0.0.1:8000/openapi.jsonStatus: 200 Duration: 1.00ms
+Incoming request: POST http://127.0.0.1:8000/v1/token
+{"error": "module 'backend.src.application.use_cases.user_ops' has no attribute 'get_user_by_email'", "type": "AttributeError", "path": "http://127.0.0.1:8000/v1/token", "method": "POST"}
+Incoming request: POST http://127.0.0.1:8000/v1/token
+{"error": "Could not determine join condition between parent/child tables on relationship DocumentModel.book - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.", "type": "NoForeignKeysError", "path": "http://127.0.0.1:8000/v1/token", "method": "POST"}
+Incoming request: POST http://127.0.0.1:8000/v1/token
+{"error": "Could not determine join condition between parent/child tables on relationship DocumentModel.book - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.", "type": "NoForeignKeysError", "path": "http://127.0.0.1:8000/v1/token", "method": "POST"}
+Incoming request: POST http://127.0.0.1:8000/v1/token
+{"error": "Could not determine join condition between parent/child tables on relationship BookModel.document - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.", "type": "NoForeignKeysError", "path": "http://127.0.0.1:8000/v1/token", "method": "POST"}
+Incoming request: POST http://127.0.0.1:8000/v1/token
+{"error": "Could not determine join condition between parent/child tables on relationship BookModel.document - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.", "type": "NoForeignKeysError", "path": "http://127.0.0.1:8000/v1/token", "method": "POST"}
+Incoming request: POST http://127.0.0.1:8000/v1/token
+{"error": "(sqlite3.OperationalError) no such column: users.user_name\n[SQL: SELECT users.user_id AS users_user_id, users.user_name AS users_user_name, users.first_name AS users_first_name, users.second_name AS users_second_name, users.email AS users_email, users.phone AS users_phone, users.hashed_password AS users_hashed_password, users.is_active AS users_is_active, users.role AS users_role \nFROM users \nWHERE users.email = ?\n LIMIT ? OFFSET ?]\n[parameters: ('localadmin@example.com', 1, 0)]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)", "type": "OperationalError", "path": "http://127.0.0.1:8000/v1/token", "method": "POST"}
+Incoming request: POST http://127.0.0.1:8000/v1/token
+{"error": "User with email localadmin@example.com not found.", "type": "UserNotFound", "path": "http://127.0.0.1:8000/v1/token", "method": "POST"}
+Incoming request: GET http://127.0.0.1:8000/docs
+Completed request: GET http://127.0.0.1:8000/docsStatus: 200 Duration: 0.00ms
+Incoming request: GET http://127.0.0.1:8000/openapi.json
+Completed request: GET http://127.0.0.1:8000/openapi.jsonStatus: 200 Duration: 112.57ms
+Incoming request: POST http://127.0.0.1:8000/v1/token
+{"error": "User with email phongadmin not found.", "type": "UserNotFound", "path": "http://127.0.0.1:8000/v1/token", "method": "POST"}
+Incoming request: POST http://127.0.0.1:8000/v1/token
+{"error": "'' is not among the defined enum values. Enum name: user_roles. Possible values: member, admin", "type": "LookupError", "path": "http://127.0.0.1:8000/v1/token", "method": "POST"}
+Incoming request: POST http://127.0.0.1:8000/v1/token
+Completed request: POST http://127.0.0.1:8000/v1/tokenStatus: 200 Duration: 86.66ms
+Incoming request: GET http://127.0.0.1:8000/v1/health
+Completed request: GET http://127.0.0.1:8000/v1/healthStatus: 200 Duration: 2.24ms
+Incoming request: GET http://127.0.0.1:8000/
+Completed request: GET http://127.0.0.1:8000/Status: 200 Duration: 3.00ms
+Incoming request: GET http://127.0.0.1:8000/v1/users/me
+{"error": "module 'backend.src.application.use_cases.user_ops' has no attribute 'get_user_by_email'", "type": "AttributeError", "path": "http://127.0.0.1:8000/v1/users/me", "method": "GET"}
+Incoming request: GET http://127.0.0.1:8000/v1/users/me
+{"error": "1 validation errors:\n  {'type': 'missing', 'loc': ('response', 'created_at'), 'msg': 'Field required', 'input': User(user_id=1, user_name='phongadmin', first_name='van', second_name='phong', email='vanphong@example.com', phone='0342324690', hashed_password='$argon2id$v=19$m=65536,t=3,p=4$LiWkNOY8ByAEoHRurVXK+Q$8JqFuijZas6LvBNXc794K914i8piDu6kUI2zUDhcKYY', role='admin')}\n", "type": "ResponseValidationError", "path": "http://127.0.0.1:8000/v1/users/me", "method": "GET"}
+Incoming request: GET http://127.0.0.1:8000/v1/users/me
+Completed request: GET http://127.0.0.1:8000/v1/users/meStatus: 200 Duration: 36.46ms
+Incoming request: GET http://127.0.0.1:8000/v1/users/me
+Completed request: GET http://127.0.0.1:8000/v1/users/meStatus: 200 Duration: 27.90ms
+Incoming request: GET http://127.0.0.1:8000/v1/users/?skip=0&limit=100
+Completed request: GET http://127.0.0.1:8000/v1/users/?skip=0&limit=100Status: 200 Duration: 6.05ms
+Incoming request: GET http://127.0.0.1:8000/docs
+Completed request: GET http://127.0.0.1:8000/docsStatus: 200 Duration: 0.51ms
+Incoming request: GET http://127.0.0.1:8000/openapi.json
+Completed request: GET http://127.0.0.1:8000/openapi.jsonStatus: 200 Duration: 93.85ms
+Incoming request: GET http://127.0.0.1:8000/docs
+Completed request: GET http://127.0.0.1:8000/docsStatus: 200 Duration: 1.11ms
+Incoming request: GET http://127.0.0.1:8000/openapi.json
+Completed request: GET http://127.0.0.1:8000/openapi.jsonStatus: 200 Duration: 116.06ms
+Incoming request: GET http://127.0.0.1:8000/docs
+Completed request: GET http://127.0.0.1:8000/docsStatus: 200 Duration: 0.00ms
+Incoming request: GET http://127.0.0.1:8000/openapi.json
+Completed request: GET http://127.0.0.1:8000/openapi.jsonStatus: 200 Duration: 90.26ms
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+{"error": "User.__init__() got an unexpected keyword argument 'password'", "type": "TypeError", "path": "http://127.0.0.1:8000/v1/users/", "method": "POST"}
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+{"error": "User.__init__() missing 1 required positional argument: 'user_id'", "type": "TypeError", "path": "http://127.0.0.1:8000/v1/users/", "method": "POST"}
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+{"error": "Validation error", "details": [{"type": "missing", "loc": ["body", "user_id"], "msg": "Field required", "input": {"user_name": "jdoe92", "first_name": "John", "second_name": "Doe", "email": "jdoe92@example.com", "phone": "+1-202-555-0143", "password": "securePass1"}}], "body": "{\n  \"user_name\": \"jdoe92\",\n  \"first_name\": \"John\",\n  \"second_name\": \"Doe\",\n  \"email\": \"jdoe92@example.com\",\n  \"phone\": \"+1-202-555-0143\",\n  \"password\": \"securePass1\"\n}\n", "path": "http://127.0.0.1:8000/v1/users/", "method": "POST"}
+Completed request: POST http://127.0.0.1:8000/v1/users/Status: 422 Duration: 29.68ms
+Incoming request: GET http://127.0.0.1:8000/docs
+Completed request: GET http://127.0.0.1:8000/docsStatus: 200 Duration: 1.00ms
+Incoming request: GET http://127.0.0.1:8000/openapi.json
+Completed request: GET http://127.0.0.1:8000/openapi.jsonStatus: 200 Duration: 116.61ms
+Incoming request: GET http://127.0.0.1:8000/docs
+Completed request: GET http://127.0.0.1:8000/docsStatus: 200 Duration: 0.00ms
+Incoming request: GET http://127.0.0.1:8000/openapi.json
+Completed request: GET http://127.0.0.1:8000/openapi.jsonStatus: 200 Duration: 213.23ms
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+{"error": "User.__init__() missing 1 required positional argument: 'user_id'", "type": "TypeError", "path": "http://127.0.0.1:8000/v1/users/", "method": "POST"}
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+{"error": "User.__init__() missing 1 required positional argument: 'user_id'", "type": "TypeError", "path": "http://127.0.0.1:8000/v1/users/", "method": "POST"}
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+{"error": "User.__init__() missing 1 required positional argument: 'user_id'", "type": "TypeError", "path": "http://127.0.0.1:8000/v1/users/", "method": "POST"}
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+{"error": "(sqlite3.IntegrityError) NOT NULL constraint failed: users.is_active\n[SQL: INSERT INTO users (user_name, first_name, second_name, email, phone, hashed_password, role) VALUES (?, ?, ?, ?, ?, ?, ?)]\n[parameters: ('jdoe92', 'John', 'Doe', 'jdoe92@example.com', '+1-202-555-0143', '$argon2id$v=19$m=65536,t=3,p=4$XEuJ0XpPCeEco3RujdF6bw$5QxCIez1c9JpGgJvLh5nRqBhAULXvYXwew2zuTuWpN0', 'member')]\n(Background on this error at: https://sqlalche.me/e/20/gkpj)", "type": "IntegrityError", "path": "http://127.0.0.1:8000/v1/users/", "method": "POST"}
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+Completed request: POST http://127.0.0.1:8000/v1/users/Status: 201 Duration: 125.25ms
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+Completed request: POST http://127.0.0.1:8000/v1/users/Status: 201 Duration: 123.67ms
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+Completed request: POST http://127.0.0.1:8000/v1/users/Status: 201 Duration: 109.81ms
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+Completed request: POST http://127.0.0.1:8000/v1/users/Status: 201 Duration: 117.35ms
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+Completed request: POST http://127.0.0.1:8000/v1/users/Status: 201 Duration: 136.50ms
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+Completed request: POST http://127.0.0.1:8000/v1/users/Status: 201 Duration: 150.31ms
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+Completed request: POST http://127.0.0.1:8000/v1/users/Status: 201 Duration: 131.60ms
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+Completed request: POST http://127.0.0.1:8000/v1/users/Status: 201 Duration: 124.62ms
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+Completed request: POST http://127.0.0.1:8000/v1/users/Status: 201 Duration: 142.17ms
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+Completed request: POST http://127.0.0.1:8000/v1/users/Status: 201 Duration: 123.01ms
+Incoming request: GET http://127.0.0.1:8000/v1/users/?skip=0&limit=100
+Completed request: GET http://127.0.0.1:8000/v1/users/?skip=0&limit=100Status: 401 Duration: 1.01ms
+Incoming request: POST http://127.0.0.1:8000/v1/token
+Completed request: POST http://127.0.0.1:8000/v1/tokenStatus: 200 Duration: 89.26ms
+Incoming request: GET http://127.0.0.1:8000/v1/users/?skip=0&limit=100
+Completed request: GET http://127.0.0.1:8000/v1/users/?skip=0&limit=100Status: 200 Duration: 9.03ms
+Incoming request: GET http://127.0.0.1:8000/v1/users?text_to_search=Nguyen&skip=0&limit=100
+Completed request: GET http://127.0.0.1:8000/v1/users?text_to_search=Nguyen&skip=0&limit=100Status: 200 Duration: 11.04ms
+Incoming request: GET http://127.0.0.1:8000/v1/users?text_to_search=rod&skip=0&limit=100
+Completed request: GET http://127.0.0.1:8000/v1/users?text_to_search=rod&skip=0&limit=100Status: 200 Duration: 22.63ms
+Incoming request: PUT http://127.0.0.1:8000/v1/users/1
+{"error": "Username cannot be changed", "type": "ValueError", "path": "http://127.0.0.1:8000/v1/users/1", "method": "PUT"}
+Incoming request: PUT http://127.0.0.1:8000/v1/users/1
+Completed request: PUT http://127.0.0.1:8000/v1/users/1Status: 400 Duration: 59.79ms
+Incoming request: PUT http://127.0.0.1:8000/v1/users/1
+Completed request: PUT http://127.0.0.1:8000/v1/users/1Status: 400 Duration: 10.05ms
+Incoming request: PUT http://127.0.0.1:8000/v1/users/1
+Completed request: PUT http://127.0.0.1:8000/v1/users/1Status: 400 Duration: 12.06ms
+Incoming request: GET http://127.0.0.1:8000/docs
+Completed request: GET http://127.0.0.1:8000/docsStatus: 200 Duration: 1.52ms
+Incoming request: GET http://127.0.0.1:8000/openapi.json
+Completed request: GET http://127.0.0.1:8000/openapi.jsonStatus: 200 Duration: 131.83ms
+Incoming request: PUT http://127.0.0.1:8000/v1/users/1
+Completed request: PUT http://127.0.0.1:8000/v1/users/1Status: 401 Duration: 5.56ms
+Incoming request: POST http://127.0.0.1:8000/v1/token
+Completed request: POST http://127.0.0.1:8000/v1/tokenStatus: 200 Duration: 98.78ms
+Incoming request: PUT http://127.0.0.1:8000/v1/users/1
+Completed request: PUT http://127.0.0.1:8000/v1/users/1Status: 200 Duration: 138.29ms
+Incoming request: POST http://127.0.0.1:8000/v1/users/
+Completed request: POST http://127.0.0.1:8000/v1/users/Status: 201 Duration: 134.04ms
+Incoming request: DELETE http://127.0.0.1:8000/v1/users/12
+Completed request: DELETE http://127.0.0.1:8000/v1/users/12Status: 200 Duration: 21.09ms
+Incoming request: GET http://127.0.0.1:8000/v1/books/?skip=0&limit=100
+{"error": "module 'backend.src.application.use_cases.book_ops' has no attribute 'get_books'", "type": "AttributeError", "path": "http://127.0.0.1:8000/v1/books/?skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://127.0.0.1:8000/v1/books/?skip=0&limit=100
+{"error": "GetBookUseCase.get_books() got multiple values for argument 'skip'", "type": "TypeError", "path": "http://127.0.0.1:8000/v1/books/?skip=0&limit=100", "method": "GET"}
+Incoming request: GET http://127.0.0.1:8000/v1/books/?skip=0&limit=100
+Completed request: GET http://127.0.0.1:8000/v1/books/?skip=0&limit=100Status: 200 Duration: 16.60ms
+Incoming request: GET http://127.0.0.1:8000/docs
+Completed request: GET http://127.0.0.1:8000/docsStatus: 200 Duration: 0.00ms
+Incoming request: GET http://127.0.0.1:8000/openapi.json
+Completed request: GET http://127.0.0.1:8000/openapi.jsonStatus: 200 Duration: 98.62ms
+Incoming request: POST http://127.0.0.1:8000/v1/books/
+Completed request: POST http://127.0.0.1:8000/v1/books/Status: 401 Duration: 30.66ms
+Incoming request: POST http://127.0.0.1:8000/v1/token
+Completed request: POST http://127.0.0.1:8000/v1/tokenStatus: 200 Duration: 104.59ms
+Incoming request: POST http://127.0.0.1:8000/v1/books/
+Completed request: POST http://127.0.0.1:8000/v1/books/Status: 201 Duration: 36.69ms
+Incoming request: POST http://127.0.0.1:8000/v1/books/
+Completed request: POST http://127.0.0.1:8000/v1/books/Status: 201 Duration: 18.55ms
+Incoming request: POST http://127.0.0.1:8000/v1/books/
+Completed request: POST http://127.0.0.1:8000/v1/books/Status: 201 Duration: 33.18ms
+Incoming request: POST http://127.0.0.1:8000/v1/books/
+Completed request: POST http://127.0.0.1:8000/v1/books/Status: 201 Duration: 22.14ms
+Incoming request: POST http://127.0.0.1:8000/v1/books/
+Completed request: POST http://127.0.0.1:8000/v1/books/Status: 201 Duration: 18.96ms
+Incoming request: POST http://127.0.0.1:8000/v1/books/
+Completed request: POST http://127.0.0.1:8000/v1/books/Status: 201 Duration: 20.10ms
+Incoming request: POST http://127.0.0.1:8000/v1/books/
+Completed request: POST http://127.0.0.1:8000/v1/books/Status: 201 Duration: 19.79ms
+Incoming request: POST http://127.0.0.1:8000/v1/books/
+Completed request: POST http://127.0.0.1:8000/v1/books/Status: 400 Duration: 7.51ms
+Incoming request: POST http://127.0.0.1:8000/v1/books/
+Completed request: POST http://127.0.0.1:8000/v1/books/Status: 201 Duration: 16.16ms
+Incoming request: POST http://127.0.0.1:8000/v1/books/
+Completed request: POST http://127.0.0.1:8000/v1/books/Status: 201 Duration: 20.46ms
+Incoming request: POST http://127.0.0.1:8000/v1/books/
+{"error": "Validation error", "details": [{"type": "greater_than_equal", "loc": ["body", "published_year"], "msg": "Input should be greater than or equal to 1000", "input": -800, "ctx": {"ge": 1000}}], "body": "{\n  \"book_isbn\": \"9780140449266\",\n  \"title\": \"The Odyssey\",\n  \"summary\": \"Odysseus journeys home from the Trojan War, facing mythical creatures and divine wrath.\",\n  \"genre\": \"Epic\",\n  \"published_year\": -800,\n  \"author_name\": \"Homer\"\n}\n", "path": "http://127.0.0.1:8000/v1/books/", "method": "POST"}
+Completed request: POST http://127.0.0.1:8000/v1/books/Status: 422 Duration: 6.55ms
+Incoming request: GET http://127.0.0.1:8000/v1/books/?skip=0&limit=100
+Completed request: GET http://127.0.0.1:8000/v1/books/?skip=0&limit=100Status: 200 Duration: 3.99ms
+Incoming request: GET http://127.0.0.1:8000/v1/books/search?text_to_search=harry&skip=0&limit=100
+Completed request: GET http://127.0.0.1:8000/v1/books/search?text_to_search=harry&skip=0&limit=100Status: 200 Duration: 3.99ms
+Incoming request: GET http://127.0.0.1:8000/v1/books/9780451524935
+Completed request: GET http://127.0.0.1:8000/v1/books/9780451524935Status: 200 Duration: 3.00ms
+Incoming request: GET http://127.0.0.1:8000/v1/books/978045152493
+Completed request: GET http://127.0.0.1:8000/v1/books/978045152493Status: 404 Duration: 5.00ms
+Incoming request: GET http://127.0.0.1:8000/docs
+Completed request: GET http://127.0.0.1:8000/docsStatus: 200 Duration: 1.00ms
+Incoming request: GET http://127.0.0.1:8000/openapi.json
+Completed request: GET http://127.0.0.1:8000/openapi.jsonStatus: 200 Duration: 244.65ms
+Incoming request: GET http://127.0.0.1:8000/v1/books/9780451524935
+Completed request: GET http://127.0.0.1:8000/v1/books/9780451524935Status: 200 Duration: 2.48ms
+Incoming request: PUT http://127.0.0.1:8000/v1/books/9780451524935
+Completed request: PUT http://127.0.0.1:8000/v1/books/9780451524935Status: 401 Duration: 0.00ms
+Incoming request: POST http://127.0.0.1:8000/v1/token
+Completed request: POST http://127.0.0.1:8000/v1/tokenStatus: 200 Duration: 83.10ms
+Incoming request: PUT http://127.0.0.1:8000/v1/books/9780451524935
+Completed request: PUT http://127.0.0.1:8000/v1/books/9780451524935Status: 200 Duration: 18.34ms
+Incoming request: POST http://127.0.0.1:8000/v1/books/
+Completed request: POST http://127.0.0.1:8000/v1/books/Status: 201 Duration: 6.53ms
+Incoming request: DELETE http://127.0.0.1:8000/v1/books/9780316769488
+Completed request: DELETE http://127.0.0.1:8000/v1/books/9780316769488Status: 200 Duration: 17.30ms
+Incoming request: POST http://127.0.0.1:8000/v1/rag/chat
+Completed request: POST http://127.0.0.1:8000/v1/rag/chatStatus: 200 Duration: 24982.92ms

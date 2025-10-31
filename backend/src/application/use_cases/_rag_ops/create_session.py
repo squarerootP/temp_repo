@@ -11,14 +11,8 @@ def create_chat_session(
 ) -> ChatSession:
     """Create a new chat session with optional initial messages"""
 
-    new_session = ChatSession(
-        session_id="", 
-        messages=[],
-        user_id=user_id
-    )
-    
-    created_session = chat_repo.create_session(new_session)
-    
-    return created_session
+    new_session = ChatSession(session_id="", messages=[], user_id=user_id)
 
-    
+    created_session = chat_repo.create_session(new_session)
+
+    return created_session

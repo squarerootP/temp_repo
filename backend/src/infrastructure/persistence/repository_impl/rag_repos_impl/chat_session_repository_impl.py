@@ -92,17 +92,15 @@ class ChatSessionRepositoryImpl(IChatSessionRepository):
             raise ChatSessionNotFoundError
 
         chatmessage_model = ChatMessageMapper.to_model(
-            session_id=db_session.session_id,
-            entity=message
+            session_id=db_session.session_id, entity=message
         )
 
         db_session.messages.append(chatmessage_model)
 
         try:
-            self.db.add(db_session) 
+            self.db.add(db_session)
             self.db.commit()
             self.db.refresh(db_session)
         except SQLAlchemyError as e:
             self.db.rollback()
             raise RuntimeError(f"Failed to add message to session: {e}") from e
-    

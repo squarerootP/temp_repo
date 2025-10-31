@@ -5,10 +5,11 @@ from backend.src.infrastructure.config.settings import db_settings, settings
 
 SQLALCHEMY_DATABASE_URL = db_settings.DATABASE_URL
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL, 
-                       connect_args={"check_same_thread": False})
-SessionLocal = sessionmaker(bind=engine, 
-                            autocommit=False, autoflush=False)
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+)
+SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+
 
 def get_db():
     db = SessionLocal()
@@ -17,11 +18,12 @@ def get_db():
     finally:
         db.close()
 
+
 def create_tables():
     """Create all tables in the database."""
     # Import Base from normal_models (the actual declarative base used by all models)
     from backend.src.infrastructure.persistence.models.normal_models import (
-        AuthorModel, Base, BookModel, BorrowingManagerModel, UserModel)
+        Base, BookModel, UserModel)
     from backend.src.infrastructure.persistence.models.rag_models import (
         ChatMessageModel, ChatSessionModel, DocumentModel)
 

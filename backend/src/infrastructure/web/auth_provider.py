@@ -21,10 +21,13 @@ ALGORITHM = "HS256"
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/v1/token")
 
+
 def authenticate_user(db: Session, email: str, password: str):
     try:
         user_repo = UserRepositoryImpl(db)
-        user = user_ops.get_user_by_email(user_repo=user_repo, email=email)
+        user_use_case = user_ops.GetUserUseCase(user_repo=user_repo)
+        
+        user = user_use_case.get_user_by_email(email=email)
         if not user:
             return False
         if not verify_password(password, user.hashed_password):
@@ -34,7 +37,8 @@ def authenticate_user(db: Session, email: str, password: str):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password",
-            headers={"WWW-Authenticate": "Bearer"},)
+            headers={"WWW-Authenticate": "Bearer"},
+        )
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
@@ -47,7 +51,10 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
-async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+
+async def get_current_user(
+    token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)
+):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -56,21 +63,17 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = De
     user_repo = UserRepositoryImpl(db)
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email: str = payload.get("sub") #type: ignore
+        email: str = payload.get("sub")  # type: ignore
         if email is None:
             raise credentials_exception
         token_data = token_schema.TokenData(email=email)
     except JWTError:
         raise credentials_exception
-    user = user_ops.get_user_by_email(user_repo=user_repo, email=token_data.email) #type: ignore
+    get_user_use_case = user_ops.GetUserUseCase(user_repo=user_repo)
+    user = get_user_use_case.get_user_by_email(email=token_data.email) # type: ignore
     if user is None:
         raise credentials_exception
     return user
-
-async def get_current_active_user(current_user: User = Depends(get_current_user)):
-    if not current_user.is_active:
-        raise HTTPException(status_code=400, detail="Inactive user")
-    return current_user
 
 
 def has_role(required_role: str):
@@ -78,7 +81,8 @@ def has_role(required_role: str):
         if current_user.role != required_role:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
-                detail=f"Role {required_role} required"
+                detail=f"Role {required_role} required",
             )
         return current_user
+
     return role_checker

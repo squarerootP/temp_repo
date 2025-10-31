@@ -7,6 +7,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ENV_FILE_PATH = os.path.join(BASE_DIR, ".env")
 
+
 class Settings(BaseSettings):
     RATE_LIMIT: int
     RATE_LIMIT_WINDOW_SIZE: int
@@ -14,21 +15,20 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int
     APP_VERSION: str
     model_config = SettingsConfigDict(
-        env_file=ENV_FILE_PATH,
-        env_file_encoding='utf-8',
-        extra='ignore'
+        env_file=ENV_FILE_PATH, env_file_encoding="utf-8", extra="ignore"
     )
-    
+
+
 class RAGSettings(BaseSettings):
     # Required settings
-    CHROMA_PERSIST_DIR: str 
-    TEXT_FILES_DIR: str 
-    TAVILY_API_KEY: str 
-    GOOGLE_EMBEDDING_MODEL: str 
-    LLM_MODEL: str 
+    CHROMA_PERSIST_DIR: str
+    TEXT_FILES_DIR: str
+    TAVILY_API_KEY: str
+    GOOGLE_EMBEDDING_MODEL: str
+    LLM_MODEL: str
     CEREBRAS_API_KEY: str
-    GOOGLE_API_KEY: str 
-    APP_VERSION: str 
+    GOOGLE_API_KEY: str
+    APP_VERSION: str
     CHUNK_SIZE: int
     CHUNK_OVERLAP: int
 
@@ -37,19 +37,17 @@ class RAGSettings(BaseSettings):
     ALLOWED_EXTENSIONS: Set[str] = {".txt"}
 
     model_config = SettingsConfigDict(
-        env_file=ENV_FILE_PATH,
-        env_file_encoding='utf-8',
-        extra='ignore'  
+        env_file=ENV_FILE_PATH, env_file_encoding="utf-8", extra="ignore"
     )
+
 
 class DBSettings(BaseSettings):
-    DATABASE_URL: str 
+    DATABASE_URL: str
 
     model_config = SettingsConfigDict(
-        env_file=ENV_FILE_PATH,
-        env_file_encoding='utf-8',
-        extra='ignore'  
+        env_file=ENV_FILE_PATH, env_file_encoding="utf-8", extra="ignore"
     )
+
 
 class APISettings(BaseSettings):
     GOOGLE_API_KEY: str
@@ -57,14 +55,13 @@ class APISettings(BaseSettings):
     TAVILY_API_KEY: str
     GOOGLE_EMBEDDING_MODEL: str
     LLM_MODEL: str
-    
+
     model_config = SettingsConfigDict(
-        env_file=ENV_FILE_PATH,
-        env_file_encoding='utf-8',
-        extra='ignore'
+        env_file=ENV_FILE_PATH, env_file_encoding="utf-8", extra="ignore"
     )
-    
-api_settings = APISettings() #type: ignore
-rag_settings = RAGSettings() #type: ignore
-db_settings = DBSettings() #type: ignore
-settings = Settings() #type: ignore
+
+
+api_settings = APISettings()  # type: ignore
+rag_settings = RAGSettings()  # type: ignore
+db_settings = DBSettings()  # type: ignore
+settings = Settings()  # type: ignore

@@ -21,18 +21,17 @@ class ChatSessionMapper:
             created_at=entity.created_at,
             updated_at=entity.updated_at,
         )
-        
+
     @staticmethod
-    def to_entity(model: ChatSessionModel, include_messages: bool = True) -> ChatSession:
+    def to_entity(
+        model: ChatSessionModel, include_messages: bool = True
+    ) -> ChatSession:
         """Convert ChatSessionModel to ChatSession entity.
         Set `include_messages=False` to skip message mapping for performance.
         """
         messages = []
         if include_messages and getattr(model, "messages", None):
-            messages = [
-                ChatMessageMapper.to_entity(msg)
-                for msg in model.messages
-            ]
+            messages = [ChatMessageMapper.to_entity(msg) for msg in model.messages]
 
         return ChatSession(
             session_id=model.session_id,
@@ -41,7 +40,7 @@ class ChatSessionMapper:
             updated_at=model.updated_at,
             messages=messages,
         )
+
     @staticmethod
     def serialize_messages(messages: List[ChatMessage]) -> List[dict]:
         return [{"role": msg.role.value, "content": msg.content} for msg in messages]
-
