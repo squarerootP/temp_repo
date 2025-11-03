@@ -23,7 +23,7 @@ class AddAndProcessDocument:
         self.doc_repo = doc_repo
         self.vector_repo = vector_repo
 
-    def add_documents(self, file_path: str, user_id: int) -> Document:
+    def add_documents(self, file_path: str, user_id: int, file_name: str) -> Document:
         """Add a document if new, or skip if already processed."""
         if not os.path.isfile(file_path):
             raise FileNotFoundError(f"File not found: {file_path}")
@@ -37,7 +37,8 @@ class AddAndProcessDocument:
             )
 
         # Process document through vector store
-        document = self.vector_repo.process_document(file_path, document_hash)
+        document = self.vector_repo.process_document(file_path, document_hash, file_name)
+        self.doc_repo.save_document(document)
         document.user_id = user_id
 
         # Save document metadata to database

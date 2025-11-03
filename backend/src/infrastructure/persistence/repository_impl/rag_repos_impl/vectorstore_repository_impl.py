@@ -18,7 +18,7 @@ from backend.src.infrastructure.adapters.document_hasher import DocumentHasher
 from backend.src.infrastructure.config.settings import rag_settings
 from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.tools.doc_retriever_tool import \
     get_embedding_function
-
+from backend.src.application.interfaces.rag_interfaces.document_repository import IDocumentRepository
 TEXT_FILES_DIR = rag_settings.TEXT_FILES_DIR
 CHROMA_PERSIST_DIR = rag_settings.CHROMA_PERSIST_DIR
 TEXT_FILES = [
@@ -32,7 +32,8 @@ print("=== Text files to process:", TEXT_FILES)
 class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
     """Concrete vector store repository using Chroma and Google embeddings."""
 
-    def __init__(self, persist_directory: str = rag_settings.CHROMA_PERSIST_DIR):
+    def __init__(self, doc_repo: IDocumentRepository, persist_directory: str = rag_settings.CHROMA_PERSIST_DIR):
+        self.doc_repo = doc_repo
         self.persist_directory = persist_directory
         self.metadata_file = os.path.join(persist_directory, "document_metadata.json")
 
@@ -94,16 +95,12 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
                 print("Creating new vectorstore...")
                 self.embeddings = self._initialize_embeddings()
 
-                # Process all documents first
-                all_chunks = []
-                all_chunk_ids = []
-
                 for text_file_path in TEXT_FILES:
                     file_hash = DocumentHasher.hash_file(text_file_path)
                     if file_hash not in self.processed_documents:
                         print(f"Processing document: {text_file_path}")
-                        document = self.process_document(text_file_path, file_hash)
-                        # Note: process_document already adds chunks to processed_documents
+                        document = self.process_document(text_file_path, file_hash, file_name=os.path.basename(text_file_path))
+                        self.doc_repo.save_document(document)
 
                 # Create vectorstore with all documents at once
                 if self.processed_documents:
@@ -129,7 +126,7 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
         return get_embedding_function()
 
     # ==== CORE METHODS ====
-    def process_document(self, file_path: str, hash: str) -> Document:
+    def process_document(self, file_path: str, hash: str, file_name: str) -> Document:
         """Load, hash, chunk, and prepare a document for storage."""
 
         try:
@@ -150,7 +147,7 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
                     {
                         "document_hash": hash,
                         "chunk_id": f"{hash[:8]}_chunk_{i}",
-                        "source_file": os.path.basename(file_path),
+                        "source_file": file_name,
                         "chunk_index": i,
                         "total_chunks": len(chunks),
                     }
@@ -165,9 +162,11 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
                     collection_metadata={"hnsw:space": "cosine"},
                     ids=[chunk.metadata["chunk_id"] for chunk in chunks],
                 )
-
+            else:
+                self.add_chunks_to_vectorstore(chunks, [chunk.metadata["chunk_id"] for chunk in chunks])
+            
             self.processed_documents[hash] = {
-                "filename": os.path.basename(file_path),
+                "filename": file_name,
                 "chunk_count": len(chunks),
                 "chunk_ids": [chunk.metadata["chunk_id"] for chunk in chunks],
             }
@@ -176,7 +175,7 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
 
             document_entity = Document(
                 book_isbn=hash,
-                title=os.path.basename(file_path),
+                title=file_name,
                 content=content,
                 hash=hash,
             )
@@ -246,5 +245,5 @@ class ChromaVectorStoreRepositoryImpl(IVectorStoreRepository):
             print(f"Error retrieving document chunks: {e}")
             return []
 
-    def get_all_processed_docs(self) -> List[Any]:
-        return list(self.processed_documents.keys())
+    def get_all_processed_docs(self) -> Dict[Any, Any]:
+        return {hash: doc_name['filename'] for (hash, doc_name) in self.processed_documents.items()}

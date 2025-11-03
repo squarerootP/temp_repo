@@ -50,3 +50,7 @@ class DocumentAlreadyProcessed(Exception):
     """Exception raised when trying to process a document that has already been processed."""
 
     pass
+
+class MessageGenerationNotFound(Exception):
+    """Exception raised when no message is generated for a given query."""
+    pass

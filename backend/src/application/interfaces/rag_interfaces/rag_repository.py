@@ -8,10 +8,6 @@ class IRAGRepository(ABC):
         """Initialize and return the RAG graph."""
         pass
 
-    @abstractmethod
-    def answer_query(self, user_query: str) -> str:
-        """Run retrieval + generation + storage pipeline."""
-        pass
 
     @abstractmethod
     def summarize_history(self, formatted_history: List[Dict[str, Any]]) -> str:
@@ -40,7 +36,7 @@ class IRAGRepository(ABC):
 
     @abstractmethod
     def answer_query_with_specific_document(
-        self, session_id: str, user_query: str, document_hash: Optional[str]
+        self, user_query: str, document_hash: str
     ) -> str:
         """Run retrieval + generation + storage pipeline with a specific document.
 

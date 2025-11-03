@@ -39,31 +39,9 @@ from backend.src.presentation.schemas.rag_schemas.chat_schema import (
 from backend.src.presentation.schemas.rag_schemas.document_schema import \
     DocumentUploadResponse
 
-# ----------------------------------------------------------
-# Dependency Factories (cached for performance)
-# ----------------------------------------------------------
+from backend.src.infrastructure.web.dependencies import (
+    get_chat_session_repo, get_rag_repo, get_vector_repo,)
 
-
-@lru_cache()
-def get_vector_repo() -> ChromaVectorStoreRepositoryImpl:
-    """Singleton instance of the Chroma vectorstore."""
-    return ChromaVectorStoreRepositoryImpl()
-
-
-def get_chat_session_repo(db: Session = Depends(get_db)) -> ChatSessionRepositoryImpl:
-    """Provides chat session repository per request."""
-    return ChatSessionRepositoryImpl(db)
-
-
-def get_rag_repo(
-    vector_repo: ChromaVectorStoreRepositoryImpl = Depends(get_vector_repo),
-    chat_repo: ChatSessionRepositoryImpl = Depends(get_chat_session_repo),
-) -> LangGraphRAGRepositoryImpl:
-    """Creates RAG repository with injected dependencies."""
-    return LangGraphRAGRepositoryImpl(
-        vector_repo=vector_repo,
-        chat_repo=chat_repo,
-    )
 
 
 router = APIRouter(
@@ -84,21 +62,21 @@ def chat_with_context(
     current_user: User = Depends(get_current_user),
     rag_repo: LangGraphRAGRepositoryImpl = Depends(get_rag_repo),
     chat_repo: ChatSessionRepositoryImpl = Depends(get_chat_session_repo),
-    # role_check: None = Depends(has_role("admin")),
-    hash: Optional[str] = Query(None, description="Optional document hash"),
+    hash: str = Query(str, description="Required document hash"),
 ):
     """
     Chat with the RAG system using all prior documents.
-    Only admins can access this endpoint. (But now is open for normal users too)
+    Only admins can access this endpoint.
     """
     chat_with_context_use_case = ChatWithContext(
         rag_repo=rag_repo, chat_session_repo=chat_repo, hash=hash
     )
     try:
         response_message = chat_with_context_use_case.generate_response(
-            user_id=current_user.user_id,  # type: ignore
+            current_user=current_user,
             session_id=chat_request.session_id,  # type: ignore
             query=chat_request.content,
+            hash=hash,
         )
         return response_message
 
@@ -116,13 +94,13 @@ def chat_with_context(
     "/documents",
     status_code=status.HTTP_201_CREATED,
     response_model=DocumentUploadResponse,
+    dependencies=[Depends(has_role("admin"))],
 )
 async def upload_document_to_process(
     file: UploadFile = File(...),
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
     vector_repo: ChromaVectorStoreRepositoryImpl = Depends(get_vector_repo),
-    role_check: None = Depends(has_role("admin")),
 ):
     """
     Upload a document to be processed and stored in the RAG system.
@@ -136,24 +114,29 @@ async def upload_document_to_process(
         doc_repo=doc_repo,
         vector_repo=vector_repo,
     )
-
+    original_filename = file.filename  # Store original filename
     _, ext = os.path.splitext(file.filename)  # type: ignore
+    
+    if not ext:
+        raise HTTPException(
+            status_code=400, detail="File might be corrupted or has no extension."
+        )
     with tempfile.NamedTemporaryFile(
-        delete=False, suffix=ext or ".txt"
+        delete=False, suffix=ext
     ) as temp_file:  # use tempfile to store uploaded file
         temp_file.write(await file.read())
         temp_file_path = temp_file.name
 
     try:
         response_message = upload_doc_use_case.add_documents(
-            temp_file_path, user_id=current_user.user_id
-        )  # type: ignore
+            file_path=temp_file_path, 
+            user_id=current_user.user_id, # type: ignore
+            file_name=original_filename, # type: ignore
+        )  
         return DocumentUploadResponse(
-            document_id=response_message.id,
+            book_isbn=response_message.book_isbn,
             title=response_message.title,
-            hash=response_message.hash,  # type: ignore
-            chunk_count=len(response_message.chunks),
-            uploaded_at=response_message.uploaded_at,
+            hash=response_message.hash, #type: ignore 
         )
     except DocumentAlreadyProcessed as e:
         raise HTTPException(status_code=400, detail=str(e))

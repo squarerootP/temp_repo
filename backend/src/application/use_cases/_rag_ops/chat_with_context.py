@@ -7,8 +7,11 @@ from backend.src.application.interfaces.rag_interfaces.rag_repository import \
 from backend.src.domain.entities.rag_entities.chat_history import (ChatMessage,
                                                                    ChatSession,
                                                                    MessageRole)
-from backend.src.domain.exceptions.chat_exceptions import ChatHistoryNotFound
+from backend.src.domain.exceptions.chat_exceptions import (
+    MessageGenerationNotFound)
+from backend.src.infrastructure.config.settings import settings
 
+MAX_HISTORY_MSG_LEN_TO_RETRIEVE = settings.MAX_HISTORY_MSG_LEN_TO_RETRIEVE
 
 class ChatWithContext:
     """
@@ -19,25 +22,23 @@ class ChatWithContext:
         self,
         rag_repo: IRAGRepository,
         chat_session_repo: IChatSessionRepository,
-        hash: Optional[str] = None,
+        hash: str,
     ):
         self.rag_repo = rag_repo
         self.chat_session_repo = chat_session_repo
         self.hash = hash
 
     def generate_response(
-        self, user_id: int, session_id: str, query: str
+        self, current_user, session_id: str, query: str, hash: str
     ) -> ChatMessage:
+        
         # Get or create session
-        db_chat_session = self.chat_session_repo.get_session_by_id(session_id)
-        if not db_chat_session:
-            chat_session = self.chat_session_repo.create_session(
-                ChatSession(session_id=session_id, messages=[], user_id=user_id)
-            )
+        db_chat_session = self._get_or_create_session(session_id, current_user.user_id)
+
+        if not db_chat_session.messages:
             revised_query = query
         else:
-            chat_session = db_chat_session
-            history_msg = chat_session.messages[-10:]
+            history_msg = db_chat_session.messages[-MAX_HISTORY_MSG_LEN_TO_RETRIEVE:]
             formatted_history = [
                 {"role": msg.role.value, "content": msg.content} for msg in history_msg
             ]
@@ -51,28 +52,36 @@ class ChatWithContext:
                 query, summarized_history
             )
             print("=======Here is revised query:", revised_query)
-
-        # Add user message to session
+        
+        # PERSIST USER MESSAGE
         user_msg = ChatMessage(
             content=query, role=MessageRole.USER, session_id=session_id
-        )
+            )
         self.chat_session_repo.add_message_to_session(session_id, user_msg)
 
-        # Get response from RAG system
         response = self.rag_repo.answer_query_with_specific_document(
-            session_id=session_id, user_query=revised_query, document_hash=self.hash
-        )
-        final_response = response or "I couldn't generate a response."
-
-        # Step 6: Add assistant message to session
+            user_query=revised_query, document_hash=hash
+            )
+        if not response:
+            raise MessageGenerationNotFound("No response generated for the query.")
+        
+        # PERSIST AI MESSAGE
         ai_msg = ChatMessage(
-            content=final_response, role=MessageRole.ASSISTANT, session_id=session_id
-        )
+            content=response, role=MessageRole.ASSISTANT, session_id=session_id
+            )
         self.chat_session_repo.add_message_to_session(
             session_id=session_id, message=ai_msg
+            )
+        
+        return ChatMessage(
+            content=response, role=MessageRole.ASSISTANT, session_id=session_id
         )
 
-        # Step 6: Return structured response
-        return ChatMessage(
-            content=final_response, role=MessageRole.ASSISTANT, session_id=session_id
-        )
+    def _get_or_create_session(self, session_id: str, user_id: int) -> ChatSession:
+        db_chat_session = self.chat_session_repo.get_session_by_id(session_id)
+        if not db_chat_session:
+            chat_session = self.chat_session_repo.create_session(
+                ChatSession(session_id=session_id, messages=[], user_id=user_id)
+            )
+            return chat_session
+        return db_chat_session

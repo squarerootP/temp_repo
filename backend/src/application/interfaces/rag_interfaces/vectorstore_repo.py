@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
-from typing import Any, List
+from typing import Any, List, Dict
 
 
 class IVectorStoreRepository(ABC):
     @abstractmethod
-    def process_document(self, file_path: str, hash: str) -> Any:
+    def process_document(self, file_path: str, hash: str, file_name: str) -> Any:
         pass
 
     @abstractmethod
@@ -22,5 +22,5 @@ class IVectorStoreRepository(ABC):
         pass
 
     @abstractmethod
-    def get_all_processed_docs(self) -> List[Any]:
+    def get_all_processed_docs(self) -> Dict[Any, Any]:
         pass

@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int
     APP_VERSION: str
+    MAX_HISTORY_MSG_LEN_TO_RETRIEVE: int
     model_config = SettingsConfigDict(
         env_file=ENV_FILE_PATH, env_file_encoding="utf-8", extra="ignore"
     )
@@ -31,6 +32,7 @@ class RAGSettings(BaseSettings):
     APP_VERSION: str
     CHUNK_SIZE: int
     CHUNK_OVERLAP: int
+    NUM_DOCS_RETRIEVED: int
 
     # Optional settings with defaults
     MAX_FILE_SIZE_MB: int = 5

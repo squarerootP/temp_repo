@@ -1935,3 +1935,97 @@ Incoming request: DELETE http://127.0.0.1:8000/v1/books/9780316769488
 Completed request: DELETE http://127.0.0.1:8000/v1/books/9780316769488Status: 200 Duration: 17.30ms
 Incoming request: POST http://127.0.0.1:8000/v1/rag/chat
 Completed request: POST http://127.0.0.1:8000/v1/rag/chatStatus: 200 Duration: 24982.92ms
+Incoming request: GET https://localhost:8000/
+Completed request: GET https://localhost:8000/Status: 200 Duration: 2.00ms
+Incoming request: GET https://localhost:8000/favicon.ico
+Completed request: GET https://localhost:8000/favicon.icoStatus: 404 Duration: 0.00ms
+Incoming request: GET https://localhost:8000/docs
+Completed request: GET https://localhost:8000/docsStatus: 200 Duration: 0.00ms
+Incoming request: GET https://localhost:8000/openapi.json
+Completed request: GET https://localhost:8000/openapi.jsonStatus: 200 Duration: 67.82ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 1.03ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 102.94ms
+Incoming request: GET http://localhost:8000/v1/rag/documents
+Completed request: GET http://localhost:8000/v1/rag/documentsStatus: 401 Duration: 635.77ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.00ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 1.51ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 120.33ms
+Incoming request: GET http://localhost:8000/v1/rag/documents
+Completed request: GET http://localhost:8000/v1/rag/documentsStatus: 200 Duration: 39.57ms
+Incoming request: POST http://localhost:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acb
+Completed request: POST http://localhost:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acbStatus: 500 Duration: 979.71ms
+Incoming request: POST http://localhost:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acb
+Completed request: POST http://localhost:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acbStatus: 200 Duration: 8501.12ms
+Incoming request: POST http://localhost:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acb
+Completed request: POST http://localhost:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acbStatus: 200 Duration: 4313.13ms
+Incoming request: POST http://localhost:8000/v1/rag/chat?hash=41cd68ad0cb6d22e4a2b5bc1458cbd4248d13d7c691422065af7188d18a4e68f
+Completed request: POST http://localhost:8000/v1/rag/chat?hash=41cd68ad0cb6d22e4a2b5bc1458cbd4248d13d7c691422065af7188d18a4e68fStatus: 200 Duration: 4445.47ms
+Incoming request: POST http://localhost:8000/v1/rag/chat?hash=41cd68ad0cb6d22e4a2b5bc1458cbd4248d13d7c691422065af7188d18a4e68f
+Completed request: POST http://localhost:8000/v1/rag/chat?hash=41cd68ad0cb6d22e4a2b5bc1458cbd4248d13d7c691422065af7188d18a4e68fStatus: 200 Duration: 7812.40ms
+Incoming request: POST http://localhost:8000/v1/rag/chat?hash=41cd68ad0cb6d22e4a2b5bc1458cbd4248d13d7c691422065af7188d18a4e68f
+Completed request: POST http://localhost:8000/v1/rag/chat?hash=41cd68ad0cb6d22e4a2b5bc1458cbd4248d13d7c691422065af7188d18a4e68fStatus: 200 Duration: 4445.00ms
+Incoming request: POST http://localhost:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acb
+Completed request: POST http://localhost:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acbStatus: 200 Duration: 4183.00ms
+Incoming request: POST http://localhost:8000/v1/rag/chat?hash=41cd68ad0cb6d22e4a2b5bc1458cbd4248d13d7c691422065af7188d18a4e68f
+Completed request: POST http://localhost:8000/v1/rag/chat?hash=41cd68ad0cb6d22e4a2b5bc1458cbd4248d13d7c691422065af7188d18a4e68fStatus: 200 Duration: 6712.60ms
+Incoming request: POST http://localhost:8000/v1/rag/chat?hash=41cd68ad0cb6d22e4a2b5bc1458cbd4248d13d7c691422065af7188d18a4e68f
+Completed request: POST http://localhost:8000/v1/rag/chat?hash=41cd68ad0cb6d22e4a2b5bc1458cbd4248d13d7c691422065af7188d18a4e68fStatus: 200 Duration: 5606.44ms
+Incoming request: POST http://localhost:8000/v1/rag/chat?hash=41cd68ad0cb6d22e4a2b5bc1458cbd4248d13d7c691422065af7188d18a4e68f
+Completed request: POST http://localhost:8000/v1/rag/chat?hash=41cd68ad0cb6d22e4a2b5bc1458cbd4248d13d7c691422065af7188d18a4e68fStatus: 200 Duration: 4204.45ms
+Incoming request: POST http://localhost:8000/v1/rag/chat?hash=ef709744904d85ba1f5d33944e7b8682ecefbcd0ec73269949d83bdfa03dd490
+Completed request: POST http://localhost:8000/v1/rag/chat?hash=ef709744904d85ba1f5d33944e7b8682ecefbcd0ec73269949d83bdfa03dd490Status: 200 Duration: 4493.28ms
+Incoming request: GET http://localhost:8000/v1/rag/documents
+Completed request: GET http://localhost:8000/v1/rag/documentsStatus: 200 Duration: 6698.08ms
+Incoming request: POST http://localhost:8000/v1/rag/chat?hash=90c1b7ce60806286f98c6df27082987a6a94064377006b8f28e3b8baba23aee4
+Completed request: POST http://localhost:8000/v1/rag/chat?hash=90c1b7ce60806286f98c6df27082987a6a94064377006b8f28e3b8baba23aee4Status: 200 Duration: 4203.02ms
+Incoming request: GET http://localhost:8000/v1/rag/documents
+{"error": "(sqlite3.IntegrityError) UNIQUE constraint failed: documents.hash\n[SQL: INSERT INTO documents (book_isbn, title, content, hash) VALUES (?, ?, ?, ?)]\n[parameters: ('c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acb', 'alice_in_wonderland.txt', 'Alice\\'s Adventures in Wonderland\\n\\n                ALICE\\'S ADVENTURES IN WONDERLAND\\n\\n                          Lewis Carroll\\n\\n               T ... (153638 characters truncated) ... ws, and find a pleasure in all their simple joys,\\nremembering her own child-life, and the happy summer days.\\n\\n                             THE END', 'c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acb')]\n(Background on this error at: https://sqlalche.me/e/20/gkpj)", "type": "IntegrityError", "path": "http://localhost:8000/v1/rag/documents", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/rag/documents
+Completed request: GET http://localhost:8000/v1/rag/documentsStatus: 200 Duration: 436.62ms
+Incoming request: GET http://localhost:8000/v1/rag/documents
+Completed request: GET http://localhost:8000/v1/rag/documentsStatus: 200 Duration: 34.14ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.00ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 131.46ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 120.74ms
+Incoming request: GET http://localhost:8000/v1/rag/documents
+Completed request: GET http://localhost:8000/v1/rag/documentsStatus: 200 Duration: 76437.78ms
+Incoming request: POST http://localhost:8000/v1/rag/chat?hash=90c1b7ce60806286f98c6df27082987a6a94064377006b8f28e3b8baba23aee4
+Completed request: POST http://localhost:8000/v1/rag/chat?hash=90c1b7ce60806286f98c6df27082987a6a94064377006b8f28e3b8baba23aee4Status: 200 Duration: 16484.06ms
+Incoming request: GET http://localhost:8000/v1/rag/documents
+Completed request: GET http://localhost:8000/v1/rag/documentsStatus: 200 Duration: 525.84ms
+Incoming request: GET http://localhost:8000/v1/rag/documents
+Completed request: GET http://localhost:8000/v1/rag/documentsStatus: 200 Duration: 423.20ms
+Incoming request: POST http://localhost:8000/v1/rag/documents
+Completed request: POST http://localhost:8000/v1/rag/documentsStatus: 500 Duration: 13858.89ms
+Incoming request: GET http://localhost:8000/v1/rag/documents
+Completed request: GET http://localhost:8000/v1/rag/documentsStatus: 200 Duration: 32.58ms
+Incoming request: POST http://localhost:8000/v1/rag/chat?hash=d84bd85daca37b953747e31dc70eacf6a1a89b5a8aba08a3887a12fac5505c98
+Completed request: POST http://localhost:8000/v1/rag/chat?hash=d84bd85daca37b953747e31dc70eacf6a1a89b5a8aba08a3887a12fac5505c98Status: 200 Duration: 3532.30ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 1.01ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 97.39ms
+Incoming request: POST http://localhost:8000/v1/rag/documents
+Completed request: POST http://localhost:8000/v1/rag/documentsStatus: 401 Duration: 5.51ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 110.18ms
+Incoming request: POST http://localhost:8000/v1/rag/documents
+Completed request: POST http://localhost:8000/v1/rag/documentsStatus: 500 Duration: 13682.59ms
+Incoming request: POST http://localhost:8000/v1/rag/documents
+Completed request: POST http://localhost:8000/v1/rag/documentsStatus: 500 Duration: 15723.48ms
+Incoming request: POST http://localhost:8000/v1/rag/documents
+Completed request: POST http://localhost:8000/v1/rag/documentsStatus: 400 Duration: 511.43ms
+Incoming request: POST http://localhost:8000/v1/rag/documents
+Completed request: POST http://localhost:8000/v1/rag/documentsStatus: 400 Duration: 98.88ms
+Incoming request: POST http://localhost:8000/v1/rag/documents
+Completed request: POST http://localhost:8000/v1/rag/documentsStatus: 400 Duration: 68.92ms
+Incoming request: GET http://localhost:8000/v1/rag/documents
+Completed request: GET http://localhost:8000/v1/rag/documentsStatus: 200 Duration: 32.45ms

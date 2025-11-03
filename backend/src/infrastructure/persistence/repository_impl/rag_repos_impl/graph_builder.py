@@ -21,14 +21,14 @@ from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.tools
     search_web
 from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.vectorstore_repository_impl import \
     ChromaVectorStoreRepositoryImpl
-
+from backend.src.infrastructure.config.settings import rag_settings
 
 # --- State ---
 class State(TypedDict):
     query: str
     messages: Annotated[List[Any], add_messages]
     web_search: str
-    document_hash: Optional[str]
+    document_hash: str
     documents: List[Document]
     search_results: Annotated[List[str], operator.add]
 
@@ -42,20 +42,14 @@ def retrieve_node(state: State, vector_repo: ChromaVectorStoreRepositoryImpl) ->
     document_hash = state.get("document_hash", None)
 
     try:
-        # Get documents from vector store
-        if document_hash:
-            docs_and_scores = (
-                vector_repo.vectorstore.similarity_search_with_relevance_scores(  # type: ignore
-                    query, k=6, filter={"document_hash": document_hash}
-                )
+
+        docs_and_scores = (
+            vector_repo.vectorstore.similarity_search_with_relevance_scores(  # type: ignore
+                query, k=rag_settings.NUM_DOCS_RETRIEVED, filter={"document_hash": document_hash}
             )
-        else:
-            docs_and_scores = (
-                vector_repo.vectorstore.similarity_search_with_relevance_scores(  # type: ignore
-                    query, k=6
-                )
-            )
-        threshold = 0.7  # Adjust this threshold as needed
+        )
+        
+        threshold = 0.5  # Adjust this threshold as needed
         relevant_docs = [doc for doc, score in docs_and_scores if score >= threshold]
 
         if relevant_docs:
@@ -63,17 +57,14 @@ def retrieve_node(state: State, vector_repo: ChromaVectorStoreRepositoryImpl) ->
             print(
                 f"Retrieved {len(relevant_docs)} relevant documents (score >= {threshold})"
             )
-            print(state["documents"])
+            print(
+                "Sample document content:"
+                + state["documents"][0].page_content[:100]
+                + "..."
+            )
         else:
-            print("No documents met the relevance threshold")
+            print("No relevant documents found above the threshold.")
             state["web_search"] = "yes"  # Fallback to web search
-
-        print(f"Retrieved {len(state['documents'])} documents")
-        print(
-            "Sample document content:"
-            + state["documents"][0].page_content[200:]
-            + "..."
-        )
 
     except Exception as e:
         print(f"Error retrieving documents: {e}")
@@ -236,36 +227,4 @@ def build_graph(vector_repo: IVectorStoreRepository) -> StateGraph:
     return graph.compile()  # type: ignore
 
 
-# for testting only
-def main():
-    from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.vectorstore_repository_impl import \
-        ChromaVectorStoreRepositoryImpl
 
-    vector_repo = ChromaVectorStoreRepositoryImpl()
-    app = build_graph(vector_repo)
-
-    print("Graph compiled. Multi-tool RAG agent ready.")
-    while True:
-        user_input = input("You: ")
-        if user_input.lower() in ["quit", "exit", "q"]:
-            break
-
-        events = app.stream(  # type: ignore
-            {
-                "query": user_input,
-                "documents": [],
-                "web_search": "yes",
-                "messages": [],
-                "document_hash": None,
-            },
-            stream_mode="values",
-        )
-
-        final_event = dict()
-        for event in events:
-            final_event = event
-        final_event["messages"][-1].pretty_print()
-
-
-if __name__ == "__main__":
-    main()

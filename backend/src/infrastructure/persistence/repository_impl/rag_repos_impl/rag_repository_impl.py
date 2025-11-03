@@ -12,14 +12,12 @@ as the canonical provider of the IRAGRepository contract.
 
 from backend.src.application.interfaces.rag_interfaces.chat_session_repository import \
     IChatSessionRepository
-from backend.src.application.interfaces.rag_interfaces.document_repository import \
-    IDocumentRepository
+
 from backend.src.application.interfaces.rag_interfaces.rag_repository import \
     IRAGRepository
 from backend.src.application.interfaces.rag_interfaces.vectorstore_repo import \
     IVectorStoreRepository
-from backend.src.domain.entities.rag_entities.chat_history import (ChatMessage,
-                                                                   MessageRole)
+
 from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.graph_builder import \
     build_graph
 from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.llm.llm import (
@@ -39,12 +37,13 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
 
     def __init__(
         self,
-        vector_repo: Optional[IVectorStoreRepository] = None,
-        chat_repo: Optional[IChatSessionRepository] = None,
+        vector_repo: IVectorStoreRepository,
+        chat_repo: IChatSessionRepository 
     ):
         self.vector_repo = vector_repo
         self.chat_repo = chat_repo
-        self.graph = build_graph(vector_repo=vector_repo)  # type: ignore
+        self.graph = build_graph(vector_repo=vector_repo)  
+        self.small_llm = get_small_llm()
         self.decent_llm = get_decent_llm()
         self.big_llm = get_big_llm()
 
@@ -57,7 +56,7 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
         self,
         messages_payload: List[tuple],
         query: str,
-        document_hash: Optional[str] = None,
+        document_hash: str,
     ) -> str:
         """
         Run the compiled graph with given messages payload and return the final message.content.
@@ -88,33 +87,6 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
             logger.exception("Error while running graph: %s", e)
             return ""
 
-    # ---------- IRAG methods ----------
-    def answer_query(self, user_query: str) -> str:
-        """
-        Run the full RAG pipeline for a query and persist conversation messages.
-
-        Workflow:
-        - Persist the user message to chat repo
-        - Run graph (LLM + tools) and obtain assistant answer
-        - Persist assistant message
-        - Return assistant text
-        """
-        try:
-            messages_payload = [("user", user_query)]
-            assistant_text = self._run_graph_and_get_last_content(
-                messages_payload, query=user_query
-            )
-
-            if not assistant_text:
-                assistant_text = (
-                    "I'm sorry — I couldn't generate an answer at the moment."
-                )
-
-            return assistant_text
-
-        except Exception as e:
-            logger.exception("answer_query failed: %s", e)
-            return "I'm sorry, something went wrong while processing your request."
 
     def summarize_history(self, formatted_history: List[Dict[str, Any]]) -> str:
         """
@@ -129,6 +101,7 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
         summarization_prompt = (
             "Please provide a short concise summary of the conversation below. "
             "Focus on key topics, questions, and any details which would help continue the conversation.\n\n"
+            "Here is the conversation history:\n"
             f"{formatted_history}\n\nSummary:"
         )
 
@@ -137,7 +110,7 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
             result = self.decent_llm.invoke(summarization_prompt).content
             return (
                 result
-                or f"Conversation of {len(history)} messages about various topics."
+                or f"Conversation of {len(formatted_history)} messages about various topics."
             )  # type: ignore
         except Exception as e:
             logger.exception("summarize_history fallback: %s", e)
@@ -181,7 +154,7 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
         return refined or f"{query} {context}"  # type: ignore
 
     def answer_query_with_specific_document(
-        self, session_id: str, user_query: str, document_hash: Optional[str]
+        self, user_query: str, document_hash: str
     ) -> str:
         """
         Answer a query but instruct the retrieval component to focus on a specific document.
@@ -204,23 +177,6 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
             if not assistant_text:
                 assistant_text = (
                     "I'm sorry — I couldn't find an answer in the specified document."
-                )
-
-            # Persist assistant message
-            ai_msg = ChatMessage(
-                content=assistant_text,
-                role=MessageRole.ASSISTANT,
-                session_id=session_id,
-            )
-            try:
-                if self.chat_repo:
-                    self.chat_repo.add_message_to_session(
-                        session_id=session_id, message=ai_msg
-                    )
-            except Exception:
-                logger.exception(
-                    "Failed to persist assistant message (specific doc) for session %s",
-                    session_id,
                 )
 
             return assistant_text
