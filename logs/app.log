@@ -2029,3 +2029,31 @@ Incoming request: POST http://localhost:8000/v1/rag/documents
 Completed request: POST http://localhost:8000/v1/rag/documentsStatus: 400 Duration: 68.92ms
 Incoming request: GET http://localhost:8000/v1/rag/documents
 Completed request: GET http://localhost:8000/v1/rag/documentsStatus: 200 Duration: 32.45ms
+Incoming request: GET http://127.0.0.1:8000/
+Completed request: GET http://127.0.0.1:8000/Status: 200 Duration: 4.68ms
+Incoming request: GET http://127.0.0.1:8000/favicon.ico
+Completed request: GET http://127.0.0.1:8000/favicon.icoStatus: 404 Duration: 3.52ms
+Incoming request: GET http://127.0.0.1:8000/docs
+Completed request: GET http://127.0.0.1:8000/docsStatus: 200 Duration: 2.10ms
+Incoming request: GET http://127.0.0.1:8000/openapi.json
+Completed request: GET http://127.0.0.1:8000/openapi.jsonStatus: 200 Duration: 241.66ms
+Incoming request: GET http://127.0.0.1:8000/v1/rag/documents
+Completed request: GET http://127.0.0.1:8000/v1/rag/documentsStatus: 401 Duration: 1641.49ms
+Incoming request: POST http://127.0.0.1:8000/v1/token
+Completed request: POST http://127.0.0.1:8000/v1/tokenStatus: 200 Duration: 220.08ms
+Incoming request: GET http://127.0.0.1:8000/v1/rag/documents
+Completed request: GET http://127.0.0.1:8000/v1/rag/documentsStatus: 200 Duration: 104.27ms
+Incoming request: POST http://127.0.0.1:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acb
+Incoming request: GET http://127.0.0.1:8000/docs
+Completed request: GET http://127.0.0.1:8000/docsStatus: 200 Duration: 5.03ms
+Incoming request: GET http://127.0.0.1:8000/openapi.json
+Completed request: GET http://127.0.0.1:8000/openapi.jsonStatus: 200 Duration: 2.04ms
+Incoming request: GET http://127.0.0.1:8000/v1/rag/documents
+Completed request: GET http://127.0.0.1:8000/v1/rag/documentsStatus: 401 Duration: 84.58ms
+Incoming request: POST http://127.0.0.1:8000/v1/token
+Completed request: POST http://127.0.0.1:8000/v1/tokenStatus: 200 Duration: 140.09ms
+Incoming request: GET http://127.0.0.1:8000/v1/rag/documents
+Completed request: GET http://127.0.0.1:8000/v1/rag/documentsStatus: 200 Duration: 71.79ms
+Incoming request: POST http://127.0.0.1:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acb
+Completed request: POST http://127.0.0.1:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acbStatus: 200 Duration: 664855.60ms
+Completed request: POST http://127.0.0.1:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acbStatus: 200 Duration: 412312.39ms
