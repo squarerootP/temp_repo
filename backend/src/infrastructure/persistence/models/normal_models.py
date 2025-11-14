@@ -47,7 +47,7 @@ class BookModel(Base):
     genre: Mapped[Optional[str]] = mapped_column(String(50), index=True)
     published_year: Mapped[Optional[int]] = mapped_column(Integer)
     author_name: Mapped[str] = mapped_column(String(50))
-
+    
     # 1-to-1 relationship with Document
     document: Mapped[Optional["DocumentModel"]] = relationship( #type: ignore
         back_populates="book",

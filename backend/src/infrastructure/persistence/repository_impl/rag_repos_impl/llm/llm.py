@@ -44,3 +44,13 @@ def get_decent_llm():
         temperature=0.1,
     )
     return llm
+
+def get_field_extractor_llm():
+    llm = ChatOpenAI(
+        model="llama-3.3-70b",
+        api_key=api_settings.CEREBRAS_API_KEY,  # type: ignore
+        base_url="https://api.cerebras.ai/v1",
+        temperature=0.0,
+        # model_kwargs={"response_format": "json_object"}
+    )
+    return llm

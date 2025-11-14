@@ -1,0 +1,8 @@
+{"error": "build_graph() missing 1 required positional argument: 'books_repo'", "type": "TypeError", "path": "http://localhost:8000/v1/rag/chat", "method": "POST"}
+{"error": "LangGraphRAGRepositoryImpl.__init__() missing 1 required positional argument: 'books_repo'", "type": "TypeError", "path": "http://localhost:8000/v1/rag/chat", "method": "POST"}
+{"error": "Can't instantiate abstract class ChromaVectorStoreRepositoryImpl with abstract method delete_document_chunks", "type": "TypeError", "path": "http://localhost:8000/v1/rag/chat", "method": "POST"}
+{"error": "ChromaVectorStoreRepositoryImpl.__init__() missing 1 required positional argument: 'book_repo'", "type": "TypeError", "path": "http://localhost:8000/v1/rag/chat", "method": "POST"}
+{"error": "'tuple' object has no attribute 'save_document'", "type": "AttributeError", "path": "http://localhost:8000/v1/rag/chat", "method": "POST"}
+{"error": "Error embedding content: bad argument type for built-in operation", "type": "GoogleGenerativeAIError", "path": "http://localhost:8000/v1/rag/chat", "method": "POST"}
+{"error": "no book found of such isbn, recheck your algorithm", "type": "ValueError", "path": "http://localhost:8000/v1/rag/documents", "method": "GET"}
+{"error": "no book found of such isbn, recheck your algorithm", "type": "ValueError", "path": "http://localhost:8000/v1/rag/documents", "method": "GET"}

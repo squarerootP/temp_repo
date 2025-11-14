@@ -1,6 +1,6 @@
 {
-    "formName": "SignUpForm",
-    "header": "Sign Up",
-    "route_to_sign_in": "Already have an account?",
-    "sign_in_link_text": "Log in"
+  "formName": "SignUpForm",
+  "header": "Sign Up",
+  "route_to_sign_in": "Already have an account?",
+  "sign_in_link_text": "Log in"
 }

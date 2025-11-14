@@ -62,11 +62,17 @@ def chat_with_context(
     current_user: User = Depends(get_current_user),
     rag_repo: LangGraphRAGRepositoryImpl = Depends(get_rag_repo),
     chat_repo: ChatSessionRepositoryImpl = Depends(get_chat_session_repo),
-    hash: str = Query(str, description="Required document hash"),
+    hash: Optional[str] = Query(None, description="Optional document hash"),
 ):
     """
-    Chat with the RAG system using all prior documents.
-    Only admins can access this endpoint.
+    This chat can be triggered in two modes:
+    1: General chat (this uses all embedded content in the vectorstore, including all books)
+    2. With hash, this is applied when you're on a specific book page, the hash will be determined by the frontend
+    What you can do?
+    
+     - chat about book(s)
+     - Asking for book recommendation
+     - Book search based on criteria
     """
     chat_with_context_use_case = ChatWithContext(
         rag_repo=rag_repo, chat_session_repo=chat_repo, hash=hash
@@ -84,7 +90,6 @@ def chat_with_context(
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="User not found"
         )
-
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Internal RAG error: {str(e)}")
 
@@ -202,3 +207,4 @@ def get_session_by_id(
         raise HTTPException(
             status_code=500, detail=f"Failed to retrieve session: {str(e)}"
         )
+

@@ -1,101 +1,243 @@
-import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/main.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=b54db94a"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
-import __vite__cjsImport1_react from "/node_modules/.vite/deps/react.js?v=b54db94a"; const React = __vite__cjsImport1_react.__esModule ? __vite__cjsImport1_react.default : __vite__cjsImport1_react;
-import __vite__cjsImport2_reactDom_client from "/node_modules/.vite/deps/react-dom_client.js?v=b54db94a"; const ReactDOM = __vite__cjsImport2_reactDom_client.__esModule ? __vite__cjsImport2_reactDom_client.default : __vite__cjsImport2_reactDom_client;
-import { AuthProvider } from "/src/context/AuthContext.jsx";
-import Login from "/src/pages/Login.jsx?t=1762499452854";
-import SignUp from "/src/pages/SignUp.jsx";
-import { BrowserRouter, Router, Routes, Route } from "/node_modules/.vite/deps/react-router-dom.js?v=b54db94a";
-import Home from "/src/pages/Home.jsx?t=1762499452854";
-import LandingPage from "/src/pages/LandingPage.jsx?t=1762499452854";
+import { createHotContext as __vite__createHotContext } from '/@vite/client';
+import.meta.hot = __vite__createHotContext('/src/main.jsx');
+import __vite__cjsImport0_react_jsxDevRuntime from '/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=b54db94a';
+const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime['jsxDEV'];
+import __vite__cjsImport1_react from '/node_modules/.vite/deps/react.js?v=b54db94a';
+const React = __vite__cjsImport1_react.__esModule
+  ? __vite__cjsImport1_react.default
+  : __vite__cjsImport1_react;
+import __vite__cjsImport2_reactDom_client from '/node_modules/.vite/deps/react-dom_client.js?v=b54db94a';
+const ReactDOM = __vite__cjsImport2_reactDom_client.__esModule
+  ? __vite__cjsImport2_reactDom_client.default
+  : __vite__cjsImport2_reactDom_client;
+import { AuthProvider } from '/src/context/AuthContext.jsx';
+import Login from '/src/pages/Login.jsx?t=1762499452854';
+import SignUp from '/src/pages/SignUp.jsx';
+import {
+  BrowserRouter,
+  Router,
+  Routes,
+  Route,
+} from '/node_modules/.vite/deps/react-router-dom.js?v=b54db94a';
+import Home from '/src/pages/Home.jsx?t=1762499452854';
+import LandingPage from '/src/pages/LandingPage.jsx?t=1762499452854';
 function App() {
-  return /* @__PURE__ */ jsxDEV("div", { children: /* @__PURE__ */ jsxDEV(AuthProvider, { children: /* @__PURE__ */ jsxDEV(BrowserRouter, { children: /* @__PURE__ */ jsxDEV(Routes, { children: [
-    /* @__PURE__ */ jsxDEV(Route, { path: "/", element: /* @__PURE__ */ jsxDEV(LandingPage, {}, void 0, false, {
-      fileName: "C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx",
-      lineNumber: 16,
-      columnNumber: 38
-    }, this) }, void 0, false, {
-      fileName: "C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx",
-      lineNumber: 16,
-      columnNumber: 13
-    }, this),
-    /* @__PURE__ */ jsxDEV(Route, { path: "/log_in", element: /* @__PURE__ */ jsxDEV(Login, {}, void 0, false, {
-      fileName: "C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx",
-      lineNumber: 17,
-      columnNumber: 44
-    }, this) }, void 0, false, {
-      fileName: "C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx",
-      lineNumber: 17,
-      columnNumber: 13
-    }, this),
-    /* @__PURE__ */ jsxDEV(Route, { path: "/sign-up", element: /* @__PURE__ */ jsxDEV(SignUp, {}, void 0, false, {
-      fileName: "C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx",
-      lineNumber: 18,
-      columnNumber: 45
-    }, this) }, void 0, false, {
-      fileName: "C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx",
-      lineNumber: 18,
-      columnNumber: 13
-    }, this),
-    /* @__PURE__ */ jsxDEV(Route, { path: "/home", element: /* @__PURE__ */ jsxDEV(Home, {}, void 0, false, {
-      fileName: "C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx",
-      lineNumber: 19,
-      columnNumber: 42
-    }, this) }, void 0, false, {
-      fileName: "C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx",
-      lineNumber: 19,
-      columnNumber: 13
-    }, this)
-  ] }, void 0, true, {
-    fileName: "C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx",
-    lineNumber: 15,
-    columnNumber: 11
-  }, this) }, void 0, false, {
-    fileName: "C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx",
-    lineNumber: 14,
-    columnNumber: 9
-  }, this) }, void 0, false, {
-    fileName: "C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx",
-    lineNumber: 13,
-    columnNumber: 7
-  }, this) }, void 0, false, {
-    fileName: "C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx",
-    lineNumber: 12,
-    columnNumber: 5
-  }, this);
+  return /* @__PURE__ */ jsxDEV(
+    'div',
+    {
+      children: /* @__PURE__ */ jsxDEV(
+        AuthProvider,
+        {
+          children: /* @__PURE__ */ jsxDEV(
+            BrowserRouter,
+            {
+              children: /* @__PURE__ */ jsxDEV(
+                Routes,
+                {
+                  children: [
+                    /* @__PURE__ */ jsxDEV(
+                      Route,
+                      {
+                        path: '/',
+                        element: /* @__PURE__ */ jsxDEV(
+                          LandingPage,
+                          {},
+                          void 0,
+                          false,
+                          {
+                            fileName: 'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+                            lineNumber: 16,
+                            columnNumber: 38,
+                          },
+                          this
+                        ),
+                      },
+                      void 0,
+                      false,
+                      {
+                        fileName: 'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+                        lineNumber: 16,
+                        columnNumber: 13,
+                      },
+                      this
+                    ),
+                    /* @__PURE__ */ jsxDEV(
+                      Route,
+                      {
+                        path: '/log_in',
+                        element: /* @__PURE__ */ jsxDEV(
+                          Login,
+                          {},
+                          void 0,
+                          false,
+                          {
+                            fileName: 'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+                            lineNumber: 17,
+                            columnNumber: 44,
+                          },
+                          this
+                        ),
+                      },
+                      void 0,
+                      false,
+                      {
+                        fileName: 'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+                        lineNumber: 17,
+                        columnNumber: 13,
+                      },
+                      this
+                    ),
+                    /* @__PURE__ */ jsxDEV(
+                      Route,
+                      {
+                        path: '/sign-up',
+                        element: /* @__PURE__ */ jsxDEV(
+                          SignUp,
+                          {},
+                          void 0,
+                          false,
+                          {
+                            fileName: 'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+                            lineNumber: 18,
+                            columnNumber: 45,
+                          },
+                          this
+                        ),
+                      },
+                      void 0,
+                      false,
+                      {
+                        fileName: 'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+                        lineNumber: 18,
+                        columnNumber: 13,
+                      },
+                      this
+                    ),
+                    /* @__PURE__ */ jsxDEV(
+                      Route,
+                      {
+                        path: '/home',
+                        element: /* @__PURE__ */ jsxDEV(
+                          Home,
+                          {},
+                          void 0,
+                          false,
+                          {
+                            fileName: 'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+                            lineNumber: 19,
+                            columnNumber: 42,
+                          },
+                          this
+                        ),
+                      },
+                      void 0,
+                      false,
+                      {
+                        fileName: 'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+                        lineNumber: 19,
+                        columnNumber: 13,
+                      },
+                      this
+                    ),
+                  ],
+                },
+                void 0,
+                true,
+                {
+                  fileName: 'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+                  lineNumber: 15,
+                  columnNumber: 11,
+                },
+                this
+              ),
+            },
+            void 0,
+            false,
+            {
+              fileName: 'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+              lineNumber: 14,
+              columnNumber: 9,
+            },
+            this
+          ),
+        },
+        void 0,
+        false,
+        {
+          fileName: 'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+          lineNumber: 13,
+          columnNumber: 7,
+        },
+        this
+      ),
+    },
+    void 0,
+    false,
+    {
+      fileName: 'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+      lineNumber: 12,
+      columnNumber: 5,
+    },
+    this
+  );
 }
 _c = App;
-ReactDOM.createRoot(document.getElementById("root")).render(
-  /* @__PURE__ */ jsxDEV(React.StrictMode, { children: /* @__PURE__ */ jsxDEV(App, {}, void 0, false, {
-    fileName: "C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx",
-    lineNumber: 29,
-    columnNumber: 5
-  }, this) }, void 0, false, {
-    fileName: "C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx",
-    lineNumber: 28,
-    columnNumber: 3
-  }, this)
+ReactDOM.createRoot(document.getElementById('root')).render(
+  /* @__PURE__ */ jsxDEV(
+    React.StrictMode,
+    {
+      children: /* @__PURE__ */ jsxDEV(
+        App,
+        {},
+        void 0,
+        false,
+        {
+          fileName: 'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+          lineNumber: 29,
+          columnNumber: 5,
+        },
+        this
+      ),
+    },
+    void 0,
+    false,
+    {
+      fileName: 'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+      lineNumber: 28,
+      columnNumber: 3,
+    },
+    this
+  )
 );
 var _c;
-$RefreshReg$(_c, "App");
-import * as RefreshRuntime from "/@react-refresh";
-const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+$RefreshReg$(_c, 'App');
+import * as RefreshRuntime from '/@react-refresh';
+const inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
 if (import.meta.hot && !inWebWorker) {
   if (!window.$RefreshReg$) {
-    throw new Error(
-      "@vitejs/plugin-react can't detect preamble. Something is wrong."
-    );
+    throw new Error("@vitejs/plugin-react can't detect preamble. Something is wrong.");
   }
   RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
-    RefreshRuntime.registerExportsForReactRefresh("C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx", currentExports);
+    RefreshRuntime.registerExportsForReactRefresh(
+      'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+      currentExports
+    );
     import.meta.hot.accept((nextExports) => {
       if (!nextExports) return;
-      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx", currentExports, nextExports);
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(
+        'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx',
+        currentExports,
+        nextExports
+      );
       if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
     });
   });
 }
 function $RefreshReg$(type, id) {
-  return RefreshRuntime.register(type, "C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx " + id);
+  return RefreshRuntime.register(
+    type,
+    'C:/Users/Admin/workspace/phongnv37/frontend/src/main.jsx ' + id
+  );
 }
 function $RefreshSig$() {
   return RefreshRuntime.createSignatureFunctionForTransform();

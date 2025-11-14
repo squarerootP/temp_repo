@@ -10,6 +10,7 @@ There used to be a duplicate graph-only implementation in
 as the canonical provider of the IRAGRepository contract.
 """
 
+from backend.src.application.interfaces.library_interfaces.book_repository import BookRepository
 from backend.src.application.interfaces.rag_interfaces.chat_session_repository import \
     IChatSessionRepository
 
@@ -21,7 +22,7 @@ from backend.src.application.interfaces.rag_interfaces.vectorstore_repo import \
 from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.graph_builder import \
     build_graph
 from backend.src.infrastructure.persistence.repository_impl.rag_repos_impl.llm.llm import (
-    get_big_llm, get_decent_llm, get_small_llm)
+    get_big_llm, get_decent_llm, get_small_llm, get_field_extractor_llm)
 
 logger = logging.getLogger(__name__)
 
@@ -38,11 +39,12 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
     def __init__(
         self,
         vector_repo: IVectorStoreRepository,
-        chat_repo: IChatSessionRepository 
+        chat_repo: IChatSessionRepository,
+        books_repo: BookRepository
     ):
         self.vector_repo = vector_repo
         self.chat_repo = chat_repo
-        self.graph = build_graph(vector_repo=vector_repo)  
+        self.graph = build_graph(vector_repo=vector_repo, books_repo=books_repo)  
         self.small_llm = get_small_llm()
         self.decent_llm = get_decent_llm()
         self.big_llm = get_big_llm()
@@ -56,7 +58,7 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
         self,
         messages_payload: List[tuple],
         query: str,
-        document_hash: str,
+        document_hash: Optional[str],
     ) -> str:
         """
         Run the compiled graph with given messages payload and return the final message.content.
@@ -70,6 +72,7 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
                     "search_results": [],
                     "web_search": "yes",
                     "document_hash": document_hash,
+                    "books_list": []
                 },
                 stream_mode="values",
             )
@@ -154,7 +157,7 @@ class LangGraphRAGRepositoryImpl(IRAGRepository):
         return refined or f"{query} {context}"  # type: ignore
 
     def answer_query_with_specific_document(
-        self, user_query: str, document_hash: str
+        self, user_query: str, document_hash: Optional[str]
     ) -> str:
         """
         Answer a query but instruct the retrieval component to focus on a specific document.

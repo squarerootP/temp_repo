@@ -8,12 +8,9 @@ class IVectorStoreRepository(ABC):
         pass
 
     @abstractmethod
-    def get_similar_chunks(self, query: str, k: int = 4) -> List[Any]:
+    def get_similar_chunks(self, query: str, k: int = 4, collection: str = "book_chunks") -> List[Any]:
         pass
 
-    @abstractmethod
-    def delete_document_chunks(self, document_hash: str) -> bool:
-        pass
 
     @abstractmethod
     def get_document_chunks(

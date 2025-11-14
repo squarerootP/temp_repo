@@ -1,0 +1,1 @@
+{"error": "Validation error", "details": [{"type": "json_invalid", "loc": ["body", 37], "msg": "JSON decode error", "input": {}, "ctx": {"error": "Expecting ',' delimiter"}}], "body": "{\n  \"content\": \"Books about monsters\"\",\n  \"session_id\": \"31\"\n}", "path": "http://localhost:8000/v1/rag/chat", "method": "POST"}

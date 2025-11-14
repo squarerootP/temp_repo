@@ -1,0 +1,28 @@
+{
+  "genres": [
+    {
+      "genre": "Fantasy",
+      "img_path": "/images/book_genre_icons/fantasy.png"
+    },
+    {
+      "genre": "Science Fiction",
+      "img_path": "/images/book_genre_icons/scifi.png"
+    },
+    {
+      "genre": "UFO",
+      "img_path": "/images/book_genre_icons/ufo.png"
+    },
+    {
+      "genre": "Mystery",
+      "img_path": "/images/book_genre_icons/mystery.png"
+    },
+    {
+      "genre": "Romance",
+      "img_path": "/images/book_genre_icons/romance.png"
+    },
+    {
+      "genre": "Horror",
+      "img_path": "/images/book_genre_icons/horror.png"
+    }
+  ]
+}

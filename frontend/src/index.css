@@ -4,8 +4,16 @@
 
 .text-outline {
   text-shadow:
-    -1px -1px 0 #000,  
+    -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000,
     1px 1px 0 #000;
+}
+
+.ai-message {
+  @apply w-fit max-w-[80%] rounded-lg bg-green-200 p-2 text-black;
+}
+
+.human-message {
+  @apply ml-auto w-fit max-w-[80%] rounded-lg bg-green-500 p-2 text-white;
 }

@@ -1,0 +1,20 @@
+{
+    "messages": [
+        {
+            "role": "human",
+            "content": "Hi there! Can you recommend me a good mystery book?"
+        },
+        {
+            "role": "ai",
+            "content": "Sure! You might enjoy *The Girl with the Dragon Tattoo* by Stieg Larsson."
+        },
+        {
+            "role": "human",
+            "content": "Sounds interesting. Is it part of a series?"
+        },
+        {
+            "role": "ai",
+            "content": "Yes, it’s the first book in the *Millennium* series — a great choice if you like complex mysteries."
+        }
+    ]
+}

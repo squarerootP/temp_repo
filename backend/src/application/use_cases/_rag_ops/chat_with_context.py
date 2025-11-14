@@ -22,14 +22,14 @@ class ChatWithContext:
         self,
         rag_repo: IRAGRepository,
         chat_session_repo: IChatSessionRepository,
-        hash: str,
+        hash: Optional[str],
     ):
         self.rag_repo = rag_repo
         self.chat_session_repo = chat_session_repo
         self.hash = hash
 
     def generate_response(
-        self, current_user, session_id: str, query: str, hash: str
+        self, current_user, session_id: str, query: str, hash: Optional[str]
     ) -> ChatMessage:
         
         # Get or create session

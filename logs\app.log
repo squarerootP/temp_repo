@@ -1,0 +1,265 @@
+Incoming request: GET http://0.0.0.0:8000/
+Completed request: GET http://0.0.0.0:8000/Status: 200 Duration: 1.65ms
+Incoming request: GET http://0.0.0.0:8000/favicon.ico
+Completed request: GET http://0.0.0.0:8000/favicon.icoStatus: 404 Duration: 0.28ms
+Incoming request: GET http://0.0.0.0:8000/docs
+Completed request: GET http://0.0.0.0:8000/docsStatus: 200 Duration: 0.38ms
+Incoming request: GET http://0.0.0.0:8000/openapi.json
+Completed request: GET http://0.0.0.0:8000/openapi.jsonStatus: 200 Duration: 67.23ms
+Incoming request: GET http://0.0.0.0:8000/docs
+Completed request: GET http://0.0.0.0:8000/docsStatus: 200 Duration: 1.11ms
+Incoming request: GET http://0.0.0.0:8000/openapi.json
+Completed request: GET http://0.0.0.0:8000/openapi.jsonStatus: 200 Duration: 1.21ms
+Incoming request: POST http://0.0.0.0:8000/v1/token
+Completed request: POST http://0.0.0.0:8000/v1/tokenStatus: 401 Duration: 91.37ms
+Incoming request: POST http://0.0.0.0:8000/v1/token
+Completed request: POST http://0.0.0.0:8000/v1/tokenStatus: 200 Duration: 80.50ms
+Incoming request: GET http://0.0.0.0:8000/v1/users/me
+Completed request: GET http://0.0.0.0:8000/v1/users/meStatus: 200 Duration: 62.13ms
+Incoming request: GET http://0.0.0.0:8000/v1/rag/documents
+Completed request: GET http://0.0.0.0:8000/v1/rag/documentsStatus: 200 Duration: 7913.81ms
+Incoming request: POST http://0.0.0.0:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acb
+Completed request: POST http://0.0.0.0:8000/v1/rag/chat?hash=c8f5de222fcf1804197e97b0df02d30d25ab70715fcf93bb8d61c0f7b2c13acbStatus: 200 Duration: 3278.86ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.79ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 68.91ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 75.27ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 16.77ms
+Incoming request: GET http://localhost:8000/v1/rag/documents
+Completed request: GET http://localhost:8000/v1/rag/documentsStatus: 200 Duration: 9051.01ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+{"error": "build_graph() missing 1 required positional argument: 'books_repo'", "type": "TypeError", "path": "http://localhost:8000/v1/rag/chat", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/rag/chat
+{"error": "LangGraphRAGRepositoryImpl.__init__() missing 1 required positional argument: 'books_repo'", "type": "TypeError", "path": "http://localhost:8000/v1/rag/chat", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 18567.59ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 4751.66ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.38ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 87.22ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 102.87ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 4679.81ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3454.93ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.35ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 149.04ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 115.58ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 6900.40ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 2674.99ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 2838.06ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3971.27ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 5625.95ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 2531.94ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3386.59ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3518.24ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3031.87ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3560.86ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 4032.31ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3777.56ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3598.92ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 4856.67ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=100Status: 200 Duration: 6.83ms
+Incoming request: POST http://localhost:8000/v1/books/
+Completed request: POST http://localhost:8000/v1/books/Status: 201 Duration: 50.96ms
+Incoming request: POST http://localhost:8000/v1/books/
+Completed request: POST http://localhost:8000/v1/books/Status: 201 Duration: 48.32ms
+Incoming request: POST http://localhost:8000/v1/books/
+Completed request: POST http://localhost:8000/v1/books/Status: 201 Duration: 43.44ms
+Incoming request: POST http://localhost:8000/v1/books/
+Completed request: POST http://localhost:8000/v1/books/Status: 201 Duration: 43.82ms
+Incoming request: POST http://localhost:8000/v1/books/
+Completed request: POST http://localhost:8000/v1/books/Status: 201 Duration: 57.43ms
+Incoming request: POST http://localhost:8000/v1/books/
+Completed request: POST http://localhost:8000/v1/books/Status: 201 Duration: 41.75ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 8993.50ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 5041.78ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3999.23ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3546.80ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 7528.73ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.44ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 65.21ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 105.37ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+{"error": "Can't instantiate abstract class ChromaVectorStoreRepositoryImpl with abstract method delete_document_chunks", "type": "TypeError", "path": "http://localhost:8000/v1/rag/chat", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/rag/chat
+{"error": "ChromaVectorStoreRepositoryImpl.__init__() missing 1 required positional argument: 'book_repo'", "type": "TypeError", "path": "http://localhost:8000/v1/rag/chat", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/rag/chat
+{"error": "'tuple' object has no attribute 'save_document'", "type": "AttributeError", "path": "http://localhost:8000/v1/rag/chat", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 112562.81ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 10600.99ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 21108.70ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 5064.83ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 5713.12ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3265.08ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 2639.33ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3425.23ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 14360.48ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 2593.46ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 2810.23ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 2840.73ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+{"error": "Error embedding content: bad argument type for built-in operation", "type": "GoogleGenerativeAIError", "path": "http://localhost:8000/v1/rag/chat", "method": "POST"}
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 8691.91ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 5135.48ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 27782.81ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 4278.66ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 5623.41ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3890.00ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 5038.87ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3040.29ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 18594.97ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 18622.70ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 4643.40ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 4150.43ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 6869.80ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 4157.01ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 28244.62ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.57ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 141.90ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 88.65ms
+Incoming request: GET https://localhost:8000/favicon.ico
+Completed request: GET https://localhost:8000/favicon.icoStatus: 404 Duration: 0.44ms
+Incoming request: GET https://localhost:8000/docs
+Completed request: GET https://localhost:8000/docsStatus: 200 Duration: 0.35ms
+Incoming request: GET https://localhost:8000/openapi.json
+Completed request: GET https://localhost:8000/openapi.jsonStatus: 200 Duration: 1.35ms
+Incoming request: GET https://localhost:8000/favicon.ico
+Completed request: GET https://localhost:8000/favicon.icoStatus: 404 Duration: 0.55ms
+Incoming request: GET https://localhost:8000/docs
+Completed request: GET https://localhost:8000/docsStatus: 200 Duration: 0.46ms
+Incoming request: GET https://localhost:8000/openapi.json
+Completed request: GET https://localhost:8000/openapi.jsonStatus: 200 Duration: 1.36ms
+Incoming request: GET https://localhost:8000/v1/token
+Completed request: GET https://localhost:8000/v1/tokenStatus: 405 Duration: 0.51ms
+Incoming request: GET https://localhost:8000/favicon.ico
+Completed request: GET https://localhost:8000/favicon.icoStatus: 404 Duration: 0.24ms
+Incoming request: GET https://localhost:8000/docs
+Completed request: GET https://localhost:8000/docsStatus: 200 Duration: 0.46ms
+Incoming request: GET https://localhost:8000/docs
+Completed request: GET https://localhost:8000/docsStatus: 200 Duration: 0.38ms
+Incoming request: GET https://localhost:8000/openapi.json
+Completed request: GET https://localhost:8000/openapi.jsonStatus: 200 Duration: 1.31ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 20359.07ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3592.05ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 4155.64ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 4658.29ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 2682.36ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 2989.06ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 1907.09ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 2950.54ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3008.48ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 1812.53ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3015.94ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 1657.64ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 5566.07ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 4032.56ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 2871.98ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 1767.41ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 2650.44ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3025.34ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 2120.76ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3888.53ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3081.24ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 1972.43ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 2152.19ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+{"error": "Validation error", "details": [{"type": "json_invalid", "loc": ["body", 37], "msg": "JSON decode error", "input": {}, "ctx": {"error": "Expecting ',' delimiter"}}], "body": "{\n  \"content\": \"Books about monsters\"\",\n  \"session_id\": \"31\"\n}", "path": "http://localhost:8000/v1/rag/chat", "method": "POST"}
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 422 Duration: 1.61ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3050.36ms
+Incoming request: GET http://localhost:8000/v1/rag/documents
+{"error": "no book found of such isbn, recheck your algorithm", "type": "ValueError", "path": "http://localhost:8000/v1/rag/documents", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/rag/documents
+{"error": "no book found of such isbn, recheck your algorithm", "type": "ValueError", "path": "http://localhost:8000/v1/rag/documents", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/rag/documents
+Completed request: GET http://localhost:8000/v1/rag/documentsStatus: 200 Duration: 781.70ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 11363.44ms
+Incoming request: POST http://localhost:8000/v1/rag/chat
+Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3179.95ms

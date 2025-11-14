@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Dict
 
 from sqlalchemy import or_
 from sqlalchemy.orm import Session
@@ -83,3 +83,62 @@ class BookRepositoryImpl(BookRepository):
         self.db.refresh(db_book)
 
         return BookMapper.to_entity(db_book)
+    
+    def get_all_authors(self) -> List[str]:
+        """Retrieve a list of all authors in the repository."""
+        authors = (
+            self.db.query(BookModel.author_name)
+            .distinct()
+            .all()
+        )
+        return [author[0] for author in authors if author[0] is not None]
+    
+    def get_all_genres(self) -> List[str]:
+        """Retrieve a list of all genres in the repository."""
+        genres = (
+            self.db.query(BookModel.genre)
+            .distinct()
+            .all()
+        )
+        return [genre[0] for genre in genres if genre[0] is not None]
+    
+    def get_books_with_filter(
+        self,
+        genre: Optional[List[str]],
+        author: Optional[List[str]],
+        title: Optional[str],
+        published_year: Optional[int | Dict[str, int]]
+    ) -> List[Book]:
+        """
+        Retrieve books filtered by genre, author, title, or publication year (exact or range).
+        """
+        query = self.db.query(BookModel)
+
+        # Genre filter (multiple)
+        if genre:
+            query = query.filter(BookModel.genre.in_(genre))
+
+        # Author filter (multiple)
+        if author:
+            query = query.filter(BookModel.author_name.in_(author))
+
+        # Title filter (case-insensitive partial match)
+        if title:
+            query = query.filter(BookModel.title.ilike(f"%{title}%"))
+
+        # Published year filter (exact or range)
+        if published_year:
+            if isinstance(published_year, dict):
+                start = published_year.get("from")
+                end = published_year.get("to")
+                if start and end:
+                    query = query.filter(BookModel.published_year.between(start, end))
+                elif start:
+                    query = query.filter(BookModel.published_year >= start)
+                elif end:
+                    query = query.filter(BookModel.published_year <= end)
+            else:
+                query = query.filter(BookModel.published_year == published_year)
+
+        db_books = query.all()
+        return [BookMapper.to_entity(book) for book in db_books]

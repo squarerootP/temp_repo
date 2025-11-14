@@ -49,3 +49,7 @@ class IRAGRepository(ABC):
             The generated response string
         """
         pass
+
+        @abstractmethod
+        def search_for_books_with_ai(self, user_query: str) -> str:
+            pass

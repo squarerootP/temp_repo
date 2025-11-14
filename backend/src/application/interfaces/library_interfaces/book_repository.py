@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional
+from typing import List, Optional, Dict
 
 from backend.src.domain.entities.library_entities.book import Book
 
@@ -36,4 +36,20 @@ class BookRepository(ABC):
 
     @abstractmethod
     def update(self, book_isbn: str, book_data: dict) -> Optional[Book]:
+        pass
+
+    @abstractmethod
+    def get_all_authors(self) -> List[str]:
+        """Retrieve a list of all authors in the repository."""
+        pass
+    
+    @abstractmethod
+    def get_all_genres(self) -> List[str]:
+        """Retrieve a list of all genres in the repository."""
+        pass
+
+    @abstractmethod
+    def get_books_with_filter(self, genre: Optional[List[str]], author: Optional[List[str]], title: Optional[str], published_year: Optional[int | Dict[str, int]]
+                              ) -> List[Book]:
+        """Retrieve books filtered by genre and/or author."""
         pass

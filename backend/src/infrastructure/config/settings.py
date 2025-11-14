@@ -33,6 +33,7 @@ class RAGSettings(BaseSettings):
     CHUNK_SIZE: int
     CHUNK_OVERLAP: int
     NUM_DOCS_RETRIEVED: int
+    SUMMARY_TOP_K: int
 
     # Optional settings with defaults
     MAX_FILE_SIZE_MB: int = 5
