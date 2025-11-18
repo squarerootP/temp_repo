@@ -5,6 +5,12 @@ import ReactMarkdown from "react-markdown";
 
 function ChatBotToggleButton() {
   const [isChatBotOpen, setChatBotOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    {
+      role: "ai",
+      content: "Helo! I'm Elib chatbot promax. How can I assist you today?"
+    }
+  ])
 
   function ChatBotBoxChat() {
 

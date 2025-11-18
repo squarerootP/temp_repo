@@ -7,21 +7,28 @@ import { BrowserRouter, Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import LandingPage from '@pages/LandingPage';
 import Book from '@pages/Book';
-
+import MyProfile from '@pages/MyProfile';
+import { AIModeProvider } from './context/AIModeContext';
+import { AppProvider } from './context/AppContext';
 function App() {
   return (
     <div>
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<LandingPage />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/signup' element={<SignUp />} />
-            <Route path='/home' element={<Home />} />
-            <Route path='/books' element={<Book />} />
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
+      <AppProvider>
+        <AIModeProvider>
+          <AuthProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path='/' element={<LandingPage />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/signup' element={<SignUp />} />
+                <Route path='/home' element={<Home />} />
+                <Route path='/books' element={<Book />} />
+                <Route path='/my-profile' element={<MyProfile />} />
+              </Routes>
+            </BrowserRouter>
+          </AuthProvider>
+        </AIModeProvider>
+      </AppProvider>
     </div>
   );
 }

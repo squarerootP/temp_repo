@@ -1,7 +1,7 @@
 import { loginApi } from '@/api/authApi';
 import { FormField } from '@/components/forms/FormField.jsx';
 import { SubmitButton } from '@/components/forms/SubmitButton.jsx';
-import { AuthContext } from '@/context/AuthContext';
+import { AuthContext } from '/src/context/AuthContext.jsx';
 import '@/index.css';
 import { styles } from '@/styles/style_config.jsx';
 import { useContext, useState } from 'react';
@@ -22,10 +22,10 @@ function Login() {
     try {
       const data = await loginApi(email, password);
       login(data.user, data.access_token);
+
       navigate('/home');
     } catch (err) {
       setError('Invalid crendentials');
-      navigate('/home');
     }
   };
 

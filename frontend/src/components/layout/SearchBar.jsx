@@ -1,17 +1,32 @@
 import searchIcon from '@/assets/images/icons/search_icon.png';
+import React from 'react';
+function SearchBar({ onSearch }) {
+  const [query, setQuery] = React.useState("");
 
-function SearchBar() {
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSearch(query);  
+  }
+
   return (
-    <div className='w-max h-14 rounded-lg flex flex-row items-center space-x-2'>
+    <form
+      onSubmit={handleSubmit}
+      className="w-max h-14 rounded-lg flex flex-row items-center space-x-2"
+    >
       <input
-        type='text'
-        placeholder='Search for books, authors, genres...'
-        className='outline-none w-96 h-full border-black border-2 rounded-2xl px-4 bg-green-300 placeholder-black'
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="✨ I want to find books that..."
+        className="outline-none w-96 h-full border-white border-2 rounded-2xl px-4 bg-green-600 placeholder-white text-white"
       />
-      <button className='border-black border-2 rounded-2xl flex h-full w-14 items-center justify-between bg-green-300'>
-        <img src={searchIcon} alt='search_icon' className='h-12 w-12 p-2' />
+
+      <button
+        type="submit"
+        className="border-white border-2 rounded-2xl flex h-full w-14 items-center justify-center bg-green-600"
+      >
+        <img src={searchIcon} className="h-12 w-12 p-2 invert" />
       </button>
-    </div>
+    </form>
   );
 }
 

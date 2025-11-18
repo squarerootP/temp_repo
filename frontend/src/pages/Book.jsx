@@ -9,6 +9,16 @@ import ChatBotToggleButton from '../components/layout/SideChatBot/ChatBotToggleB
 
 function Book() {
   const BookList = [];
+
+  function handleSearch(query) {
+    if (mode === "ai") {
+      console.log("AI searching:", query);
+      // call RAG / LLM API
+    } else {
+      console.log("Normal searching:", query);
+      // filtering logic
+    }
+  }
   return (
     <>
       <header>
@@ -27,7 +37,7 @@ function Book() {
             <Logo size={69}></Logo>
             <h1 className='ml-4 text-6xl font-bold text-white shadow-slate-700'>Elib</h1>
           </div>
-          <SearchBar></SearchBar>
+          <SearchBar onSearch={(e) => handleSearch(e.mode)}></SearchBar>
         </div>
       </section>
 
