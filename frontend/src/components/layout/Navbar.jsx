@@ -12,7 +12,7 @@ function NavBar() {
 
   return (
     <nav className='bg-primary py-2 shadow-lg max-h-16'>
-      <div className='flex items-center justify-between max-w-7xl mx-auto'>
+      <div className='flex items-center justify-between max-w-7xl mx-auto px-6'>
         <NavBarAppLogo></NavBarAppLogo>
         <Redirects></Redirects>
         <UserArea></UserArea>

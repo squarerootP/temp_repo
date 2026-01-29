@@ -19,13 +19,13 @@ function UserArea() {
         <div className='hidden md:flex items-center space-x-4'>
           <Link
             to='/login'
-            className='px-4 py-2 text-sm rounded text-white  hover:bg-white hover:text-green-600 transition duration-150'
+            className='px-4 py-2 text-sm rounded-sm text-white  hover:bg-white hover:text-green-600 transition duration-150'
           >
             Login
           </Link>
           <Link
             to='/signup'
-            className='px-4 py-2 text-sm rounded bg-green-700 text-white hover:bg-green-800 transition duration-150'
+            className='px-4 py-2 text-sm rounded-sm bg-green-700 text-white hover:bg-green-800 transition duration-150'
           >
             Sign Up
           </Link>
@@ -41,7 +41,7 @@ function UserArea() {
       )}
       {isOpen && isLoggedIn && (
         <div
-          className='absolute z-[500] grid grid-cols-1 border-2 border-green-600 divide-y-2 divide-green-60 
+          className='absolute z-500 grid grid-cols-1 border-2 border-green-600 divide-y-2 divide-green-60 
             place-items-center w-36 bg-white rounded-md'
         >
           <Link to='/my-profile/'>View profile</Link>

@@ -6,3 +6,6 @@
 {"error": "Error embedding content: bad argument type for built-in operation", "type": "GoogleGenerativeAIError", "path": "http://localhost:8000/v1/rag/chat", "method": "POST"}
 {"error": "no book found of such isbn, recheck your algorithm", "type": "ValueError", "path": "http://localhost:8000/v1/rag/documents", "method": "GET"}
 {"error": "no book found of such isbn, recheck your algorithm", "type": "ValueError", "path": "http://localhost:8000/v1/rag/documents", "method": "GET"}
+{"error": "1 validation errors:\n  {'type': 'list_type', 'loc': ('response',), 'msg': 'Input should be a valid list', 'input': None}\n", "type": "ResponseValidationError", "path": "http://localhost:8000/v1/books/search?text_to_search=%20&skip=6&limit=2", "method": "GET"}
+{"error": "1 validation errors:\n  {'type': 'list_type', 'loc': ('response',), 'msg': 'Input should be a valid list', 'input': None}\n", "type": "ResponseValidationError", "path": "http://localhost:8000/v1/books/search?text_to_search=a%20&skip=6&limit=2", "method": "GET"}
+{"error": "User with email example@gmail.com not found.", "type": "UserNotFound", "path": "http://localhost:8000/v1/token", "method": "POST"}

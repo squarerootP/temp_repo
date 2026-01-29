@@ -10,3 +10,4 @@ class Book:
     genre: Optional[str] = None
     published_year: Optional[int] = None
     author_name: Optional[str] = None
+    img_path: Optional[str] = None

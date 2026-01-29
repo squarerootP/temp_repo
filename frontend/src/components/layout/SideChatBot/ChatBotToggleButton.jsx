@@ -43,7 +43,7 @@ function ChatBotToggleButton() {
           <input
             type='text'
             placeholder='Type a message...'
-            className='flex-1 rounded-lg border border-green-400 p-2 focus:outline-none'
+            className='flex-1 rounded-lg border border-green-400 p-2 focus:outline-hidden'
           />
           <button className='ml-2 rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-600'>
             Send

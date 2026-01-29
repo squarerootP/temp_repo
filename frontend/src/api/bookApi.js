@@ -1,15 +1,17 @@
-mport apiClient from './axiosConfig';
+import apiClient from './axiosConfig';
 
 export const bookApi = {
   // Get all books
-  getAllBooks: async (skip = 0, limit = 100) => {
-    const response = await apiClient.get(`/books?skip=${skip}&limit=${limit}`);
+  getAllBooks: async ({ skip = 0, limit = 100 }) => {
+    const response = await apiClient.get(`/books/`, { params: { skip, limit } });
     return response.data;
   },
 
   // Search books
-  searchBooks: async (query, skip = 0, limit = 100) => {
-    const response = await apiClient.get(`/books/search?text_to_search=${query}&skip=${skip}&limit=${limit}`);
+  searchBooks: async ({query, skip = 0, limit = 100}) => {
+    const response = await apiClient.get(`/books/search`, {
+      params: { text_to_search: query, skip, limit },
+    });
     return response.data;
   },
 

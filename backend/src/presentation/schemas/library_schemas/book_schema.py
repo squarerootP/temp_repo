@@ -12,6 +12,7 @@ class BookBase(BaseModel):
     genre: Optional[str] = Field(None, max_length=50)
     published_year: Optional[int] = Field(None, ge=1000, le=datetime.now().year)
     author_name: str
+    img_path: Optional[str] = None
 
 
 class BookCreate(BookBase):
@@ -24,6 +25,7 @@ class BookUpdate(BaseModel):
     genre: Optional[str] = Field(None, max_length=50)
     published_year: Optional[int] = Field(None, ge=1000, le=datetime.now().year)
     author_name: Optional[str] = None
+    img_path: Optional[str] = None
 
 
 class BookResponse(BookBase):

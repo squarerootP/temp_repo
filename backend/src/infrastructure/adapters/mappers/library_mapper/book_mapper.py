@@ -13,6 +13,7 @@ class BookMapper:
             genre=model.genre,
             published_year=model.published_year,
             author_name=model.author_name,
+            img_path=model.img_path,
         )
 
     @staticmethod
@@ -24,4 +25,5 @@ class BookMapper:
             genre=entity.genre,
             published_year=entity.published_year,
             author_name=entity.author_name,
+            img_path=entity.img_path,
         )

@@ -17,7 +17,7 @@ function SearchBar({ onSearch }) {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="✨ I want to find books that..."
-        className="outline-none w-96 h-full border-white border-2 rounded-2xl px-4 bg-green-600 placeholder-white text-white"
+        className="outline-hidden w-96 h-full border-white border-2 rounded-2xl px-4 bg-green-600 placeholder-white text-white"
       />
 
       <button

@@ -263,3 +263,607 @@ Incoming request: POST http://localhost:8000/v1/rag/chat
 Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 11363.44ms
 Incoming request: POST http://localhost:8000/v1/rag/chat
 Completed request: POST http://localhost:8000/v1/rag/chatStatus: 200 Duration: 3179.95ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 158.72ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 49.15ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 5.50ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 5.40ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 12.43ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.12ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 401 Duration: 9.35ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 401 Duration: 2.51ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 106.95ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 16.83ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.42ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 7.95ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 7.87ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 12.52ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.56ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 9.02ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 16.15ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 5.02ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 7.09ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 99.66ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 70.87ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 66.42ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 70.93ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 172.78ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 66.21ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 68.60ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 69.86ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 69.07ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 69.10ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 74.97ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 68.82ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 70.27ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 72.65ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 65.78ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 66.56ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 73.63ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 70.29ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 60.84ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 69.13ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 86.53ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 131.14ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 109.05ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 69.96ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 158.16ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 102.74ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 16.34ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 91.68ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.15ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 100.68ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.19ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 90.63ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.53ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 97.67ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.75ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.49ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 90.31ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 38.63ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.59ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 147.08ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 6.30ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.98ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 6.63ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 74.48ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 2.35ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 6.31ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.51ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.80ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 5.25ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 83.12ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.97ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 5.68ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 10.88ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 116.21ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 2.06ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 3.53ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 5.92ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.71ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.00ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.17ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 67.56ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 2.09ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 4.36ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 801.01ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 28.72ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 30.96ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 2.82ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.25ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 77.96ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 2.58ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 20.29ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 48.74ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.08ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 185.97ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 2.84ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 4.12ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 1542.29ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 2.55ms
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 1631.10ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 3.76ms
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 23.90ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 9.31ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 5.33ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 12.30ms
+Incoming request: GET http://localhost:8000/users/me
+Incoming request: GET http://localhost:8000/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/users/meStatus: 404 Duration: 27.53ms
+Completed request: GET http://localhost:8000/books/?skip=0&limit=10Status: 404 Duration: 132.30ms
+Incoming request: GET http://localhost:8000/users/me
+Completed request: GET http://localhost:8000/users/meStatus: 404 Duration: 2.11ms
+Incoming request: GET http://localhost:8000/users/me
+Completed request: GET http://localhost:8000/users/meStatus: 404 Duration: 1.02ms
+Incoming request: GET http://localhost:8000/users/me
+Completed request: GET http://localhost:8000/users/meStatus: 404 Duration: 8.86ms
+Incoming request: GET http://localhost:8000/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/books/?skip=0&limit=10Status: 404 Duration: 0.83ms
+Incoming request: GET http://localhost:8000/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/books/?skip=0&limit=10Status: 404 Duration: 1.01ms
+Incoming request: GET http://localhost:8000/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/books/?skip=0&limit=10Status: 404 Duration: 0.50ms
+Incoming request: GET http://localhost:8000/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/books/?skip=0&limit=10Status: 404 Duration: 0.43ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 130.20ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=100
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=100Status: 200 Duration: 3.72ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 5.17ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 98.30ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 2.09ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 10.64ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 6.26ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 7.89ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 16.57ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 71.81ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 8.24ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.97ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 7.56ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 2.62ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 11.29ms
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 10.70ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.16ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 11.39ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 2.39ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 123.69ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 89.37ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 22.25ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 10.82ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 9.37ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 3.52ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 7.73ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 42.38ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 2.63ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 14.72ms
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 18.76ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 11.82ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 11.87ms
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 15.87ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 5.06ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 6.93ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 5.43ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.79ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 21.81ms
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 23.61ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 9.29ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 19.60ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 2.77ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 6.98ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 3.55ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 4.92ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 4.66ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 3.89ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 16.97ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 4.85ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 33.44ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 2.31ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 2.64ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 3.24ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 2.97ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 2.09ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 9.06ms
+Incoming request: POST http://localhost:8000/v1/token
+Completed request: POST http://localhost:8000/v1/tokenStatus: 200 Duration: 80.04ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 7.82ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.40ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.43ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 2.25ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 7.68ms
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 8.56ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 2.88ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 10.31ms
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 7.33ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.82ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 2.35ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 8.59ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 7.90ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 2.11ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 8.50ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 9.79ms
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 14.57ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 2.30ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 7.29ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 36.10ms
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 35.28ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=10&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=10&limit=10Status: 200 Duration: 2.41ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=10&limit=20
+Completed request: GET http://localhost:8000/v1/books/?skip=10&limit=20Status: 200 Duration: 2.13ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=10
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=10Status: 200 Duration: 5.54ms
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 6.39ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.22ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=10&limit=20
+Completed request: GET http://localhost:8000/v1/books/?skip=10&limit=20Status: 200 Duration: 1.57ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=3
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=3Status: 200 Duration: 1.68ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=3&limit=6
+Completed request: GET http://localhost:8000/v1/books/?skip=3&limit=6Status: 200 Duration: 2.77ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=6&limit=9
+Completed request: GET http://localhost:8000/v1/books/?skip=6&limit=9Status: 200 Duration: 2.12ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=9&limit=12
+Completed request: GET http://localhost:8000/v1/books/?skip=9&limit=12Status: 200 Duration: 2.00ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=12&limit=15
+Completed request: GET http://localhost:8000/v1/books/?skip=12&limit=15Status: 200 Duration: 2.01ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=15&limit=18
+Completed request: GET http://localhost:8000/v1/books/?skip=15&limit=18Status: 200 Duration: 1.54ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=18&limit=21
+Completed request: GET http://localhost:8000/v1/books/?skip=18&limit=21Status: 200 Duration: 1.74ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.81ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 7.58ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.06ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.25ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=3
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=3Status: 200 Duration: 3.59ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 7.50ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 6.29ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=3
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 6.54ms
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=3Status: 200 Duration: 9.76ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.41ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 3.25ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 9.45ms
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 8.74ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 6.94ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.22ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 2.61ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.15ms
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 7.98ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 6.19ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.28ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 11.52ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 5.58ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 5.62ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 2.66ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 10.92ms
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 13.26ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.69ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 9.56ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 10.57ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 4.21ms
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 6.17ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 9.15ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.21ms
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 6.61ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 2.02ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=2&limit=4
+Completed request: GET http://localhost:8000/v1/books/?skip=2&limit=4Status: 200 Duration: 2.28ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=4&limit=6
+Completed request: GET http://localhost:8000/v1/books/?skip=4&limit=6Status: 200 Duration: 1.88ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=6&limit=8
+Completed request: GET http://localhost:8000/v1/books/?skip=6&limit=8Status: 200 Duration: 2.11ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=8&limit=10
+Completed request: GET http://localhost:8000/v1/books/?skip=8&limit=10Status: 200 Duration: 1.91ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=10&limit=12
+Completed request: GET http://localhost:8000/v1/books/?skip=10&limit=12Status: 200 Duration: 1.69ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 8.53ms
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 11.26ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 2.21ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=2&limit=4
+Completed request: GET http://localhost:8000/v1/books/?skip=2&limit=4Status: 200 Duration: 1.80ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=4&limit=6
+Completed request: GET http://localhost:8000/v1/books/?skip=4&limit=6Status: 200 Duration: 2.13ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 2.68ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.30ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 14.49ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=2&limit=4
+Completed request: GET http://localhost:8000/v1/books/?skip=2&limit=4Status: 200 Duration: 2.17ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=4&limit=6
+Completed request: GET http://localhost:8000/v1/books/?skip=4&limit=6Status: 200 Duration: 1.97ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=2&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=2&limit=2Status: 200 Duration: 1.83ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=4&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=4&limit=2Status: 200 Duration: 1.51ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=6&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=6&limit=2Status: 200 Duration: 2.01ms
+Incoming request: GET http://localhost:8000/docs
+Completed request: GET http://localhost:8000/docsStatus: 200 Duration: 0.26ms
+Incoming request: GET http://localhost:8000/openapi.json
+Completed request: GET http://localhost:8000/openapi.jsonStatus: 200 Duration: 76.15ms
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=%20&skip=6&limit=2
+{"error": "1 validation errors:\n  {'type': 'list_type', 'loc': ('response',), 'msg': 'Input should be a valid list', 'input': None}\n", "type": "ResponseValidationError", "path": "http://localhost:8000/v1/books/search?text_to_search=%20&skip=6&limit=2", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/search?text_to_search=a%20&skip=6&limit=2
+{"error": "1 validation errors:\n  {'type': 'list_type', 'loc': ('response',), 'msg': 'Input should be a valid list', 'input': None}\n", "type": "ResponseValidationError", "path": "http://localhost:8000/v1/books/search?text_to_search=a%20&skip=6&limit=2", "method": "GET"}
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 2.42ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=2&limit=4
+Completed request: GET http://localhost:8000/v1/books/?skip=2&limit=4Status: 200 Duration: 2.55ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=4&limit=6
+Completed request: GET http://localhost:8000/v1/books/?skip=4&limit=6Status: 200 Duration: 1.76ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 3.78ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 5.03ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.82ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=2&limit=4
+Completed request: GET http://localhost:8000/v1/books/?skip=2&limit=4Status: 200 Duration: 2.66ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=4&limit=6
+Completed request: GET http://localhost:8000/v1/books/?skip=4&limit=6Status: 200 Duration: 1.83ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 1.90ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 6.19ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 14.55ms
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 10.45ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=2&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=2&limit=2Status: 200 Duration: 2.24ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=4&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=4&limit=2Status: 200 Duration: 2.46ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 2.34ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 10.84ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.52ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=2&limit=4
+Completed request: GET http://localhost:8000/v1/books/?skip=2&limit=4Status: 200 Duration: 2.54ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=4&limit=6
+Completed request: GET http://localhost:8000/v1/books/?skip=4&limit=6Status: 200 Duration: 2.25ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=6&limit=8
+Completed request: GET http://localhost:8000/v1/books/?skip=6&limit=8Status: 200 Duration: 2.01ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=2&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=2&limit=2Status: 200 Duration: 5.79ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=4&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=4&limit=2Status: 200 Duration: 6.63ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.80ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 16.11ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 5.63ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 5.20ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 10.52ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.08ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 17.10ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 4.29ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 5.17ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=2&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=2&limit=2Status: 200 Duration: 2.13ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=4&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=4&limit=2Status: 200 Duration: 1.97ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 3.19ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.16ms
+Incoming request: GET http://localhost:8000/v1/users/me
+Completed request: GET http://localhost:8000/v1/users/meStatus: 200 Duration: 3.56ms
+Incoming request: POST http://localhost:8000/v1/token
+{"error": "User with email example@gmail.com not found.", "type": "UserNotFound", "path": "http://localhost:8000/v1/token", "method": "POST"}
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=2
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=2Status: 200 Duration: 5.01ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=4
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=4Status: 200 Duration: 2.18ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=4&limit=4
+Completed request: GET http://localhost:8000/v1/books/?skip=4&limit=4Status: 200 Duration: 1.83ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=4
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=4Status: 200 Duration: 2.10ms
+Incoming request: GET http://localhost:8000/v1/books/?skip=0&limit=4
+Completed request: GET http://localhost:8000/v1/books/?skip=0&limit=4Status: 200 Duration: 11.85ms

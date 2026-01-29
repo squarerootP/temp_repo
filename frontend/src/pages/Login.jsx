@@ -1,4 +1,4 @@
-import { loginApi } from '@/api/authApi';
+import { authApi } from '@/api/authApi';
 import { FormField } from '@/components/forms/FormField.jsx';
 import { SubmitButton } from '@/components/forms/SubmitButton.jsx';
 import { AuthContext } from '/src/context/AuthContext.jsx';
@@ -6,11 +6,13 @@ import '@/index.css';
 import { styles } from '@/styles/style_config.jsx';
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useLogin } from '@/hooks/useAuth';
 
 function Login() {
   const { login } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const loginMutation = useLogin();
   const [error, setError] = useState('');
 
   const navigate = useNavigate();
@@ -19,14 +21,7 @@ function Login() {
     e.preventDefault();
     setError('');
 
-    try {
-      const data = await loginApi(email, password);
-      login(data.user, data.access_token);
-
-      navigate('/home');
-    } catch (err) {
-      setError('Invalid crendentials');
-    }
+    loginMutation.mutate({ email, password });
   };
 
   return (
@@ -50,9 +45,14 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             required={true}
           />
-          <SubmitButton text='Login' />
+          <SubmitButton
+            text={loginMutation.isLoading ? 'Logging in...' : 'Loggin'}
+            disabled={loginMutation.isLoading}
+          />
 
-          {error && <p className='text-red-500'>{error}</p>}
+          {loginMutation.isError && (
+            <p className='text-red-500 text-sm mt-2'>{loginMutation.error.message}</p>
+          )}
         </form>
         <p className='text-sm text-center mt-4 '>
           Don't have an account?{' '}

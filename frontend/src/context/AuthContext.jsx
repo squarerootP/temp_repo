@@ -34,7 +34,6 @@ export function AuthProvider({ children }) {
           setUser(userData)
           setIsLoggedIn(true)
           setToken(storedToken)
-          setIsLoggedIn(true)
         }
         catch (error) {
           console.error("Failed to fetch user data:", error)
